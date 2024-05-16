@@ -8,7 +8,7 @@ export async function GET(
   const chapter_id = params.chapter_id;
 
   const response = await axios.get(
-    `${process.env.API_URL}/get-chapters/${novel_id}${chapter_id}`
+    `${process.env.API_URL}/get-chapters/${novel_id}/${chapter_id}`
   );
 
   const data = await response.data;
