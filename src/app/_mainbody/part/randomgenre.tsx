@@ -2,9 +2,19 @@
 import { GENRE } from "@/app/_components/enums/genre";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import RandomGenreBook from "./randomgenrebook";
+import { useFetchSevenRandom } from "@/app/_components/hooks/useFetchSevenRandom";
 
 const Randomgenre = () => {
   const [toggler, setToggler] = useState(1);
+
+  const { data: firstData } = useFetchSevenRandom(1);
+  const { data: secondData } = useFetchSevenRandom(2);
+  const { data: thirdData } = useFetchSevenRandom(3);
+  const { data: fourthData } = useFetchSevenRandom(4);
+  const { data: fifthData } = useFetchSevenRandom(5);
+  const { data: sixData } = useFetchSevenRandom(6);
+  const { data: sevenData } = useFetchSevenRandom(7);
   return (
     <>
       <div>
@@ -59,13 +69,47 @@ const Randomgenre = () => {
         </Button>
       </div>
       <div>
-        {toggler === GENRE.ACTION && <div>Action</div>}
-        {toggler === GENRE.COMEDY && <div>Comedy</div>}
-        {toggler === GENRE.ADVENTURE && <div>Adventure</div>}
-        {toggler === GENRE.DRAMA && <div>Drama</div>}
-        {toggler === GENRE.EASTERN && <div>Eastern</div>}
-        {toggler === GENRE.FANTASY && <div>Fantasy</div>}
-        {toggler === GENRE.HAREM && <div>Harem</div>}
+        {toggler === GENRE.ACTION && (
+          <div>
+            <RandomGenreBook data={firstData} />
+          </div>
+        )}
+        {toggler === GENRE.COMEDY && (
+          <div>
+            {" "}
+            <RandomGenreBook data={secondData} />
+          </div>
+        )}
+        {toggler === GENRE.ADVENTURE && (
+          <div>
+            {" "}
+            <RandomGenreBook data={thirdData} />
+          </div>
+        )}
+        {toggler === GENRE.DRAMA && (
+          <div>
+            {" "}
+            <RandomGenreBook data={fourthData} />
+          </div>
+        )}
+        {toggler === GENRE.EASTERN && (
+          <div>
+            {" "}
+            <RandomGenreBook data={fifthData} />
+          </div>
+        )}
+        {toggler === GENRE.FANTASY && (
+          <div>
+            {" "}
+            <RandomGenreBook data={sixData} />
+          </div>
+        )}
+        {toggler === GENRE.HAREM && (
+          <div>
+            {" "}
+            <RandomGenreBook data={sevenData} />
+          </div>
+        )}
       </div>
     </>
   );
