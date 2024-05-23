@@ -29,7 +29,7 @@ const Slider = () => {
   return (
     <Carousel className="max-w-5xl">
       <CarouselContent>
-        <CarouselItem className="flex gap-6">
+        <CarouselItem className="flex gap-10">
           <Card className="w-[238px] h-[350px] bg-gradient-to-br from-blue-500 to-purple-500">
             <CardTitle className="text-center m-1 text-white text-lg font-bold">
               {mapGenre(firstData?.genre)}
@@ -37,6 +37,7 @@ const Slider = () => {
             <CardContent className="flex items-center justify-center p-1">
               {firstData && (
                 <Image
+                  className="rounded-r-lg"
                   src={firstData?.image_url_cover}
                   width={120}
                   height={120}
@@ -58,6 +59,7 @@ const Slider = () => {
             <CardContent className="flex items-center justify-center p-1">
               {secondData && (
                 <Image
+                  className="rounded-r-lg"
                   src={secondData?.image_url_cover}
                   width={120}
                   height={120}
@@ -80,6 +82,7 @@ const Slider = () => {
             <CardContent className="flex items-center justify-center p-1">
               {firstData && (
                 <Image
+                  className="rounded-r-lg"
                   src={thirdData?.image_url_cover}
                   width={120}
                   height={120}
@@ -102,6 +105,7 @@ const Slider = () => {
             <CardContent className="flex items-center justify-center p-1">
               {fourthData && (
                 <Image
+                  className="rounded-r-lg"
                   src={fourthData?.image_url_cover}
                   width={120}
                   height={120}
@@ -117,7 +121,7 @@ const Slider = () => {
             </CardFooter>
           </Card>
         </CarouselItem>
-        <CarouselItem className="flex gap-6">
+        <CarouselItem className="flex gap-10">
           <Card className="w-[238px] h-[350px] bg-gradient-to-br from-pink-900 to-gray-300">
             <CardTitle className="text-center m-1 text-white text-lg font-bold">
               {mapGenre(fifthData?.genre)}
@@ -125,6 +129,7 @@ const Slider = () => {
             <CardContent className="flex items-center justify-center p-1">
               {fifthData && (
                 <Image
+                  className="rounded-r-lg"
                   src={fifthData?.image_url_cover}
                   width={120}
                   height={120}
@@ -147,6 +152,7 @@ const Slider = () => {
             <CardContent className="flex items-center justify-center p-1">
               {sixData && (
                 <Image
+                  className="rounded-r-lg"
                   src={sixData?.image_url_cover}
                   width={120}
                   height={120}
@@ -167,6 +173,7 @@ const Slider = () => {
             <CardContent className="flex items-center justify-center p-1">
               {sevenData && (
                 <Image
+                  className="rounded-r-lg"
                   src={sevenData?.image_url_cover}
                   width={120}
                   height={120}
