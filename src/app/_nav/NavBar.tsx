@@ -20,7 +20,7 @@ const NavBar = () => {
   return (
     <div className="bg-[#131415] h-[64px]">
       <div className="flex justify-between items-center h-full px-4">
-        <div className="text-white font-bold">Master Novels</div>
+        <div className="text-white font-bold text-xl">Master Novels</div>
         <div className="pr-3 w-[200px]">
           <SearchInput placeholder="Search..." />
         </div>
