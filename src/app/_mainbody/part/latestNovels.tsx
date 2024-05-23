@@ -10,6 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useFetchLatestNovels } from "@/app/_components/hooks/useFetchLatestNovels";
+import { formatTimestamp } from "@/app/_components/utils/dateFormatter";
 
 const LatestNovels = () => {
   const { data } = useFetchLatestNovels();
@@ -27,7 +28,7 @@ const LatestNovels = () => {
                 {items?.novel_title || "1"}
               </TableCell>
               <TableCell>Chapter {items?.chapter_number}</TableCell>
-              <TableCell>{items?.timestamp}</TableCell>
+              <TableCell>{formatTimestamp(items?.timestamp)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
