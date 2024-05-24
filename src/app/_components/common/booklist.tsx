@@ -16,6 +16,9 @@ const BookList = ({ data, searched }: Props) => {
       {searched && (
         <div className="my-10 text-3xl">Searching for {searched}</div>
       )}
+      {data?.novels?.length === 0 && (
+        <div className="text-lg">Novels not found....</div>
+      )}
       <div className="grid grid-cols-2">
         {data?.novels.map?.((books: any, index: number) => (
           <div key={index}>
