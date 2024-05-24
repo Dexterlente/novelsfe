@@ -8,7 +8,7 @@ const NavBar = () => {
 
   return (
     <div className="bg-[#131415] h-[64px]">
-      <div className="flex justify-between items-center h-full px-4">
+      <div className="flex justify-between items-center h-full px-4 xl:mx-[100px]">
         <div
           className="text-white font-bold text-xl cursor-pointer"
           onClick={() => push("/")}
