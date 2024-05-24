@@ -11,7 +11,8 @@ import React from "react";
 const Page = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("query");
-  const { data, searchQuery, isLoading } = useSearchNovels(query);
+  const page = searchParams.get("page");
+  const { data, searchQuery, isLoading } = useSearchNovels(query, page);
 
   return (
     <div className="min-h-screen">

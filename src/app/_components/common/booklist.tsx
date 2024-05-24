@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { limitText } from "../utils/limittext";
 import { mapGenre } from "../enums/genre";
+import { PaginationButton } from "./pagination";
 
 interface Props {
   data: any;
@@ -9,6 +10,8 @@ interface Props {
 }
 
 const BookList = ({ data, searched }: Props) => {
+  console.log(data?.current_page);
+
   console.log(data);
   console.log(data?.novels.image_url_cover);
   return (
@@ -41,6 +44,13 @@ const BookList = ({ data, searched }: Props) => {
           </div>
         ))}
       </div>
+      {data?.novels?.length !== 0 && (
+        <PaginationButton
+          currentPage={data?.current_page}
+          totalPages={data?.total_pages}
+          path={`search?query=${searched}`}
+        />
+      )}
     </div>
   );
 };
