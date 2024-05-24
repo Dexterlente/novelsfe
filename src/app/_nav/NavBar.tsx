@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import SearchComponent from "./searchcomponent";
+import SearchComponent from "./searchfolder/searchcomponent";
 import { useRouter } from "next/navigation";
 
 const NavBar = () => {

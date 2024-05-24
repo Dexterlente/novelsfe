@@ -11,7 +11,7 @@ function SearchComponent() {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     if (title.trim() !== "") {
-      router.replace(`/search?title=${title}`);
+      router.replace(`/search?query=${title}`);
       setSearching((e) => !e);
     }
   };

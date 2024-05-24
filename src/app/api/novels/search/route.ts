@@ -3,10 +3,10 @@ import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
-  const title = searchParams.get("title");
+  const query = searchParams.get("query");
   const page = searchParams.get("page");
 
-  const params = { title: title ? title : undefined, page };
+  const params = { query: query ? query : undefined, page };
 
   const response = await axios.get(`${process.env.API_URL}/search`, {
     params,
