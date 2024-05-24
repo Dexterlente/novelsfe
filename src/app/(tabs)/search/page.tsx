@@ -13,9 +13,6 @@ const Page = () => {
   const query = searchParams.get("query");
   const { data, searchQuery, isLoading } = useSearchNovels(query);
 
-  console.log("data", data);
-
-  console.log("search", searchQuery);
   return (
     <div className="min-h-screen">
       <FullScreenAdhoc>

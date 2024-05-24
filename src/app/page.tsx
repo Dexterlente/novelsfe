@@ -4,7 +4,7 @@ import Body from "./_mainbody/Body";
 
 const index = () => {
   return (
-    <div className="bg-[#313131]">
+    <div>
       <Body />
     </div>
   );
