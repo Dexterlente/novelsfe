@@ -25,35 +25,65 @@ export function PaginationButton({ currentPage, totalPages, path }: Props) {
           )}
         </PaginationItem>
         {[...Array(totalPages)].map((_, index) => {
-          // Render only previous two and next two pages
-          if (
-            index === 0 ||
-            index === currentPage - 1 ||
-            index === currentPage ||
-            index === currentPage + 1 ||
-            index === totalPages - 1
-          ) {
-            return (
-              <PaginationItem key={index}>
-                <PaginationLink
-                  href={`${path}&page=${index + 1}`}
-                  isActive={index + 1 === currentPage}
-                >
-                  {index + 1}
-                </PaginationLink>
-              </PaginationItem>
-            );
-          }
-          // Render ellipsis
-          if (index === 1 || index === totalPages - 2) {
-            return (
-              <PaginationItem key={index}>
-                <PaginationEllipsis />
-              </PaginationItem>
-            );
+          if (totalPages === currentPage) {
+            // Logic to render only the left side when on the last page
+            if (
+              index === 0 ||
+              index === currentPage - 3 ||
+              index === currentPage - 2 ||
+              index === currentPage - 1
+            ) {
+              return (
+                <PaginationItem key={index}>
+                  <PaginationLink
+                    href={`${path}&page=${index + 1}`}
+                    isActive={index + 1 === currentPage}
+                  >
+                    {index + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              );
+            }
+            // Render ellipsis before the last three pages if there are more pages before
+            if (index === 1 && currentPage > 4) {
+              return (
+                <PaginationItem key={index}>
+                  <PaginationEllipsis />
+                </PaginationItem>
+              );
+            }
+          } else {
+            // Original logic for when totalPages is not equal to currentPage
+            if (
+              index === 0 ||
+              index === currentPage - 1 ||
+              index === currentPage ||
+              index === currentPage + 1 ||
+              index === totalPages - 1
+            ) {
+              return (
+                <PaginationItem key={index}>
+                  <PaginationLink
+                    href={`${path}&page=${index + 1}`}
+                    isActive={index + 1 === currentPage}
+                  >
+                    {index + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              );
+            }
+            // Render ellipsis
+            if (index === 1 || index === totalPages - 2) {
+              return (
+                <PaginationItem key={index}>
+                  <PaginationEllipsis />
+                </PaginationItem>
+              );
+            }
           }
           return null;
         })}
+
         <PaginationItem>
           <PaginationEllipsis />
         </PaginationItem>
