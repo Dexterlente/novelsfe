@@ -22,7 +22,7 @@ const BookList = ({ data, searched }: Props) => {
       <div className="grid grid-cols-2">
         {data?.novels.map?.((books: any, index: number) => (
           <div key={index}>
-            <div className="grid grid-cols-2 m-3">
+            <div className="grid grid-cols-[1fr,2fr] m-3">
               {data && (
                 <Image
                   className="rounded-lg"
@@ -34,7 +34,7 @@ const BookList = ({ data, searched }: Props) => {
               )}
               <div className="text-sm">
                 <p className="font-bold">{books.title}</p>
-                <p className="mt-3">{limitText(books.synopsis, 80)}</p>
+                <p className="mt-3">{limitText(books.synopsis, 130)}</p>
                 <p className="font-bold mt-2">{mapGenre(books.genre)}</p>
               </div>
             </div>
