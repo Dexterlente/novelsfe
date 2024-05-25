@@ -33,25 +33,46 @@ const NavBar = () => {
                   Genre
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <NavigationMenuLink className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer">
+                  <NavigationMenuLink
+                    className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer"
+                    onClick={() => push("/novels/action")}
+                  >
                     Action
                   </NavigationMenuLink>
-                  <NavigationMenuLink className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer">
+                  <NavigationMenuLink
+                    className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer"
+                    onClick={() => push("/novels/comedy")}
+                  >
                     Comedy
                   </NavigationMenuLink>
-                  <NavigationMenuLink className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer">
+                  <NavigationMenuLink
+                    className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer"
+                    onClick={() => push("/novels/adventure")}
+                  >
                     Adventure
                   </NavigationMenuLink>
-                  <NavigationMenuLink className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer">
+                  <NavigationMenuLink
+                    className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer"
+                    onClick={() => push("/novels/drama")}
+                  >
                     Drama
                   </NavigationMenuLink>
-                  <NavigationMenuLink className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer">
+                  <NavigationMenuLink
+                    className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer"
+                    onClick={() => push("/novels/eastern")}
+                  >
                     Eastern
                   </NavigationMenuLink>
-                  <NavigationMenuLink className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer">
+                  <NavigationMenuLink
+                    className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer"
+                    onClick={() => push("/novels/fantasy")}
+                  >
                     Fantasy
                   </NavigationMenuLink>
-                  <NavigationMenuLink className="hover:underline hover:cursor-pointer">
+                  <NavigationMenuLink
+                    className="hover:underline hover:cursor-pointer"
+                    onClick={() => push("/novels/harem")}
+                  >
                     Harem
                   </NavigationMenuLink>
                 </NavigationMenuContent>
