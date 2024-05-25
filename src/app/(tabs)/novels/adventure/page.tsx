@@ -11,12 +11,12 @@ import React from "react";
 const Page = () => {
   const searchParams = useSearchParams();
   const page = searchParams.get("page");
-  const { data, isLoading } = useFetchNovelsGenre(2, page);
+  const { data, isLoading } = useFetchNovelsGenre(3, page);
 
   return (
-    <div className="min-h-screen">
+    <div>
       <FullScreenAdhoc>
-        <BookList data={data} path={`action`} />
+        <BookList data={data} path={`adventure`} />
       </FullScreenAdhoc>
       <LgScreenAdhoc>a</LgScreenAdhoc>
       <MdScreenAdhoc>a</MdScreenAdhoc>

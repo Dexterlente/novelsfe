@@ -20,12 +20,16 @@ export function PaginationButton({ currentPage, totalPages, path }: Props) {
 
   const separator = pathname === "/search" ? "&" : "?";
 
+  if (totalPages === 1) return <></>;
+
   return (
     <Pagination>
       <PaginationContent>
         <PaginationItem>
           {currentPage !== 1 && (
-            <PaginationPrevious href={`${path}&page=${currentPage - 1}`} />
+            <PaginationPrevious
+              href={`${path}${separator}page=${currentPage - 1}`}
+            />
           )}
         </PaginationItem>
         {[...Array(totalPages)].map((_, index) => {
@@ -88,9 +92,6 @@ export function PaginationButton({ currentPage, totalPages, path }: Props) {
           return null;
         })}
 
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
         <PaginationItem>
           {currentPage !== totalPages && (
             <PaginationNext

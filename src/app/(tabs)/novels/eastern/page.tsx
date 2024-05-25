@@ -16,7 +16,7 @@ const Page = () => {
   return (
     <div className="min-h-screen">
       <FullScreenAdhoc>
-        <BookList data={data} path={`action`} />
+        <BookList data={data} path={`eastern`} />
       </FullScreenAdhoc>
       <LgScreenAdhoc>a</LgScreenAdhoc>
       <MdScreenAdhoc>a</MdScreenAdhoc>
