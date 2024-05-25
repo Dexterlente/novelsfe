@@ -13,9 +13,13 @@ const RandomGenreBook = ({ data }: Props) => {
     <div className="flex gap-3 mt-3">
       {data &&
         data.map((book: any, index: number) => (
-          <div key={index} className="relative">
+          <div
+            key={index}
+            className="relative hover:cursor-pointer"
+            onClick={() => push(`/novels/details/${book.novel_id}`)}
+          >
             <Image
-              className="rounded-lg"
+              className="rounded-lg "
               src={book?.image_url_cover}
               width={400}
               height={700}
