@@ -7,6 +7,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { usePathname } from "next/navigation";
 
 interface Props {
   currentPage: number;
@@ -15,7 +16,12 @@ interface Props {
 }
 
 export function PaginationButton({ currentPage, totalPages, path }: Props) {
+  const pathname = usePathname();
+  console.log(pathname);
   console.log("page", currentPage);
+
+  const separator = pathname === "/search" ? "&" : "?";
+
   return (
     <Pagination>
       <PaginationContent>
@@ -36,7 +42,7 @@ export function PaginationButton({ currentPage, totalPages, path }: Props) {
               return (
                 <PaginationItem key={index}>
                   <PaginationLink
-                    href={`${path}&page=${index + 1}`}
+                    href={`${path}${separator}page=${index + 1}`}
                     isActive={index + 1 === currentPage}
                   >
                     {index + 1}
@@ -64,7 +70,7 @@ export function PaginationButton({ currentPage, totalPages, path }: Props) {
               return (
                 <PaginationItem key={index}>
                   <PaginationLink
-                    href={`${path}&page=${index + 1}`}
+                    href={`${path}${separator}page=${index + 1}`}
                     isActive={index + 1 === currentPage}
                   >
                     {index + 1}
@@ -89,7 +95,9 @@ export function PaginationButton({ currentPage, totalPages, path }: Props) {
         </PaginationItem>
         <PaginationItem>
           {currentPage !== totalPages && (
-            <PaginationNext href={`${path}&page=${currentPage + 1}`} />
+            <PaginationNext
+              href={`${path}${separator}page=${currentPage + 1}`}
+            />
           )}
         </PaginationItem>
       </PaginationContent>

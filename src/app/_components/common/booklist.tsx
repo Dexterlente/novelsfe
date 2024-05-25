@@ -7,9 +7,10 @@ import { PaginationButton } from "./pagination";
 interface Props {
   data: any;
   searched?: string;
+  path: string;
 }
 
-const BookList = ({ data, searched }: Props) => {
+const BookList = ({ data, searched, path }: Props) => {
   console.log(data?.current_page);
 
   console.log(data);
@@ -48,7 +49,7 @@ const BookList = ({ data, searched }: Props) => {
         <PaginationButton
           currentPage={data?.current_page}
           totalPages={data?.total_pages}
-          path={`search?query=${searched}`}
+          path={path}
         />
       )}
     </div>

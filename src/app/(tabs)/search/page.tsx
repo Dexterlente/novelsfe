@@ -17,7 +17,11 @@ const Page = () => {
   return (
     <div className="min-h-screen">
       <FullScreenAdhoc>
-        <BookList data={data} searched={searchQuery} />
+        <BookList
+          data={data}
+          searched={searchQuery}
+          path={`search?query=${searchQuery}`}
+        />
       </FullScreenAdhoc>
       <LgScreenAdhoc>a</LgScreenAdhoc>
       <MdScreenAdhoc>a</MdScreenAdhoc>
