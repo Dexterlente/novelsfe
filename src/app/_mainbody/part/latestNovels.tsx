@@ -25,7 +25,7 @@ const LatestNovels = () => {
           {data?.map((items: any, index: number) => (
             <TableRow
               key={index}
-              className="text-white grid grid-cols-[2fr,1fr,1fr]"
+              className="text-white grid grid-cols-[4fr,2fr,1fr]"
             >
               <TableCell className="font-medium hover:underline hover:cursor-pointer">
                 {items?.novel_title || "1"}
