@@ -11,9 +11,12 @@ import {
 } from "@/components/ui/table";
 import { useFetchLatestNovels } from "@/app/_components/hooks/useFetchLatestNovels";
 import { formatTimestamp } from "@/app/_components/utils/dateFormatter";
+import { useRouter } from "next/navigation";
 
 const LatestNovels = () => {
   const { data } = useFetchLatestNovels();
+
+  const { push } = useRouter();
 
   return (
     <>
@@ -27,7 +30,10 @@ const LatestNovels = () => {
               key={index}
               className="text-white grid grid-cols-[4fr,2fr,1fr]"
             >
-              <TableCell className="font-medium hover:underline hover:cursor-pointer">
+              <TableCell
+                className="font-medium hover:underline hover:cursor-pointer"
+                onClick={() => push(`/novels/details/${items.novel_id}`)}
+              >
                 {items?.novel_title || "1"}
               </TableCell>
               <TableCell className="hover:underline hover:cursor-pointer">
