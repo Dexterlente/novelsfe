@@ -17,8 +17,6 @@ interface Props {
 
 export function PaginationButton({ currentPage, totalPages, path }: Props) {
   const pathname = usePathname();
-  console.log(pathname);
-  console.log("page", currentPage);
 
   const separator = pathname === "/search" ? "&" : "?";
 

@@ -11,10 +11,6 @@ interface Props {
 }
 
 const BookList = ({ data, searched, path }: Props) => {
-  console.log(data?.current_page);
-
-  console.log(data);
-  console.log(data?.novels.image_url_cover);
   return (
     <div className="text-white my-5">
       {searched && (

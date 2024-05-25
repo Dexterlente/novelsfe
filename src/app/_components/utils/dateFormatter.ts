@@ -29,7 +29,3 @@ export function formatTimestamp(timestamp: string): string {
 
   return format.now;
 }
-
-// Example usage:
-const timestamp: string = "Thu, 23 May 2024 16:24:35 GMT";
-console.log(formatTimestamp(timestamp)); // Output: "just now" or "1 minute ago", etc.

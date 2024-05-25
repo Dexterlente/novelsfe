@@ -12,7 +12,6 @@ const Page = () => {
   const searchParams = useSearchParams();
   const page = searchParams.get("page");
   const { data, isLoading } = useFetchNovelsGenre(1, page);
-  console.log(data);
 
   return (
     <div className="min-h-screen">
