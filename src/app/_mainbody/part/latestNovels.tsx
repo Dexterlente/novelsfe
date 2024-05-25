@@ -23,11 +23,16 @@ const LatestNovels = () => {
       <Table>
         <TableBody>
           {data?.map((items: any, index: number) => (
-            <TableRow key={index} className="text-white">
-              <TableCell className="font-medium">
+            <TableRow
+              key={index}
+              className="text-white grid grid-cols-[2fr,1fr,1fr]"
+            >
+              <TableCell className="font-medium hover:underline hover:cursor-pointer">
                 {items?.novel_title || "1"}
               </TableCell>
-              <TableCell>Chapter {items?.chapter_number}</TableCell>
+              <TableCell className="hover:underline hover:cursor-pointer">
+                Chapter {items?.chapter_number}
+              </TableCell>
               <TableCell>{formatTimestamp(items?.timestamp)}</TableCell>
             </TableRow>
           ))}
