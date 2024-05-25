@@ -4,9 +4,12 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import RandomGenreBook from "./randomgenrebook";
 import { useFetchSevenRandom } from "@/app/_components/hooks/useFetchSevenRandom";
+import { useRouter } from "next/navigation";
 
 const Randomgenre = () => {
   const [toggler, setToggler] = useState(1);
+
+  const { push } = useRouter();
 
   const { data: firstData } = useFetchSevenRandom(1);
   const { data: secondData } = useFetchSevenRandom(2);
