@@ -1,6 +1,6 @@
 import { useFetchNovelChapters } from "@/app/_components/hooks/useFetchNovelChapters";
 import { useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import React from "react";
 import {
   Collapsible,
   CollapsibleContent,
@@ -9,37 +9,56 @@ import {
 
 const NovelChapters = ({ id }: any) => {
   const searchParams = useSearchParams();
-  const [currentPage, setCurrentPage] = useState(1); // Track current page
 
-  const page = searchParams.get("page") || currentPage; // Use current page from URL if available, otherwise use state
-  const { data } = useFetchNovelChapters(id, page);
-  const total_pages = data?.total_pages || 0;
-  const chapters = data?.chapters || [];
+  const { data } = useFetchNovelChapters(id, 1);
 
-  console.log(data);
+  if (!data || !data.chapters) {
+    return <div>Loading...</div>;
+  }
+
+  const chaptersPerPage = 50;
+  const totalPages = Math.ceil(data.total_items / chaptersPerPage);
+
+  const paginatedChapters = Array.from(
+    { length: totalPages },
+    (_, pageIndex) => {
+      const startIdx = pageIndex * chaptersPerPage;
+      const endIdx = startIdx + chaptersPerPage;
+      return data.chapters.slice(startIdx, endIdx);
+    }
+  );
+
   return (
     <div className="text-white">
-      <div> Novel Chapters</div>
-      {chapters.map((chapter: { chapter_number: number }, index: number) => (
-        <Collapsible key={index}>
-          <CollapsibleTrigger>
-            Page {page}: Chapter {chapter.chapter_number}
-          </CollapsibleTrigger>
-          <CollapsibleContent>
-            <p>
-              This is the content for page {page} and chapter{" "}
-              {chapter.chapter_number}
-            </p>
-          </CollapsibleContent>
-        </Collapsible>
-      ))}
-      <div>
-        {Array.from({ length: total_pages }, (_, index) => (
-          <button key={index} onClick={() => setCurrentPage(index + 1)}>
-            Go to Page {index + 1}
-          </button>
-        ))}
-      </div>
+      <div>Novel Chapters</div>
+
+      {paginatedChapters.map((pageData, index) => {
+        const chapterNumbers = pageData.map(
+          (chapter: { chapter_number: any }) => chapter.chapter_number
+        );
+        const highestChapterNumber = chapterNumbers.length
+          ? Math.max(...chapterNumbers)
+          : "N/A";
+        const lowestChapterNumber = chapterNumbers.length
+          ? Math.min(...chapterNumbers)
+          : "N/A";
+
+        return (
+          <Collapsible key={index}>
+            <CollapsibleTrigger>
+              Page {index + 1} - Highest: {highestChapterNumber}, Lowest:{" "}
+              {lowestChapterNumber}
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              {pageData.map((chapter: any) => (
+                <p key={chapter.chapter_number}>
+                  Chapter {chapter.chapter_number}: {chapter.title}
+                </p>
+              ))}
+            </CollapsibleContent>
+          </Collapsible>
+        );
+      })}
     </div>
   );
 };
