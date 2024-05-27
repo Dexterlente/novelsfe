@@ -1,12 +1,20 @@
 import axios from "axios";
+import { NextRequest } from "next/server";
 
 export async function GET(
-  req: Request,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ) {
   const id = params.id;
 
-  const response = await axios.get(`${process.env.API_URL}/get-chapters/${id}`);
+  let url = `${process.env.API_URL}/get-chapters/${id}`;
+
+  const page = req.nextUrl.searchParams.get("page");
+  if (page !== null) {
+    url += `?page=${page}`;
+  }
+
+  const response = await axios.get(url);
 
   const data = await response.data;
 
