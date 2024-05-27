@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import CollapsibleText from "@/app/_components/common/collapsibletext";
 import NovelChapters from "./novelchapters";
+import AllChapters from "./allchapters";
 
 const NovelDetails = ({ data }: any) => {
   const cleanedText = data?.synopsis?.replace(/Synopsis\s*/i, "");
@@ -25,7 +26,8 @@ const NovelDetails = ({ data }: any) => {
           </div>
         </div>
       </div>
-      <NovelChapters id={data?.novel_id} />
+      {/* <NovelChapters id={data?.novel_id} /> */}
+      <AllChapters id={data?.novel_id} />
     </>
   );
 };

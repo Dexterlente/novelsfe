@@ -7,6 +7,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { useFetchAllChapters } from "@/app/_components/hooks/useFetchAllChapters";
 
 const NovelChapters = ({ id }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,7 +17,6 @@ const NovelChapters = ({ id }: any) => {
   if (!data || !data.chapters) {
     return <div>Loading...</div>;
   }
-  console.log(data, "set");
 
   const chaptersPerPage = 50;
   const totalPages = Math.ceil(data.total_items / chaptersPerPage);
@@ -46,19 +46,20 @@ const NovelChapters = ({ id }: any) => {
           : "N/A";
 
         return (
-          <Collapsible key={index}>
-            <CollapsibleTrigger onClick={() => handlePageClick(index + 1)}>
-              Page {index + 1} - Highest: {highestChapterNumber}, Lowest:{" "}
-              {lowestChapterNumber}
-            </CollapsibleTrigger>
-            <CollapsibleContent isOpen={currentPage === index + 1}>
-              {pageData.map((chapter: any) => (
-                <p key={chapter.chapter_number}>
-                  Chapter {chapter.chapter_number}: {chapter.title}
-                </p>
-              ))}
-            </CollapsibleContent>
-          </Collapsible>
+          //   <Collapsible key={index}>
+          //     <CollapsibleTrigger onClick={() => handlePageClick(index + 1)}>
+          //       Page {index + 1} - Highest: {highestChapterNumber}, Lowest:{" "}
+          //       {lowestChapterNumber}
+          //     </CollapsibleTrigger>
+          //     <CollapsibleContent isOpen={currentPage === index + 1}>
+          //       {pageData.map((chapter: any) => (
+          //         <p key={chapter.chapter_number}>
+          //           Chapter {chapter.chapter_number}: {chapter.title}
+          //         </p>
+          //       ))}
+          //     </CollapsibleContent>
+          //   </Collapsible>
+          <></>
         );
       })}
     </div>
