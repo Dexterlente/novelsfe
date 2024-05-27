@@ -36,7 +36,12 @@ const LatestNovels = () => {
               >
                 {items?.novel_title || "1"}
               </TableCell>
-              <TableCell className="hover:underline hover:cursor-pointer">
+              <TableCell
+                className="hover:underline hover:cursor-pointer"
+                onClick={() =>
+                  push(`/novels/chapter/${items.novel_id}/${items.chapter_id}`)
+                }
+              >
                 Chapter {items?.chapter_number}
               </TableCell>
               <TableCell>{formatTimestamp(items?.timestamp)}</TableCell>

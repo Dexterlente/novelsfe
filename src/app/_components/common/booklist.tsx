@@ -3,6 +3,7 @@ import Image from "next/image";
 import { limitText } from "../utils/limittext";
 import { mapGenre } from "../enums/genre";
 import { PaginationButton } from "./pagination";
+import { useRouter } from "next/navigation";
 
 interface Props {
   data: any;
@@ -11,6 +12,8 @@ interface Props {
 }
 
 const BookList = ({ data, searched, path }: Props) => {
+  const { push } = useRouter();
+
   return (
     <div className="min-h-screen relative mb-20">
       <div className="text-white my-5">
@@ -26,15 +29,21 @@ const BookList = ({ data, searched, path }: Props) => {
               <div className="grid grid-cols-[1fr,2fr] m-3">
                 {data && (
                   <Image
-                    className="rounded-lg"
+                    className="rounded-lg hover:cursor-pointer"
                     src={books?.image_url_cover}
                     width={120}
                     height={120}
                     alt="BookImage"
+                    onClick={() => push(`/novels/details/${books.novel_id}`)}
                   />
                 )}
                 <div className="text-sm">
-                  <p className="font-bold">{books.title}</p>
+                  <p
+                    className="font-bold hover:cursor-pointer"
+                    onClick={() => push(`/novels/details/${books.novel_id}`)}
+                  >
+                    {books.title}
+                  </p>
                   <p className="mt-3">{limitText(books.synopsis, 130)}</p>
                   <p className="font-bold mt-2">{mapGenre(books.genre)}</p>
                 </div>
