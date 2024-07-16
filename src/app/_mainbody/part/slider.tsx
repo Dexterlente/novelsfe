@@ -32,7 +32,7 @@ const Slider = () => {
   return (
     <Carousel className="max-w-5xl">
       <CarouselContent>
-        <CarouselItem className="flex gap-10">
+        <CarouselItem className="flex justify-center xl:justify-start gap-5 xl:gap-10">
           <Card className="w-[238px] h-[350px] bg-gradient-to-br from-blue-500 to-purple-500">
             <CardTitle className="text-center m-1 text-white text-lg font-bold">
               {mapGenre(firstData?.genre)}
@@ -113,7 +113,7 @@ const Slider = () => {
             </CardFooter>
           </Card>
 
-          <Card className="w-[238px] h-[350px] bg-gradient-to-br from-purple-900 to-white">
+          <Card className="w-[238px] h-[350px] bg-gradient-to-br from-purple-900 to-white hidden lg:block">
             <CardTitle className="text-center m-1 text-white text-lg font-bold">
               {mapGenre(fourthData?.genre)}
             </CardTitle>

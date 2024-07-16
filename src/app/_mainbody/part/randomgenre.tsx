@@ -22,7 +22,7 @@ const Randomgenre = () => {
     <>
       <div>
         <Button
-          className="mr-2"
+          className="lg:mr-1 xl:mr-2"
           variant={toggler === GENRE.ACTION ? undefined : "outline"}
           onClick={() => setToggler(GENRE.ACTION)}
         >
