@@ -38,7 +38,7 @@ const useResizeData = (
   const resizeData = useCallback(() => {
     const screenWidth = window.innerWidth;
     const breakpoint = breakpoints.find((bp) => screenWidth < bp.width) || {
-      count: data.length,
+      count: data?.length,
     };
     setResizedData(data?.slice(0, breakpoint.count));
 
