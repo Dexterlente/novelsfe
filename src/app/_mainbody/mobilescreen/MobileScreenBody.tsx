@@ -8,7 +8,7 @@ const MobileScreenBody = () => {
   return (
     <MobileScreenAdhoc>
       <div className="min-h-screen mt-4">
-        {/* <div className="text-white">
+        <div className="text-white">
           <p className="text-2xl">First, Random Series </p>
           <p className="mb-4">Let’s read some ramdom stories by genre! </p>
         </div>
@@ -19,7 +19,7 @@ const MobileScreenBody = () => {
         </div>
         <div className="mt-10 mb-8">
           <LatestNovels />
-        </div> */}
+        </div>
       </div>
     </MobileScreenAdhoc>
   );
