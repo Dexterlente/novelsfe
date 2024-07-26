@@ -24,6 +24,11 @@ const useResizeData = (
 
   const getInitialSize = useCallback((): Size => {
     const screenWidth = window.innerWidth;
+    const defaultSize: Size = { W: 400, H: 700, width: 1280 };
+    if (screenWidth >= 1280) {
+      return defaultSize;
+    }
+
     return (
       sortedSizes
         .slice()
@@ -51,9 +56,14 @@ const useResizeData = (
   }, [data, breakpoints, sortedSizes]);
 
   useEffect(() => {
+    // Set initial state after render
     resizeData();
+
+    // Add resize event listener
     window.addEventListener("resize", resizeData);
-    return () => window.removeEventListener("resize", resizeData);
+    return () => {
+      window.removeEventListener("resize", resizeData);
+    };
   }, [resizeData]);
 
   return [resizedData, imageSize];
