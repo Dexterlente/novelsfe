@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package novels;
+
+message Novel {
+    int32 novel_id = 1;
+    string title = 2;
+    string image_url = 3;
+}
+
+message NovelList {
+    repeated Novel novels = 1;
+    int32 total_pages = 2;
+    int32 current_page = 3;
+}
