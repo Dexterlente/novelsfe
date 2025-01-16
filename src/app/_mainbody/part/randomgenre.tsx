@@ -19,7 +19,7 @@ const Randomgenre = () => {
 
   const { push } = useRouter();
 
-  const { data: firstData } = useFetchSevenRandom(shuffledGenres[0]);
+  const { data: firstData } = useFetchSevenRandom("action");
   // const { data: secondData } = useFetchSevenRandom(shuffledGenres[1]);
   // const { data: thirdData } = useFetchSevenRandom(shuffledGenres[2]);
   // const { data: fourthData } = useFetchSevenRandom(shuffledGenres[4]);
