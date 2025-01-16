@@ -41,6 +41,7 @@ const Slider = () => {
   const { push } = useRouter();
 
   const placeHolderImage = `/overgeared.jpg`
+  const limit = 100
 
   return (
     <Carousel className="max-w-5xl">
@@ -69,7 +70,7 @@ const Slider = () => {
               >
                 {firstData?.title}
               </p>
-              <p className="text-sm">{limitText(firstData?.synopsis, 70)}</p>
+              <p className="text-sm">{limitText(firstData?.synopsis, limit)}</p>
             </CardFooter>
           </Card>
           <Card className="w-[238px] h-[350px] bg-gradient-to-br from-yellow-600 to-pink-500">
@@ -96,7 +97,7 @@ const Slider = () => {
               >
                 {secondData?.title}
               </p>
-              <p className="text-sm">{limitText(secondData?.synopsis, 70)}</p>
+              <p className="text-sm">{limitText(secondData?.synopsis, limit)}</p>
             </CardFooter>
           </Card>
 
@@ -123,7 +124,7 @@ const Slider = () => {
               >
                 {thirdData?.title}
               </p>
-              <p className="text-sm">{limitText(thirdData?.synopsis, 70)}</p>
+              <p className="text-sm">{limitText(thirdData?.synopsis, limit)}</p>
             </CardFooter>
           </Card>
 
@@ -150,7 +151,7 @@ const Slider = () => {
               >
                 {fourthData?.title}
               </p>
-              <p className="text-sm">{limitText(fourthData?.synopsis, 70)}</p>
+              <p className="text-sm">{limitText(fourthData?.synopsis, limit)}</p>
             </CardFooter>
           </Card>
         </CarouselItem>
@@ -178,7 +179,7 @@ const Slider = () => {
               >
                 {fifthData?.title}
               </p>
-              <p className="text-sm">{limitText(fifthData?.synopsis, 70)}</p>
+              <p className="text-sm">{limitText(fifthData?.synopsis, limit)}</p>
             </CardFooter>
           </Card>
 
@@ -205,7 +206,7 @@ const Slider = () => {
               >
                 {sixData?.title}
               </p>
-              <p className="text-sm">{limitText(sixData?.synopsis, 70)}</p>
+              <p className="text-sm">{limitText(sixData?.synopsis, limit)}</p>
             </CardFooter>
           </Card>
 
@@ -232,7 +233,7 @@ const Slider = () => {
               >
                 {sevenData?.title}
               </p>
-              <p className="text-sm">{limitText(sevenData?.synopsis, 70)}</p>
+              <p className="text-sm">{limitText(sevenData?.synopsis, limit)}</p>
             </CardFooter>
           </Card>
           <Card className="w-[238px] h-[350px] bg-gradient-to-br from-red-300 to-orange-300">
@@ -258,7 +259,7 @@ const Slider = () => {
               >
                 {eightData?.title}
               </p>
-              <p className="text-sm">{limitText(eightData?.synopsis, 70)}</p>
+              <p className="text-sm">{limitText(eightData?.synopsis, limit)}</p>
             </CardFooter>
           </Card>
         </CarouselItem>
