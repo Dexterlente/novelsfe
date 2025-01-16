@@ -18,10 +18,7 @@ const decodeProtobuf = (base64String: string, schema: any): any => {
 
     // Decode the base64 string into binary
     const binaryString = atob(base64String);
-    const uint8Array = new Uint8Array(binaryString.length);
-    for (let i = 0; i < binaryString.length; i++) {
-      uint8Array[i] = binaryString.charCodeAt(i);
-    }
+    const uint8Array = Uint8Array.from(binaryString, char => char.charCodeAt(0));
 
     // Deserialize the Protobuf binary data
     const novelsResponse = schema(uint8Array);
