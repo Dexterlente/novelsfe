@@ -1,12 +1,40 @@
-import useSWR from "swr";
-import { fetcher } from "../utils/fetcher";
+import { useState, useEffect } from 'react';
+import decodeProtobuf from './decodeProtoBuf';
+import { novels } from '@/app/_proto/novels';
 
-export const useFetchSingleRandom = (id: number) => {
-  const url = `/api/novels/random/single/${id}`;
-  const { data, isLoading } = useSWR(url, fetcher, {
-    revalidateOnFocus: false,
-    revalidateOnReconnect: false,
-  });
 
-  return { data, isLoading };
+const useFetchSingleRandom = (genre: string) => {
+  const [data, setData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const url = `/api/novels/random/single/${genre}`;
+    const fetchProtobufData = async () => {
+      try {
+        const response = await fetch(url, {
+          headers: { 'Accept': 'application/x-protobuf' },
+        });
+
+        const base64String = await response.text();
+
+        // Decode and deserialize Protobuf data
+        const decodedData = decodeProtobuf(base64String, novels.Novel.deserializeBinary);
+        
+        setData(decodedData);
+      } catch (err: any) {
+        setError(err?.message || 'Error fetching or decoding data');
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProtobufData();
+  }, [genre]);
+  console.log(data)
+  return { data, isLoading, error };
 };
+
+export default useFetchSingleRandom;
+

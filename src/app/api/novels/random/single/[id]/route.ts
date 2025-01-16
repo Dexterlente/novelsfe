@@ -7,11 +7,19 @@ export async function GET(
 ): Promise<Response> {
   const id = params.id;
 
-  let url = `${process.env.API_URL}/get-single-novel-random/${id}`;
+  let url = `${process.env.API_URL}/novel/random/?genre=${id}&timestamp=${Date.now()}`;
 
-  const response = await axios.get(url);
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Accept: "application/x-protobuf",
+      },
+    });
 
-  const data = await response.data;
+    return response;
 
-  return Response.json(data);
+  } catch (error) {
+    console.error("Error fetching protobuf data:", error);
+    return new Response("Error", { status: 500 });
+  }
 }

@@ -12,20 +12,20 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { useFetchSingleRandom } from "@/app/_components/hooks/useFetchSingleRandom";
+import  useFetchSingleRandom  from "@/app/_components/hooks/useFetchSingleRandom";
 import Image from "next/image";
 import { limitText } from "@/app/_components/utils/limittext";
 import { mapGenre } from "@/app/_components/enums/genre";
 import { useRouter } from "next/navigation";
 
 const Slider = () => {
-  const { data: firstData } = useFetchSingleRandom(1);
-  const { data: secondData } = useFetchSingleRandom(2);
-  const { data: thirdData } = useFetchSingleRandom(3);
-  const { data: fourthData } = useFetchSingleRandom(4);
-  const { data: fifthData } = useFetchSingleRandom(5);
-  const { data: sixData } = useFetchSingleRandom(6);
-  const { data: sevenData } = useFetchSingleRandom(7);
+  const { data: firstData } = useFetchSingleRandom("action");
+  const { data: secondData } = useFetchSingleRandom("fantasy");
+  const { data: thirdData } = useFetchSingleRandom("action");
+  const { data: fourthData } = useFetchSingleRandom("action");
+  const { data: fifthData } = useFetchSingleRandom("action");
+  const { data: sixData } = useFetchSingleRandom("action");
+  const { data: sevenData } = useFetchSingleRandom("action");
 
   const { push } = useRouter();
 
@@ -35,7 +35,8 @@ const Slider = () => {
         <CarouselItem className="flex justify-center xl:justify-start gap-5 xl:gap-10">
           <Card className="w-[238px] h-[350px] bg-gradient-to-br from-blue-500 to-purple-500">
             <CardTitle className="text-center m-1 text-white text-lg font-bold">
-              {mapGenre(firstData?.genre)}
+              {/* {mapGenre(firstData?.genre)} */}
+              Action
             </CardTitle>
             <CardContent className="flex items-center justify-center p-1">
               {firstData && (
