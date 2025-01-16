@@ -11,6 +11,7 @@ export namespace novels {
             novel_id?: number;
             title?: string;
             image_url?: string;
+            synopsis?: string;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -23,6 +24,9 @@ export namespace novels {
                 }
                 if ("image_url" in data && data.image_url != undefined) {
                     this.image_url = data.image_url;
+                }
+                if ("synopsis" in data && data.synopsis != undefined) {
+                    this.synopsis = data.synopsis;
                 }
             }
         }
@@ -44,10 +48,17 @@ export namespace novels {
         set image_url(value: string) {
             pb_1.Message.setField(this, 3, value);
         }
+        get synopsis() {
+            return pb_1.Message.getFieldWithDefault(this, 4, "") as string;
+        }
+        set synopsis(value: string) {
+            pb_1.Message.setField(this, 4, value);
+        }
         static fromObject(data: {
             novel_id?: number;
             title?: string;
             image_url?: string;
+            synopsis?: string;
         }): Novel {
             const message = new Novel({});
             if (data.novel_id != null) {
@@ -59,6 +70,9 @@ export namespace novels {
             if (data.image_url != null) {
                 message.image_url = data.image_url;
             }
+            if (data.synopsis != null) {
+                message.synopsis = data.synopsis;
+            }
             return message;
         }
         toObject() {
@@ -66,6 +80,7 @@ export namespace novels {
                 novel_id?: number;
                 title?: string;
                 image_url?: string;
+                synopsis?: string;
             } = {};
             if (this.novel_id != null) {
                 data.novel_id = this.novel_id;
@@ -75,6 +90,9 @@ export namespace novels {
             }
             if (this.image_url != null) {
                 data.image_url = this.image_url;
+            }
+            if (this.synopsis != null) {
+                data.synopsis = this.synopsis;
             }
             return data;
         }
@@ -88,6 +106,8 @@ export namespace novels {
                 writer.writeString(2, this.title);
             if (this.image_url.length)
                 writer.writeString(3, this.image_url);
+            if (this.synopsis.length)
+                writer.writeString(4, this.synopsis);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -105,6 +125,9 @@ export namespace novels {
                         break;
                     case 3:
                         message.image_url = reader.readString();
+                        break;
+                    case 4:
+                        message.synopsis = reader.readString();
                         break;
                     default: reader.skipField();
                 }

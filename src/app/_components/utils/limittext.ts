@@ -1,5 +1,6 @@
 export const limitText = (text: string, maxLength: number) => {
-  const cleanedText = text?.replace(/Synopsis\s*/i, "");
+  const cleanedText = text?.replace(/<\/?[^>]+(>|$)/g, "").replace(/Synopsis\s*/i, "");
+
   if (cleanedText?.length > maxLength) {
     return cleanedText.substring(0, maxLength) + "...";
   }
