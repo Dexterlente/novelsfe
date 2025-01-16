@@ -40,6 +40,7 @@ const Slider = () => {
 
   const { push } = useRouter();
 
+  const placeHolderImage = `/overgeared.jpg`
 
   return (
     <Carousel className="max-w-5xl">
@@ -53,7 +54,7 @@ const Slider = () => {
               {firstData && (
                 <Image
                   className="rounded-r-lg hover:cursor-pointer"
-                  src={firstData?.image_url_cover}
+                  src={placeHolderImage}
                   width={120}
                   height={120}
                   alt="Action"
@@ -79,7 +80,8 @@ const Slider = () => {
               {secondData && (
                 <Image
                   className="rounded-r-lg"
-                  src={secondData?.image_url_cover}
+                  // src={secondData?.image_url_cover}
+                  src={placeHolderImage}
                   width={120}
                   height={120}
                   alt="Action"
@@ -106,7 +108,7 @@ const Slider = () => {
               {thirdData && (
                 <Image
                   className="rounded-r-lg hover:cursor-pointer"
-                  src={thirdData?.image_url_cover}
+                  src={placeHolderImage}
                   width={120}
                   height={120}
                   alt="Action"
@@ -133,7 +135,7 @@ const Slider = () => {
               {fourthData && (
                 <Image
                   className="rounded-r-lg hover:cursor-pointer"
-                  src={fourthData?.image_url_cover}
+                  src={placeHolderImage}
                   width={120}
                   height={120}
                   alt="Action"
@@ -161,7 +163,7 @@ const Slider = () => {
               {fifthData && (
                 <Image
                   className="rounded-r-lg hover:cursor-pointer"
-                  src={fifthData?.image_url_cover}
+                  src={placeHolderImage}
                   width={120}
                   height={120}
                   alt="Action"
@@ -188,7 +190,7 @@ const Slider = () => {
               {sixData && (
                 <Image
                   className="rounded-r-lg hover:cursor-pointer"
-                  src={sixData?.image_url_cover}
+                  src={placeHolderImage}
                   width={120}
                   height={120}
                   alt="Action"
@@ -215,7 +217,7 @@ const Slider = () => {
               {sevenData && (
                 <Image
                   className="rounded-r-lg hover:cursor-pointer"
-                  src={sevenData?.image_url_cover}
+                  src={placeHolderImage}
                   width={120}
                   height={120}
                   alt="Action"
@@ -241,7 +243,7 @@ const Slider = () => {
               {sevenData && (
                 <Image
                   className="rounded-r-lg hover:cursor-pointer"
-                  src={eightData?.image_url_cover}
+                  src={placeHolderImage}
                   width={120}
                   height={120}
                   alt="Action"
