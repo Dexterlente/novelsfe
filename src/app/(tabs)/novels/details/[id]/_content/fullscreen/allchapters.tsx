@@ -11,7 +11,6 @@ const AllChapters = ({ id }: any) => {
   const { data: allData } = useFetchAllChapters(id);
   const { push } = useRouter();
 
-  console.log(allData); // Log the entire array allData
 
   // Function to split array into chunks of 50 items
   const chunkArray = (arr: any, size: any) => {
@@ -32,7 +31,6 @@ const AllChapters = ({ id }: any) => {
   };
 
   const allDataChunks = chunkArray(allData?.all_chapters, 50);
-  console.log(allDataChunks);
 
   return (
     <div className="text-white mt-10">

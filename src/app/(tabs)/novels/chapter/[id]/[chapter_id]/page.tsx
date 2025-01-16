@@ -8,7 +8,6 @@ import React from "react";
 const Page = () => {
   const params = useParams<{ id: string; chapter_id: string }>();
   const { data } = useGetChapter(params.id, params.chapter_id);
-  console.log(data);
   return (
     <>
       <FullScreenAdhoc>

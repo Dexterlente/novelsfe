@@ -9,6 +9,13 @@ const useFetchSingleRandom = (genre: string) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+
+    if (!genre) {
+      setIsLoading(false);
+      setData(null);
+      return;
+    }
+
     const url = `/api/novels/random/single/${genre}`;
     const fetchProtobufData = async () => {
       try {
@@ -32,7 +39,6 @@ const useFetchSingleRandom = (genre: string) => {
 
     fetchProtobufData();
   }, [genre]);
-  console.log(data)
   return { data, isLoading, error };
 };
 

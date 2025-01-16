@@ -9,7 +9,6 @@ import NovelDetails from "./_content/fullscreen/noveldetails";
 
 const Page = ({ params }: { params: { id: string } }) => {
   const { data, isLoading } = useFetchNovelDetails(params.id);
-  console.log(data);
   return (
     <div className="min-h-screen">
       <FullScreenAdhoc>

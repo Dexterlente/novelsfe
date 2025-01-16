@@ -28,7 +28,6 @@ const Slider = () => {
     setShuffledGenres(shuffled);
   }, []); 
 
-  console.log(shuffledGenres[0])
   const { data: firstData } = useFetchSingleRandom(shuffledGenres[0]);
   const { data: secondData } = useFetchSingleRandom(shuffledGenres[1]);
   const { data: thirdData } = useFetchSingleRandom(shuffledGenres[2]);

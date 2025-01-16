@@ -31,7 +31,6 @@ const NovelsList: React.FC = () => {
         const novelsResponse = novels.NovelList.deserializeBinary(uint8Array);
 
         // Log the deserialized response to check the structure
-        console.log(novelsResponse.toObject());
 
         // Update the state with the response
         setNovelsData(novelsResponse.toObject());

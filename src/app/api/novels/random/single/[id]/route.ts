@@ -1,4 +1,3 @@
-import axios, { AxiosResponse } from "axios";
 import { NextRequest } from "next/server";
 
 export async function GET(

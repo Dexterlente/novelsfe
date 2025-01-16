@@ -23,7 +23,6 @@ const NovelChapters = ({ id }: any) => {
 
   const handlePageClick = (page: number) => {
     setCurrentPage(page);
-    console.log(page);
   };
 
   return (
