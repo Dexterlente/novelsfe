@@ -12,7 +12,7 @@ const FullScreenBody = () => {
           <p className="text-2xl">First, Random Series </p>
           <p className="mb-4">Let’s read some random stories by genre! </p>
         </div>
-        {/* <Slider /> */}
+        <Slider />
         <div className="mt-6">
           <p className="text-2xl text-white mb-3">Popular Genres</p>
           <Randomgenre />
