@@ -14,7 +14,7 @@ import { formatTimestamp } from "@/app/_components/utils/dateFormatter";
 import { useRouter } from "next/navigation";
 
 const LatestNovels = () => {
-  const { data } = useFetchLatestNovels();
+  // const { data } = useFetchLatestNovels();
 
   const { push } = useRouter();
 
@@ -23,7 +23,7 @@ const LatestNovels = () => {
       <div className="text-2xl font-bold text-white mb-2">
         Most Recently Updated
       </div>
-      <Table>
+      {/* <Table>
         <TableBody>
           {data?.map((items: any, index: number) => (
             <TableRow
@@ -48,7 +48,7 @@ const LatestNovels = () => {
             </TableRow>
           ))}
         </TableBody>
-      </Table>
+      </Table> */}
     </>
   );
 };

@@ -1,10 +1,17 @@
-import { NextRequest } from "next/server";
-import axios from "axios";
-
 export async function GET() {
-  let url = `${process.env.API_URL}/get-latest-chapters`;
+  let url = `${process.env.API_URL}/novel/list-latest/`;
 
-  const response = await axios.get(url);
-  const data = response.data;
-  return Response.json(data);
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Accept: "application/x-protobuf",
+      },
+    });
+
+    return response;
+
+  } catch (error) {
+    console.error("Error fetching protobuf data:", error);
+    return new Response("Error", { status: 500 });
+  }
 }
