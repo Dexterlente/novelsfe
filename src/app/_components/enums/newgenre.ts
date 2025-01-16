@@ -34,3 +34,19 @@ export const GENRE = [
     'Sports',
   ]
   
+
+  export enum NEWGENRE {
+    ACTION = "action",
+    FANTASY = "fantasy",
+    ADVENTURE = "adventure",
+    ROMANCE = "romance",
+    HAREM = "harem",
+    COMEDY = "comedy",
+    MARTIALARTS = "martial arts",
+  }
+  
+  export const mapGenre = (genre: NEWGENRE): string => {
+    return genre || "UNKNOWN";
+  };
+  
+  

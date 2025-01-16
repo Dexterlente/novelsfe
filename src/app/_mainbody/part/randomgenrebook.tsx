@@ -31,9 +31,10 @@ console.log("sevenrandom", data)
   return (
     <div className="flex gap-3 mt-3 mx-1">
       {resizedData &&
-        resizedData?.map((book: any, index: number) => (
+        resizedData?.map((book: any) => (
+          <div key={book.novel_id} className="flex flex-col items-center">
           <div
-            key={book.novel_id}
+
             className="relative hover:cursor-pointer"
             // onClick={() => push(`/novels/details/${book.novel_id}`)}
           >
@@ -45,6 +46,11 @@ console.log("sevenrandom", data)
               alt="Book Images"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-800 opacity-40 rounded-lg"></div>
+   
+          </div>
+          <div className="text-white mt-2 text-sm font-semibold text-center overflow-hidden text-ellipsis" style={{ maxWidth: '200px' }}>
+            {book.title}
+          </div>
           </div>
         ))}
     </div>

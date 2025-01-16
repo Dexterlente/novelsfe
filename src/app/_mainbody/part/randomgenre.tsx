@@ -4,123 +4,110 @@ import { Button } from "@/components/ui/button";
 import RandomGenreBook from "./randomgenrebook";
 import { useFetchSevenRandom } from "@/app/_components/hooks/useFetchSevenRandom";
 import { useRouter } from "next/navigation";
-import { GENRE } from "@/app/_components/enums/newgenre"
+import { GENRE, NEWGENRE } from "@/app/_components/enums/newgenre"
 
 
 const Randomgenre = () => {
-  const [toggler, setToggler] = useState(1);
-    const [shuffledGenres, setShuffledGenres] = useState<string[]>([]);
-  
-    useEffect(() => {
-      // Shuffle the GENRE array and pick the first 8 genres
-      const shuffled = [...GENRE].sort(() => Math.random() - 0.5).slice(0, 8);
-      setShuffledGenres(shuffled);
-    }, []); 
+  const [toggler, setToggler] = useState(NEWGENRE.ACTION);
 
   const { push } = useRouter();
 
-  const { data: firstData } = useFetchSevenRandom("action");
-  // const { data: secondData } = useFetchSevenRandom(shuffledGenres[1]);
-  // const { data: thirdData } = useFetchSevenRandom(shuffledGenres[2]);
-  // const { data: fourthData } = useFetchSevenRandom(shuffledGenres[4]);
-  // const { data: fifthData } = useFetchSevenRandom(shuffledGenres[5]);
-  // const { data: sixData } = useFetchSevenRandom(shuffledGenres[6]);
-  // const { data: sevenData } = useFetchSevenRandom(shuffledGenres[7]);
+  const { data: firstData } = useFetchSevenRandom(NEWGENRE.ACTION);
+  const { data: secondData } = useFetchSevenRandom(NEWGENRE.FANTASY);
+  const { data: thirdData } = useFetchSevenRandom(NEWGENRE.ADVENTURE);
+  const { data: fourthData } = useFetchSevenRandom(NEWGENRE.ROMANCE);
+  const { data: fifthData } = useFetchSevenRandom(NEWGENRE.HAREM);
+  const { data: sixData } = useFetchSevenRandom(NEWGENRE.COMEDY);
+  const { data: sevenData } = useFetchSevenRandom(NEWGENRE.MARTIALARTS);
   return (
     <>
       <div>
         <Button
           className="lg:mr-1 xl:mr-2"
-          // variant={toggler === GENRE.ACTION ? undefined : "outline"}
-          // onClick={() => setToggler(GENRE.ACTION)}
+          variant={toggler === NEWGENRE.ACTION ? undefined : "outline"}
+          onClick={() => setToggler(NEWGENRE.ACTION)}
         >
-          ACTION
+          {NEWGENRE.ACTION.toUpperCase()}
         </Button>
         <Button
           className="mr-2"
-          // variant={toggler === GENRE.COMEDY ? undefined : "outline"}
-          // onClick={() => setToggler(GENRE.COMEDY)}
+          variant={toggler === NEWGENRE.FANTASY ? undefined : "outline"}
+          onClick={() => setToggler(NEWGENRE.FANTASY)}
         >
-          COMEDY
+          {NEWGENRE.FANTASY.toUpperCase()}
         </Button>
         <Button
           className="mr-2"
-          // variant={toggler === GENRE.ADVENTURE ? undefined : "outline"}
-          // onClick={() => setToggler(GENRE.ADVENTURE)}
+          variant={toggler === NEWGENRE.ADVENTURE ? undefined : "outline"}
+          onClick={() => setToggler(NEWGENRE.ADVENTURE)}
         >
-          ADVENTURE
+           {NEWGENRE.ADVENTURE.toUpperCase()}
         </Button>
         <Button
           className="mr-2"
-          // variant={toggler === GENRE.DRAMA ? undefined : "outline"}
-          // onClick={() => setToggler(GENRE.DRAMA)}
+          variant={toggler === NEWGENRE.ROMANCE ? undefined : "outline"}
+          onClick={() => setToggler(NEWGENRE.ROMANCE)}
         >
-          DRAMA
+           {NEWGENRE.ROMANCE.toUpperCase()}
         </Button>
         <Button
           className="mr-2"
-          // variant={toggler === GENRE.EASTERN ? undefined : "outline"}
-          // onClick={() => setToggler(GENRE.EASTERN)}
+          variant={toggler === NEWGENRE.HAREM ? undefined : "outline"}
+          onClick={() => setToggler(NEWGENRE.HAREM)}
         >
-          EASTERN
+          {NEWGENRE.HAREM.toUpperCase()}
         </Button>
         <Button
           className="mr-2"
-          // variant={toggler === GENRE.FANTASY ? undefined : "outline"}
-          // onClick={() => setToggler(GENRE.FANTASY)}
+          variant={toggler === NEWGENRE.COMEDY ? undefined : "outline"}
+          onClick={() => setToggler(NEWGENRE.COMEDY)}
         >
-          FANTASY
+          {NEWGENRE.COMEDY.toUpperCase()}
         </Button>
         <Button
           className="mr-2"
-          // variant={toggler === GENRE.HAREM ? undefined : "outline"}
-          // onClick={() => setToggler(GENRE.HAREM)}
+          variant={toggler === NEWGENRE.MARTIALARTS ? undefined : "outline"}
+          onClick={() => setToggler(NEWGENRE.MARTIALARTS)}
         >
-          HAREM
+          {NEWGENRE.MARTIALARTS.toUpperCase()}
         </Button>
       </div>
       <div>
-        {/* {toggler === GENRE.ACTION && ( */}
+        {toggler === NEWGENRE.ACTION && ( 
           <div>
             <RandomGenreBook data={firstData} />
           </div>
-        {/* )}
-        {toggler === GENRE.COMEDY && ( */}
+        )}
+        {toggler === NEWGENRE.FANTASY && ( 
           <div>
-            {" "}
-            {/* <RandomGenreBook data={secondData} /> */}
+            <RandomGenreBook data={secondData} /> 
           </div>
-        {/* )}
-        {toggler === GENRE.ADVENTURE && ( */}
+        )}
+        {toggler === NEWGENRE.ADVENTURE && (
           <div>
-            {" "}
-            {/* <RandomGenreBook data={thirdData} /> */}
+            <RandomGenreBook data={thirdData} /> 
           </div>
-        {/* )} */}
-        {/* {toggler === GENRE.DRAMA && ( */}
+        )} 
+        {toggler === NEWGENRE.ROMANCE && (
           <div>
-            {" "}
-            {/* <RandomGenreBook data={fourthData} /> */}
+            <RandomGenreBook data={fourthData} />
           </div>
-        {/* )}
-        {toggler === GENRE.EASTERN && ( */}
+         )}
+        {toggler === NEWGENRE.HAREM && (
           <div>
-            {" "}
-            {/* <RandomGenreBook data={fifthData} /> */}
+            <RandomGenreBook data={fifthData} />
           </div>
-        {/* )}
-        {toggler === GENRE.FANTASY && ( */}
+        )}
+        {toggler === NEWGENRE.COMEDY && (
           <div>
-            {" "}
-            {/* <RandomGenreBook data={sixData} /> */}
+            <RandomGenreBook data={sixData} />
           </div>
-        {/* )}
-        {toggler === GENRE.HAREM && ( */}
+          )} 
+        {toggler === NEWGENRE.MARTIALARTS && (
           <div>
-            {" "}
-            {/* <RandomGenreBook data={sevenData} /> */}
+            <RandomGenreBook data={sevenData} />
           </div>
-        {/* )} */}
+        )}
       </div>
     </>
   );
