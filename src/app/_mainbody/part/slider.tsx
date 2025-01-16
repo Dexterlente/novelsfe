@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
@@ -17,17 +17,29 @@ import Image from "next/image";
 import { limitText } from "@/app/_components/utils/limittext";
 import { mapGenre } from "@/app/_components/enums/genre";
 import { useRouter } from "next/navigation";
+import { GENRE } from "@/app/_components/enums/newgenre"
 
 const Slider = () => {
-  const { data: firstData } = useFetchSingleRandom("action");
-  const { data: secondData } = useFetchSingleRandom("fantasy");
-  const { data: thirdData } = useFetchSingleRandom("action");
-  const { data: fourthData } = useFetchSingleRandom("action");
-  const { data: fifthData } = useFetchSingleRandom("action");
-  const { data: sixData } = useFetchSingleRandom("action");
-  const { data: sevenData } = useFetchSingleRandom("action");
+  const [shuffledGenres, setShuffledGenres] = useState<string[]>([]);
+
+  useEffect(() => {
+    // Shuffle the GENRE array and pick the first 8 genres
+    const shuffled = [...GENRE].sort(() => Math.random() - 0.5).slice(0, 8);
+    setShuffledGenres(shuffled);
+  }, []); 
+
+  console.log(shuffledGenres[0])
+  const { data: firstData } = useFetchSingleRandom(shuffledGenres[0]);
+  const { data: secondData } = useFetchSingleRandom(shuffledGenres[1]);
+  const { data: thirdData } = useFetchSingleRandom(shuffledGenres[2]);
+  const { data: fourthData } = useFetchSingleRandom(shuffledGenres[3]);
+  const { data: fifthData } = useFetchSingleRandom(shuffledGenres[4]);
+  const { data: sixData } = useFetchSingleRandom(shuffledGenres[5]);
+  const { data: sevenData } = useFetchSingleRandom(shuffledGenres[6]);
+  const { data: eightData } = useFetchSingleRandom(shuffledGenres[7]);
 
   const { push } = useRouter();
+
 
   return (
     <Carousel className="max-w-5xl">
@@ -35,8 +47,7 @@ const Slider = () => {
         <CarouselItem className="flex justify-center xl:justify-start gap-5 xl:gap-10">
           <Card className="w-[238px] h-[350px] bg-gradient-to-br from-blue-500 to-purple-500">
             <CardTitle className="text-center m-1 text-white text-lg font-bold">
-              {/* {mapGenre(firstData?.genre)} */}
-              Action
+              {shuffledGenres[0]}
             </CardTitle>
             <CardContent className="flex items-center justify-center p-1">
               {firstData && (
@@ -62,7 +73,7 @@ const Slider = () => {
           </Card>
           <Card className="w-[238px] h-[350px] bg-gradient-to-br from-yellow-600 to-pink-500">
             <CardTitle className="text-center m-1 text-white text-lg font-bold">
-              {mapGenre(secondData?.genre)}
+            {shuffledGenres[1]}
             </CardTitle>
             <CardContent className="flex items-center justify-center p-1 hover:cursor-pointer">
               {secondData && (
@@ -89,7 +100,7 @@ const Slider = () => {
 
           <Card className="w-[238px] h-[350px] bg-gradient-to-br from-teal-900 to-blue-500">
             <CardTitle className="text-center m-1 text-white text-lg font-bold">
-              {mapGenre(thirdData?.genre)}
+            {shuffledGenres[2]}
             </CardTitle>
             <CardContent className="flex items-center justify-center p-1">
               {thirdData && (
@@ -116,7 +127,7 @@ const Slider = () => {
 
           <Card className="w-[238px] h-[350px] bg-gradient-to-br from-purple-900 to-white hidden lg:block">
             <CardTitle className="text-center m-1 text-white text-lg font-bold">
-              {mapGenre(fourthData?.genre)}
+            {shuffledGenres[3]}
             </CardTitle>
             <CardContent className="flex items-center justify-center p-1">
               {fourthData && (
@@ -144,7 +155,7 @@ const Slider = () => {
         <CarouselItem className="flex gap-10">
           <Card className="w-[238px] h-[350px] bg-gradient-to-br from-pink-900 to-gray-300">
             <CardTitle className="text-center m-1 text-white text-lg font-bold">
-              {mapGenre(fifthData?.genre)}
+            {shuffledGenres[4]}
             </CardTitle>
             <CardContent className="flex items-center justify-center p-1">
               {fifthData && (
@@ -171,7 +182,7 @@ const Slider = () => {
 
           <Card className="w-[238px] h-[350px] bg-gradient-to-br from-blue-300 to-green-300">
             <CardTitle className="text-center m-1 text-white text-lg font-bold">
-              {mapGenre(sixData?.genre)}
+            {shuffledGenres[5]}
             </CardTitle>
             <CardContent className="flex items-center justify-center p-1">
               {sixData && (
@@ -198,7 +209,7 @@ const Slider = () => {
 
           <Card className="w-[238px] h-[350px] bg-gradient-to-br from-blue-300 to-indigo-300">
             <CardTitle className="text-center m-1 text-white text-lg font-bold">
-              {mapGenre(sevenData?.genre)}
+            {shuffledGenres[6]}
             </CardTitle>
             <CardContent className="flex items-center justify-center p-1">
               {sevenData && (
@@ -220,6 +231,32 @@ const Slider = () => {
                 {sevenData?.title}
               </p>
               <p className="text-sm">{limitText(sevenData?.synopsis, 70)}</p>
+            </CardFooter>
+          </Card>
+          <Card className="w-[238px] h-[350px] bg-gradient-to-br from-red-300 to-orange-300">
+            <CardTitle className="text-center m-1 text-white text-lg font-bold">
+            {shuffledGenres[7]}
+            </CardTitle>
+            <CardContent className="flex items-center justify-center p-1">
+              {sevenData && (
+                <Image
+                  className="rounded-r-lg hover:cursor-pointer"
+                  src={eightData?.image_url_cover}
+                  width={120}
+                  height={120}
+                  alt="Action"
+                  onClick={() => push(`/novels/details/${eightData.novel_id}`)}
+                />
+              )}
+            </CardContent>
+            <CardFooter className="grid grid-cols-1">
+              <p
+                className="text-sm font-bold text-center hover:cursor-pointer"
+                onClick={() => push(`/novels/details/${eightData.novel_id}`)}
+              >
+                {eightData?.title}
+              </p>
+              <p className="text-sm">{limitText(eightData?.synopsis, 70)}</p>
             </CardFooter>
           </Card>
         </CarouselItem>
