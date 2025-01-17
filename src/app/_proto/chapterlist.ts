@@ -15,6 +15,7 @@ export namespace chapters {
             subchapter?: number;
             novel_title?: string;
             image_url?: string;
+            author?: string;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -39,6 +40,9 @@ export namespace chapters {
                 }
                 if ("image_url" in data && data.image_url != undefined) {
                     this.image_url = data.image_url;
+                }
+                if ("author" in data && data.author != undefined) {
+                    this.author = data.author;
                 }
             }
         }
@@ -84,6 +88,12 @@ export namespace chapters {
         set image_url(value: string) {
             pb_1.Message.setField(this, 7, value);
         }
+        get author() {
+            return pb_1.Message.getFieldWithDefault(this, 8, "") as string;
+        }
+        set author(value: string) {
+            pb_1.Message.setField(this, 8, value);
+        }
         static fromObject(data: {
             novel_id?: number;
             title?: string;
@@ -92,6 +102,7 @@ export namespace chapters {
             subchapter?: number;
             novel_title?: string;
             image_url?: string;
+            author?: string;
         }): Chapter {
             const message = new Chapter({});
             if (data.novel_id != null) {
@@ -115,6 +126,9 @@ export namespace chapters {
             if (data.image_url != null) {
                 message.image_url = data.image_url;
             }
+            if (data.author != null) {
+                message.author = data.author;
+            }
             return message;
         }
         toObject() {
@@ -126,6 +140,7 @@ export namespace chapters {
                 subchapter?: number;
                 novel_title?: string;
                 image_url?: string;
+                author?: string;
             } = {};
             if (this.novel_id != null) {
                 data.novel_id = this.novel_id;
@@ -148,6 +163,9 @@ export namespace chapters {
             if (this.image_url != null) {
                 data.image_url = this.image_url;
             }
+            if (this.author != null) {
+                data.author = this.author;
+            }
             return data;
         }
         serialize(): Uint8Array;
@@ -168,6 +186,8 @@ export namespace chapters {
                 writer.writeString(6, this.novel_title);
             if (this.image_url.length)
                 writer.writeString(7, this.image_url);
+            if (this.author.length)
+                writer.writeString(8, this.author);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -197,6 +217,9 @@ export namespace chapters {
                         break;
                     case 7:
                         message.image_url = reader.readString();
+                        break;
+                    case 8:
+                        message.author = reader.readString();
                         break;
                     default: reader.skipField();
                 }

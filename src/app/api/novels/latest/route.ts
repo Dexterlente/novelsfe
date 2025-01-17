@@ -1,5 +1,5 @@
 export async function GET() {
-  let url = `${process.env.API_URL}/novel/list-latest/`;
+  let url = `${process.env.API_URL}/novel/list-latest/?timestamp=${Date.now()}`;
 
   try {
     const response = await fetch(url, {
