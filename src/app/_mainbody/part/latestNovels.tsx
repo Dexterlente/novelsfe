@@ -14,18 +14,18 @@ import { formatTimestamp } from "@/app/_components/utils/dateFormatter";
 import { useRouter } from "next/navigation";
 
 const LatestNovels = () => {
-  // const { data } = useFetchLatestNovels();
-
+  const { data } = useFetchLatestNovels();
+  console.log( data )
   const { push } = useRouter();
-
+  // const ImagePlaceholder
   return (
     <>
       <div className="text-2xl font-bold text-white mb-2">
         Most Recently Updated
       </div>
-      {/* <Table>
+      <Table>
         <TableBody>
-          {data?.map((items: any, index: number) => (
+          {data?.chapters?.map((items: any, index: number) => (
             <TableRow
               key={index}
               className="text-white grid grid-cols-[4fr,2fr,1fr]"
@@ -42,13 +42,13 @@ const LatestNovels = () => {
                   push(`/novels/chapter/${items.novel_id}/${items.chapter_id}`)
                 }
               >
-                Chapter {items?.chapter_number}
+                Chapter {items?.title}
               </TableCell>
               <TableCell>{formatTimestamp(items?.timestamp)}</TableCell>
             </TableRow>
           ))}
         </TableBody>
-      </Table> */}
+      </Table>
     </>
   );
 };

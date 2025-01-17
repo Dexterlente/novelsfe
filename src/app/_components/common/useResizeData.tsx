@@ -45,26 +45,36 @@ const useResizeData = (
     const breakpoint = breakpoints.find((bp) => screenWidth < bp.width) || {
       count: data?.length,
     };
-    setResizedData(data?.slice(0, breakpoint.count));
+
+    const newResizedData = data?.slice(0, breakpoint.count);
+    if (JSON.stringify(newResizedData) !== JSON.stringify(resizedData)) {
+      setResizedData(newResizedData); // Only update state if resizedData is different
+    }
 
     const newSize =
       sortedSizes
         .slice()
         .reverse()
         .find((s) => screenWidth <= s.width) || sortedSizes[0];
-    setImageSize(newSize);
-  }, [data, breakpoints, sortedSizes]);
+    if (JSON.stringify(newSize) !== JSON.stringify(imageSize)) {
+      setImageSize(newSize); // Only update state if imageSize is different
+    }
+  }, [data, breakpoints, resizedData, sortedSizes, imageSize]);
 
   useEffect(() => {
     // Set initial state after render
     resizeData();
 
-    // Add resize event listener
-    window.addEventListener("resize", resizeData);
-    return () => {
-      window.removeEventListener("resize", resizeData);
+    const handleResize = () => {
+      resizeData(); // Only invoke resizeData on resize events
     };
-  }, [resizeData]);
+
+    // Add resize event listener
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [resizeData, breakpoints]); // Ensure breakpoints is a dependency
 
   return [resizedData, imageSize];
 };

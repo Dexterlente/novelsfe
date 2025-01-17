@@ -27,7 +27,7 @@ const RandomGenreBook = ({ data }: Props) => {
   ];
 
   const [resizedData, imageSize] = useResizeData(data?.novels, breakpoints, size);
-console.log("sevenrandom", data)
+
   return (
     <div className="flex gap-3 mt-3 mx-1">
       {resizedData &&

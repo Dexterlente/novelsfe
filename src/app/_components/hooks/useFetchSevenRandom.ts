@@ -2,12 +2,13 @@ import useSWR from "swr";
 import { fetcher } from "../utils/fetcher";
 import decodeProtobuf from './decodeProtoBuf';
 import { novels } from '@/app/_proto/novels';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export const useFetchSevenRandom = (id: string) => {
   const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
 
   useEffect(() => {
 
@@ -38,8 +39,10 @@ export const useFetchSevenRandom = (id: string) => {
       }
     };
 
-    fetchProtobufData();
+
+      fetchProtobufData();
+
   }, [id]);
-  console.log("seven hook", data)
+  
   return { data, isLoading, error };
 };

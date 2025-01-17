@@ -24,7 +24,7 @@ const decodeProtobuf = (base64String: string, schema: any): any => {
     const novelsResponse = schema(uint8Array);
 
     // Return the deserialized object
-    console.log(novelsResponse.toObject());
+
     return novelsResponse.toObject();
   } catch (error: any) {
     console.error('Error decoding Protobuf data:', error);
