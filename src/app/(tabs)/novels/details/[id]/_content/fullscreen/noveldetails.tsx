@@ -3,9 +3,12 @@ import Image from "next/image";
 import CollapsibleText from "@/app/_components/common/collapsibletext";
 import NovelChapters from "./novelchapters";
 import AllChapters from "./allchapters";
+import { MdOutlineLibraryBooks } from "react-icons/md";
+import { Button } from "@/components/ui/button";
+
 
 const NovelDetails = ({ data }: any) => {
-  const cleanedText = data?.synopsis?.replace(/<\s*p\s*>/gi, "\n")?.replace(/<\s*\/\s*p\s*>/gi, "\n");
+  const cleanedText = data?.synopsis?.replace(/<\/?p>/g, '').replace(/\n/g, '<br />');
 
   const ImagePlaceholder = '/overgeared.jpg'
   console.log(data)
@@ -14,20 +17,47 @@ const NovelDetails = ({ data }: any) => {
       <div className="grid grid-cols-[1fr,3fr] text-white mt-10">
         <div className="mt-4">
           <Image
-            className="rounded-lg"
+            className="rounded-lg w-full h-auto"
             src={ImagePlaceholder} 
             alt="bookImage"
             width={200}
             height={200}
           />
         </div>
-        <div className="ml-5">
-          <div className="text-[28px] font-bold  mb-5">{data?.title}</div>
+        <div className="ml-5 mt-4 grid grid-rows-2">
           <div>
-            <CollapsibleText text={cleanedText} maxLength={250}  />
+            <div className="text-[28px] font-bold  mb-5">{data?.title}</div>
+            <div className="mb-2">Author: {data?.author}</div>
+            <div className="mb-2 flex items-center space-x-2">
+            <span>Chapters</span> <MdOutlineLibraryBooks />{data?.last_chapter}
+            </div>
           </div>
-        </div>
+          <div>
+              <div className="flex flex-nowrap">
+                {data?.genre?.split(',').map((genre: any, index: any) => (
+                  <Button className="mr-2 rounded-lg" key={index}>
+                    {genre.trim()}
+                  </Button>
+                ))}
+              </div>
+              <div className="mt-4">
+                <Button className="p-6">READ CHAPTER {data?.first_chapter}</Button>
+              </div>
+            </div>
+          </div>
       </div>
+
+          <div className="mt-10 text-white">
+            <div className="font-bold text-[20px] mb-3">Synopsis:</div>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: data?.synopsis
+                  ?.replace(/\n/g, '<br />')
+                  .trim()
+              }}
+            ></div>
+          </div>
+          
       {/* <NovelChapters id={data?.novel_id} /> */}
       <AllChapters id={data?.novel_id} />
     </>

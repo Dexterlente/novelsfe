@@ -16,6 +16,7 @@ export namespace novels {
             tags?: string;
             author?: string;
             last_chapter?: number;
+            first_chapter?: number;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -43,6 +44,9 @@ export namespace novels {
                 }
                 if ("last_chapter" in data && data.last_chapter != undefined) {
                     this.last_chapter = data.last_chapter;
+                }
+                if ("first_chapter" in data && data.first_chapter != undefined) {
+                    this.first_chapter = data.first_chapter;
                 }
             }
         }
@@ -94,6 +98,12 @@ export namespace novels {
         set last_chapter(value: number) {
             pb_1.Message.setField(this, 8, value);
         }
+        get first_chapter() {
+            return pb_1.Message.getFieldWithDefault(this, 9, 0) as number;
+        }
+        set first_chapter(value: number) {
+            pb_1.Message.setField(this, 9, value);
+        }
         static fromObject(data: {
             novel_id?: number;
             image_url?: string;
@@ -103,6 +113,7 @@ export namespace novels {
             tags?: string;
             author?: string;
             last_chapter?: number;
+            first_chapter?: number;
         }): NovelDetails {
             const message = new NovelDetails({});
             if (data.novel_id != null) {
@@ -129,6 +140,9 @@ export namespace novels {
             if (data.last_chapter != null) {
                 message.last_chapter = data.last_chapter;
             }
+            if (data.first_chapter != null) {
+                message.first_chapter = data.first_chapter;
+            }
             return message;
         }
         toObject() {
@@ -141,6 +155,7 @@ export namespace novels {
                 tags?: string;
                 author?: string;
                 last_chapter?: number;
+                first_chapter?: number;
             } = {};
             if (this.novel_id != null) {
                 data.novel_id = this.novel_id;
@@ -166,6 +181,9 @@ export namespace novels {
             if (this.last_chapter != null) {
                 data.last_chapter = this.last_chapter;
             }
+            if (this.first_chapter != null) {
+                data.first_chapter = this.first_chapter;
+            }
             return data;
         }
         serialize(): Uint8Array;
@@ -188,6 +206,8 @@ export namespace novels {
                 writer.writeString(7, this.author);
             if (this.last_chapter != 0)
                 writer.writeInt32(8, this.last_chapter);
+            if (this.first_chapter != 0)
+                writer.writeInt32(9, this.first_chapter);
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -220,6 +240,9 @@ export namespace novels {
                         break;
                     case 8:
                         message.last_chapter = reader.readInt32();
+                        break;
+                    case 9:
+                        message.first_chapter = reader.readInt32();
                         break;
                     default: reader.skipField();
                 }
