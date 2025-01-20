@@ -59,7 +59,8 @@ const NovelDetails = ({ data }: any) => {
           </div>
           
       {/* <NovelChapters id={data?.novel_id} /> */}
-      <AllChapters id={data?.novel_id} />
+      {/* <AllChapters id={data?.novel_id} /> */}
+      {/* update */}
     </>
   );
 };
