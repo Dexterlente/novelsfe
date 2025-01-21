@@ -5,6 +5,7 @@ import NovelChapters from "./novelchapters";
 import AllChapters from "./allchapters";
 import { MdOutlineLibraryBooks } from "react-icons/md";
 import { Button } from "@/components/ui/button";
+import NovelTags from "./noveltags";
 
 
 const NovelDetails = ({ data }: any) => {
@@ -17,11 +18,11 @@ const NovelDetails = ({ data }: any) => {
       <div className="grid grid-cols-[1fr,3fr] text-white mt-10">
         <div className="mt-4">
           <Image
-            className="rounded-lg w-full h-auto"
+            className="rounded-lg w-[360px] h-[400px] object-cover"
             src={ImagePlaceholder} 
             alt="bookImage"
-            width={200}
-            height={200}
+            width={350}
+            height={400}
           />
         </div>
         <div className="ml-5 mt-4 grid grid-rows-2">
@@ -35,7 +36,7 @@ const NovelDetails = ({ data }: any) => {
           <div>
               <div className="flex flex-nowrap">
                 {data?.genre?.split(',').map((genre: any, index: any) => (
-                  <Button className="mr-2 rounded-lg" key={index}>
+                  <Button className="mr-2 px-[6px] rounded-lg" key={index}>
                     {genre.trim()}
                   </Button>
                 ))}
@@ -61,6 +62,7 @@ const NovelDetails = ({ data }: any) => {
       {/* <NovelChapters id={data?.novel_id} /> */}
       {/* <AllChapters id={data?.novel_id} /> */}
       {/* update */}
+      <NovelTags data={data} />
     </>
   );
 };
