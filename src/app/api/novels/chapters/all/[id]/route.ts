@@ -1,13 +1,28 @@
 import { NextRequest } from "next/server";
-import axios from "axios";
 
 export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  let url = `${process.env.API_URL}/get-all-chapters/${params.id}`;
+  let url = `${process.env.API_URL}/chapters/${params.id}?timestamp=${Date.now()}`;
 
-  const response = await axios.get(url);
-  const data = response.data;
-  return Response.json(data);
+    const page = req.nextUrl.searchParams.get("page");
+
+    if (page !== null) {
+      url += `&page=${page}`;
+    }
+
+    try {
+      const response = await fetch(url, {
+        headers: {
+          Accept: "application/x-protobuf",
+        },
+      });
+
+      return response;
+
+    } catch (error) {
+      console.error("Error fetching protobuf data:", error);
+      return new Response("Error", { status: 500 });
+    }
 }
