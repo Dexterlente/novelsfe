@@ -4,12 +4,12 @@ export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  let url = `${process.env.API_URL}/chapters/${params.id}?timestamp=${Date.now()}`;
+  let url = `${process.env.API_URL}/chapters/${params.id}`;
 
     const page = req.nextUrl.searchParams.get("page");
 
     if (page !== null) {
-      url += `&page=${page}`;
+      url += `?page=${page}`;
     }
 
     try {

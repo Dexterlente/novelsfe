@@ -11,7 +11,7 @@ export const useFetchAllChapters = (id: string, page:any) => {
   let url = `/api/novels/chapters/all/${id}`;
 
   if (page !== undefined || page !== null || page !== "") {
-    url += `&page=${page}`;
+    url += `?page=${page}`;
   }
 // TODO ADD REVERSE PARAMS
   const fetchProtobufData = async () => {
