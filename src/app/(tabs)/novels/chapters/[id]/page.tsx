@@ -30,11 +30,21 @@ const Page = () => {
         </PaginationItem>
     );
 
-
   return (
     <div className="container mx-auto p-4">
         <h1 className="text-3xl font-bold mb-4">Chapters</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="md:hidden">
+            <ul>
+                {data?.chapters?.map((chapter: any, index: any) => (
+                    <li key={chapter.index} className="mb-2">
+                        {chapter.title} - Published on{" "}
+                        {new Date(chapter.timestamp).toLocaleDateString()}
+                    </li>
+                ))}
+            </ul>
+        </div>
+        {/* fullsize  below */}
+        <div className="hidden md:grid grid-cols-2 gap-4">
             <div>
             <ul>
                 {data?.chapters?.filter((_: any, index: any) => index % 2 === 0).map((chapter: any) => (
@@ -56,7 +66,9 @@ const Page = () => {
             </ul>
             </div>
             <div className="container mx-auto p-4">
-            <div className="flex justify-center mt-4">
+        </div>
+        </div>
+        <div className="flex justify-center mt-4">
                 <Pagination>
                     <PaginationContent>
                         <PaginationItem>
@@ -75,8 +87,6 @@ const Page = () => {
                     </PaginationContent>
                 </Pagination>
             </div>
-        </div>
-        </div>
     </div>
     )
 }
