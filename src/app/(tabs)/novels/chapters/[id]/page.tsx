@@ -31,8 +31,27 @@ const Page = () => {
     );
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 min-h-screen">
         <h1 className="text-3xl font-bold mb-4">Chapters</h1>
+        <div className="flex justify-center mt-4">
+                <Pagination>
+                    <PaginationContent>
+                        <PaginationItem>
+                            <PaginationPrevious href="#" onClick={(e) => { e.preventDefault(); if (currentPage > 1) handlePageChange(currentPage - 1); }} />
+                        </PaginationItem>
+                        {currentPage > 2 && renderPaginationItem(1)}
+                        {currentPage > 3 && <PaginationEllipsis />}
+                        {currentPage > 1 && renderPaginationItem(currentPage - 1)}
+                        {renderPaginationItem(currentPage)}
+                        {currentPage < data?.total_pages && renderPaginationItem(currentPage + 1)}
+                        {currentPage < data?.total_pages - 1 && <PaginationEllipsis />}
+                        {currentPage < data?.total_pages - 1 && renderPaginationItem(data?.total_pages)}
+                        <PaginationItem>
+                            <PaginationNext href="#" onClick={(e) => { e.preventDefault(); if (currentPage < data?.total_pages) handlePageChange(currentPage + 1); }} />
+                        </PaginationItem>
+                    </PaginationContent>
+                </Pagination>
+            </div>
         <div className="md:hidden">
             <ul>
                 {data?.chapters?.map((chapter: any, index: any) => (
@@ -68,25 +87,6 @@ const Page = () => {
             <div className="container mx-auto p-4">
         </div>
         </div>
-        <div className="flex justify-center mt-4">
-                <Pagination>
-                    <PaginationContent>
-                        <PaginationItem>
-                            <PaginationPrevious href="#" onClick={(e) => { e.preventDefault(); if (currentPage > 1) handlePageChange(currentPage - 1); }} />
-                        </PaginationItem>
-                        {currentPage > 2 && renderPaginationItem(1)}
-                        {currentPage > 3 && <PaginationEllipsis />}
-                        {currentPage > 1 && renderPaginationItem(currentPage - 1)}
-                        {renderPaginationItem(currentPage)}
-                        {currentPage < data?.total_pages && renderPaginationItem(currentPage + 1)}
-                        {currentPage < data?.total_pages - 1 && <PaginationEllipsis />}
-                        {currentPage < data?.total_pages - 1 && renderPaginationItem(data?.total_pages)}
-                        <PaginationItem>
-                            <PaginationNext href="#" onClick={(e) => { e.preventDefault(); if (currentPage < data?.total_pages) handlePageChange(currentPage + 1); }} />
-                        </PaginationItem>
-                    </PaginationContent>
-                </Pagination>
-            </div>
     </div>
     )
 }
