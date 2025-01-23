@@ -12,9 +12,9 @@ import {
 
 import React, { useState, useEffect } from 'react'
 
-const Page = () => {
+const Page = ({ params }: { params: { id: string } }) => {
     const [currentPage, setCurrentPage] = useState(1)
-    const {data, isLoading, error} = useFetchAllChapters("1", currentPage)
+    const {data, isLoading, error} = useFetchAllChapters(params.id, currentPage)
 
     console.log(data)
 

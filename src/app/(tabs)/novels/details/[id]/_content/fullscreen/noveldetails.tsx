@@ -6,9 +6,12 @@ import AllChapters from "./allchapters";
 import { MdOutlineLibraryBooks } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import NovelTags from "./noveltags";
+import { useRouter } from "next/navigation";
 
 
 const NovelDetails = ({ data }: any) => {
+  const { push } = useRouter();
+
   const cleanedText = data?.synopsis?.replace(/<\/?p>/g, '').replace(/\n/g, '<br />');
 
   const ImagePlaceholder = '/overgeared.jpg'
@@ -62,6 +65,9 @@ const NovelDetails = ({ data }: any) => {
       {/* <NovelChapters id={data?.novel_id} /> */}
       {/* <AllChapters id={data?.novel_id} /> */}
       {/* update */}
+      <div onClick={() => push(`/novels/chapters/${data?.novel_id}`)}>
+        All Chapters
+      </div>
       <NovelTags data={data} />
     </>
   );
