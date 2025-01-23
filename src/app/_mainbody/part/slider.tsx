@@ -58,14 +58,14 @@ const Slider = () => {
                   width={120}
                   height={120}
                   alt="Action"
-                  onClick={() => push(`/novels/details/${firstData.novel_id}`)}
+                  onClick={() => push(`/novels/details/${firstData?.novel_id}`)}
                 />
               )}
             </CardContent>
             <CardFooter className="grid grid-cols-1">
               <p
                 className="text-sm font-bold text-center hover:cursor-pointer"
-                onClick={() => push(`/novels/details/${firstData.novel_id}`)}
+                onClick={() => push(`/novels/details/${firstData?.novel_id}`)}
               >
                 {firstData?.title}
               </p>
@@ -85,14 +85,14 @@ const Slider = () => {
                   width={120}
                   height={120}
                   alt="Action"
-                  onClick={() => push(`/novels/details/${secondData.novel_id}`)}
+                  onClick={() => push(`/novels/details/${secondData?.novel_id}`)}
                 />
               )}
             </CardContent>
             <CardFooter className="grid grid-cols-1">
               <p
                 className="text-sm font-bold text-center hover:cursor-pointer"
-                onClick={() => push(`/novels/details/${secondData.novel_id}`)}
+                onClick={() => push(`/novels/details/${secondData?.novel_id}`)}
               >
                 {secondData?.title}
               </p>
@@ -112,14 +112,14 @@ const Slider = () => {
                   width={120}
                   height={120}
                   alt="Action"
-                  onClick={() => push(`/novels/details/${thirdData.novel_id}`)}
+                  onClick={() => push(`/novels/details/${thirdData?.novel_id}`)}
                 />
               )}
             </CardContent>
             <CardFooter className="grid grid-cols-1">
               <p
                 className="text-sm font-bold text-center hover:cursor-pointer"
-                onClick={() => push(`/novels/details/${thirdData.novel_id}`)}
+                onClick={() => push(`/novels/details/${thirdData?.novel_id}`)}
               >
                 {thirdData?.title}
               </p>
@@ -139,14 +139,14 @@ const Slider = () => {
                   width={120}
                   height={120}
                   alt="Action"
-                  onClick={() => push(`/novels/details/${fourthData.novel_id}`)}
+                  onClick={() => push(`/novels/details/${fourthData?.novel_id}`)}
                 />
               )}
             </CardContent>
             <CardFooter className="grid grid-cols-1">
               <p
                 className="text-sm font-bold text-center hover:cursor-pointer"
-                onClick={() => push(`/novels/details/${fourthData.novel_id}`)}
+                onClick={() => push(`/novels/details/${fourthData?.novel_id}`)}
               >
                 {fourthData?.title}
               </p>
@@ -167,14 +167,14 @@ const Slider = () => {
                   width={120}
                   height={120}
                   alt="Action"
-                  onClick={() => push(`/novels/details/${fifthData.novel_id}`)}
+                  onClick={() => push(`/novels/details/${fifthData?.novel_id}`)}
                 />
               )}
             </CardContent>
             <CardFooter className="grid grid-cols-1">
               <p
                 className="text-sm font-bold text-center hover:cursor-pointer"
-                onClick={() => push(`/novels/details/${fifthData.novel_id}`)}
+                onClick={() => push(`/novels/details/${fifthData?.novel_id}`)}
               >
                 {fifthData?.title}
               </p>
@@ -194,14 +194,14 @@ const Slider = () => {
                   width={120}
                   height={120}
                   alt="Action"
-                  onClick={() => push(`/novels/details/${sixData.novel_id}`)}
+                  onClick={() => push(`/novels/details/${sixData?.novel_id}`)}
                 />
               )}
             </CardContent>
             <CardFooter className="grid grid-cols-1">
               <p
                 className="text-sm font-bold text-center hover:cursor-pointer"
-                onClick={() => push(`/novels/details/${sixData.novel_id}`)}
+                onClick={() => push(`/novels/details/${sixData?.novel_id}`)}
               >
                 {sixData?.title}
               </p>
@@ -221,14 +221,14 @@ const Slider = () => {
                   width={120}
                   height={120}
                   alt="Action"
-                  onClick={() => push(`/novels/details/${sevenData.novel_id}`)}
+                  onClick={() => push(`/novels/details/${sevenData?.novel_id}`)}
                 />
               )}
             </CardContent>
             <CardFooter className="grid grid-cols-1">
               <p
                 className="text-sm font-bold text-center hover:cursor-pointer"
-                onClick={() => push(`/novels/details/${sevenData.novel_id}`)}
+                onClick={() => push(`/novels/details/${sevenData?.novel_id}`)}
               >
                 {sevenData?.title}
               </p>
@@ -247,14 +247,14 @@ const Slider = () => {
                   width={120}
                   height={120}
                   alt="Action"
-                  onClick={() => push(`/novels/details/${eightData.novel_id}`)}
+                  onClick={() => push(`/novels/details/${eightData?.novel_id}`)}
                 />
               )}
             </CardContent>
             <CardFooter className="grid grid-cols-1">
               <p
                 className="text-sm font-bold text-center hover:cursor-pointer"
-                onClick={() => push(`/novels/details/${eightData.novel_id}`)}
+                onClick={() => push(`/novels/details/${eightData?.novel_id}`)}
               >
                 {eightData?.title}
               </p>
