@@ -51,7 +51,7 @@ const NovelDetails = ({ data }: any) => {
           </div>
       </div>
 
-          <div className="mt-10 text-white">
+          <div className="mt-10 text-white mb-3">
             <div className="font-bold text-[20px] mb-3">Synopsis:</div>
             <div
               dangerouslySetInnerHTML={{
@@ -62,11 +62,10 @@ const NovelDetails = ({ data }: any) => {
             ></div>
           </div>
           
-      {/* <NovelChapters id={data?.novel_id} /> */}
-      {/* <AllChapters id={data?.novel_id} /> */}
-      {/* update */}
-      <div onClick={() => push(`/novels/chapters/${data?.novel_id}`)}>
-        All Chapters
+      <div className="text-center text-white p-5 hover:bg-white hover:text-black hover:cursor-pointer rounded-lg border border-solid " 
+      onClick={() => push(`/novels/chapters/${data?.novel_id}`)}>
+          <div className="md:text-2xl font-bold">Novel Chapters</div>
+          <div>Chapter {data?.last_chapter}</div>
       </div>
       <NovelTags data={data} />
     </>

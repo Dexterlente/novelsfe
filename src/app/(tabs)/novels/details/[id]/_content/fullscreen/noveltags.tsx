@@ -7,7 +7,7 @@ interface Props{
 
 const NovelTags = ({data}: Props) => {
   return (
-    <div className='text-white mt-5 border-t-2 pt-2'>
+    <div className='text-white pt-2'>
         <div className='font-bold text-[24px] mb-2'>Tags</div>
         <div className="flex flex-wrap">
                 {data?.tags?.split(',').map((tags: any, index: any) => (
