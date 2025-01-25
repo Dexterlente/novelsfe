@@ -25,7 +25,7 @@ const Page = ({ params }: { params: { id: string } }) => {
   
     const renderPaginationItem = (page: any) => (
         <PaginationItem key={page}>
-            <PaginationLink href="#" onClick={(e) => { e.preventDefault(); handlePageChange(page); }}>
+            <PaginationLink href="#" isActive={page === currentPage} onClick={(e) => { e.preventDefault(); handlePageChange(page); }}>
                 {page}
             </PaginationLink>
         </PaginationItem>
@@ -33,8 +33,8 @@ const Page = ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="container mx-auto p-4 min-h-screen">
-        <h1 className="text-3xl font-bold mb-4">Chapters</h1>
-        <div className="flex justify-center mt-4">
+        <h1 className="text-3xl font-bold mb-4">All Chapters</h1>
+        <div className="flex justify-center my-4">
                 <Pagination>
                     <PaginationContent>
                         <PaginationItem>
@@ -52,7 +52,7 @@ const Page = ({ params }: { params: { id: string } }) => {
                         </PaginationItem>
                     </PaginationContent>
                 </Pagination>
-            </div>
+        </div>
                 {/* fullsize  below */}
         <div className="flex items-center justify-center">
         <div className="md:hidden">
@@ -75,7 +75,7 @@ const Page = ({ params }: { params: { id: string } }) => {
             <div>
             <ul>
                 {data?.chapters?.filter((_: any, index: any) => index % 2 === 0).map((chapter: any) => (
-                <li key={chapter.index} className="mb-2 flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
+                <li key={chapter.index} className="mb-2 h-[100px] flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
                     <span className="mr-4 text-gray-400">{chapter?.subchapter > 0 ? `${chapter?.index}.${chapter.subchapter}` : chapter?.index}</span>
                     <div className="flex flex-col items-start">
                         <div className='font-bold'>{chapter?.title}</div>
@@ -88,7 +88,7 @@ const Page = ({ params }: { params: { id: string } }) => {
             <div>
             <ul>
                 {data?.chapters?.filter((_: any, index: any) => index % 2 !== 0).map((chapter: any) => (
-                 <li key={chapter.index} className="mb-2 flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
+                 <li key={chapter.index} className="mb-2 h-[100px] flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
                     <span className="mr-4 font-bold text-gray-400">{chapter?.subchapter > 0 ? `${chapter?.index}.${chapter.subchapter}` : chapter?.index}</span>
                     <div className="flex flex-col items-start">
                         <div className='font-bold'>{chapter.title}</div>
