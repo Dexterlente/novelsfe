@@ -52,6 +52,8 @@ const Page = ({ params }: { params: { id: string } }) => {
                     </PaginationContent>
                 </Pagination>
             </div>
+                {/* fullsize  below */}
+        <div className="flex items-center justify-center">
         <div className="md:hidden">
             <ul>
                 {data?.chapters?.map((chapter: any, index: any) => (
@@ -62,14 +64,19 @@ const Page = ({ params }: { params: { id: string } }) => {
                 ))}
             </ul>
         </div>
+        </div>
         {/* fullsize  below */}
-        <div className="hidden md:grid grid-cols-2 gap-4">
+        <div className="flex items-center justify-center">
+        <div className="hidden md:grid grid-cols-2 gap-14">
             <div>
             <ul>
                 {data?.chapters?.filter((_: any, index: any) => index % 2 === 0).map((chapter: any) => (
-                <li key={chapter.index} className="mb-2">
-                    {chapter.title} - Published on{" "}
-                    {new Date(chapter.timestamp).toLocaleDateString()}
+                <li key={chapter.index} className="mb-2 flex items-center border border-solid p-4 rounded-lg min-w-200">
+                    <span className="mr-4 font-bold text-gray-400">{chapter?.subchapter > 0 ? `${chapter?.index}.${chapter.subchapter}` : chapter?.index}</span>
+                    <div className="flex flex-col items-start text-white">
+                        <div>{chapter.title}</div>
+                        <div>{new Date(chapter.timestamp).toLocaleDateString()}</div>
+                    </div>
                 </li>
                 ))}
             </ul>
@@ -77,14 +84,17 @@ const Page = ({ params }: { params: { id: string } }) => {
             <div>
             <ul>
                 {data?.chapters?.filter((_: any, index: any) => index % 2 !== 0).map((chapter: any) => (
-                <li key={chapter.index} className="mb-2">
-                    {chapter.title} - Published on{" "}
-                    {new Date(chapter.timestamp).toLocaleDateString()}
+                <li key={chapter.index} className="mb-2 flex items-center">
+                    <span className="mr-4 font-bold text-gray-400">{chapter?.subchapter > 0 ? `${chapter?.index}.${chapter.subchapter}` : chapter?.index}</span>
+                    <div className="flex flex-col items-start text-white">
+                        <div>{chapter.title}</div>
+                        <div>{new Date(chapter.timestamp).toLocaleDateString()}</div>
+                    </div>
                 </li>
                 ))}
             </ul>
             </div>
-            <div className="container mx-auto p-4">
+ 
         </div>
         </div>
     </div>
