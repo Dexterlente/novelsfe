@@ -1,5 +1,6 @@
 "use client"
 import { useFetchAllChapters } from '@/app/_components/hooks/useFetchAllChapters'
+import { formatTimestamp } from '@/app/_components/utils/dateFormatter';
 import {
     Pagination,
     PaginationContent,
@@ -57,9 +58,12 @@ const Page = ({ params }: { params: { id: string } }) => {
         <div className="md:hidden">
             <ul>
                 {data?.chapters?.map((chapter: any, index: any) => (
-                    <li key={chapter.index} className="mb-2">
-                        {chapter.title} - Published on{" "}
-                        {new Date(chapter.timestamp).toLocaleDateString()}
+                    <li key={chapter.index} className="mb-2 flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
+                        <span className="mr-4 text-gray-400">{chapter?.subchapter > 0 ? `${chapter?.index}.${chapter.subchapter}` : chapter?.index}</span>
+                        <div className="flex flex-col items-start">
+                            <div className='font-bold'>{chapter?.title}</div>
+                            <div>{formatTimestamp(chapter?.timestamp)}</div>
+                        </div>
                     </li>
                 ))}
             </ul>
@@ -71,11 +75,11 @@ const Page = ({ params }: { params: { id: string } }) => {
             <div>
             <ul>
                 {data?.chapters?.filter((_: any, index: any) => index % 2 === 0).map((chapter: any) => (
-                <li key={chapter.index} className="mb-2 flex items-center border border-solid p-4 rounded-lg min-w-200">
-                    <span className="mr-4 font-bold text-gray-400">{chapter?.subchapter > 0 ? `${chapter?.index}.${chapter.subchapter}` : chapter?.index}</span>
-                    <div className="flex flex-col items-start text-white">
-                        <div>{chapter.title}</div>
-                        <div>{new Date(chapter.timestamp).toLocaleDateString()}</div>
+                <li key={chapter.index} className="mb-2 flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
+                    <span className="mr-4 text-gray-400">{chapter?.subchapter > 0 ? `${chapter?.index}.${chapter.subchapter}` : chapter?.index}</span>
+                    <div className="flex flex-col items-start">
+                        <div className='font-bold'>{chapter?.title}</div>
+                        <div>{formatTimestamp(chapter?.timestamp)}</div>
                     </div>
                 </li>
                 ))}
@@ -84,11 +88,11 @@ const Page = ({ params }: { params: { id: string } }) => {
             <div>
             <ul>
                 {data?.chapters?.filter((_: any, index: any) => index % 2 !== 0).map((chapter: any) => (
-                <li key={chapter.index} className="mb-2 flex items-center">
+                 <li key={chapter.index} className="mb-2 flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
                     <span className="mr-4 font-bold text-gray-400">{chapter?.subchapter > 0 ? `${chapter?.index}.${chapter.subchapter}` : chapter?.index}</span>
-                    <div className="flex flex-col items-start text-white">
-                        <div>{chapter.title}</div>
-                        <div>{new Date(chapter.timestamp).toLocaleDateString()}</div>
+                    <div className="flex flex-col items-start">
+                        <div className='font-bold'>{chapter.title}</div>
+                        <div>{formatTimestamp(chapter?.timestamp)}</div>
                     </div>
                 </li>
                 ))}
