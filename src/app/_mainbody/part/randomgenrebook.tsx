@@ -32,11 +32,11 @@ const RandomGenreBook = ({ data }: Props) => {
     <div className="flex gap-3 mt-3 mx-1">
       {resizedData &&
         resizedData?.map((book: any) => (
-          <div key={book.novel_id} className="flex flex-col items-center">
+          <div key={book?.novel_id} className="flex flex-col items-center">
           <div
 
             className="relative hover:cursor-pointer"
-            // onClick={() => push(`/novels/details/${book.novel_id}`)}
+            onClick={() => push(`/novels/details/${book.novel_id}`)}
           >
             <Image
               className="rounded-lg "
