@@ -22,7 +22,7 @@ const SliderCard = ({data, title, bgGradient}: any) => {
 const { push } = useRouter();
 const placeHolderImage = `/overgeared.jpg`
   return (
-    <Card className={`w-[238px] h-[350px] bg-gradient-to-br ${bgGradient}`}>
+    <Card className={`w-[238px] h-[355px] bg-gradient-to-br ${bgGradient}`}>
     <CardTitle className="text-center m-1 text-white text-lg font-bold">
       {title}
     </CardTitle>
