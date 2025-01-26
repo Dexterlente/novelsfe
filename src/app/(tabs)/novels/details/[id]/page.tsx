@@ -14,9 +14,6 @@ const Page = ({ params }: { params: { id: string } }) => {
       <FullScreenAdhoc>
         <NovelDetails data={data} />
       </FullScreenAdhoc>
-      <LgScreenAdhoc>a</LgScreenAdhoc>
-      <MdScreenAdhoc>a</MdScreenAdhoc>
-      <MobileScreenAdhoc> a</MobileScreenAdhoc>.
     </div>
   );
 };

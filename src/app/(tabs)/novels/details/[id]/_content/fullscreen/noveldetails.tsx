@@ -19,9 +19,9 @@ const NovelDetails = ({ data }: any) => {
   return (
     <>
       <div className="grid grid-cols-[1fr,3fr] text-white mt-10">
-        <div className="mt-4">
+        <div className="mt-4 min-w-[200px]">
           <Image
-            className="rounded-lg w-[360px] h-[400px] object-cover"
+            className="rounded-lg object-cover"
             src={ImagePlaceholder} 
             alt="bookImage"
             width={350}
@@ -37,15 +37,15 @@ const NovelDetails = ({ data }: any) => {
             </div>
           </div>
           <div>
-              <div className="flex flex-nowrap">
+              <div className="flex flex-wrap">
                 {data?.genre?.split(',').map((genre: any, index: any) => (
-                  <Button className="mr-2 px-[6px] rounded-lg" key={index}>
+                  <Button className="mr-2  mb-1 rounded-lg" size={"sm"} key={index}>
                     {genre.trim()}
                   </Button>
                 ))}
               </div>
               <div className="mt-4">
-                <Button className="p-6">READ CHAPTER {data?.first_chapter}</Button>
+                <Button className="font-bold p-6">READ CHAPTER {data?.first_chapter}</Button>
               </div>
             </div>
           </div>
@@ -54,12 +54,12 @@ const NovelDetails = ({ data }: any) => {
           <div className="mt-10 text-white mb-3">
             <div className="font-bold text-[20px] mb-3">Synopsis:</div>
             <div
-              dangerouslySetInnerHTML={{
-                __html: data?.synopsis
-                  ?.replace(/\n/g, '<br />')
-                  .trim()
-              }}
-            ></div>
+              > {data?.synopsis && (
+                <CollapsibleText
+                  text={data.synopsis.replace(/\n/g, "<br />").trim()}
+                  maxLength={600}
+                />
+            )}</div>
           </div>
           
       <div className="text-center text-white p-5 hover:bg-white hover:text-black hover:cursor-pointer rounded-lg border border-solid" 

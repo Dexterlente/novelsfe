@@ -6,7 +6,7 @@ interface Props {
 
 const FullScreenAdhoc = ({ children }: Props) => {
   return (
-    <div className="hidden xl:block">
+    <div>
       <div className="grid grid-cols-[1fr,3fr,1fr]">
         <div></div>
         <div>{children}</div>

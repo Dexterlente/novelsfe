@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import DOMPurify from "dompurify";
 
 interface Props {
   text: string;
@@ -8,10 +9,20 @@ interface Props {
 function CollapsibleText({ text, maxLength }: Props) {
   const [expanded, setExpanded] = useState(false);
 
+  const sanitizedText = DOMPurify.sanitize(text);
+
+  const displayedText = expanded
+    ? sanitizedText
+    : sanitizedText.slice(0, maxLength);
+
   return (
     <div>
-      <p>{expanded ? text : text?.slice(0, maxLength)}</p>
-      {text?.length > maxLength && (
+      <div
+        dangerouslySetInnerHTML={{
+          __html: displayedText,
+        }}
+      ></div>
+      {sanitizedText.length > maxLength && (
         <button className="font-bold" onClick={() => setExpanded(!expanded)}>
           {expanded ? "See less" : "See more"}
         </button>
