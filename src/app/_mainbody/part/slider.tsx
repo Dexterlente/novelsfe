@@ -46,16 +46,16 @@ const Slider = () => {
   return (
     <Carousel className="max-w-5xl">
       <CarouselContent>
-        <CarouselItem className="flex justify-center xl:justify-start gap-3 xl:gap-10">
+        <CarouselItem className="flex justify-center xl:justify-start gap-5 xl:gap-10">
           <SliderCard data={firstData} title={shuffledGenres[0]} bgGradient="from-blue-500 to-purple-500" />
           <SliderCard data={secondData} title={shuffledGenres[1]} bgGradient="from-yellow-600 to-pink-500" />
-          <SliderCard data={thirdData} title={shuffledGenres[2]} bgGradient="from-teal-900 to-blue-500" />
+          <SliderCard data={thirdData} title={shuffledGenres[2]} bgGradient="from-teal-900 to-blue-500 hidden sm:block" />
           <SliderCard data={fourthData} title={shuffledGenres[3]} bgGradient="from-purple-900 to-white hidden lg:block" />     
         </CarouselItem>
         <CarouselItem className="flex justify-center xl:justify-start gap-3 xl:gap-10">
           <SliderCard data={fifthData} title={shuffledGenres[4]} bgGradient="from-pink-900 to-gray-300" />
           <SliderCard data={sixData} title={shuffledGenres[5]} bgGradient="from-blue-300 to-green-300" />
-          <SliderCard data={sevenData} title={shuffledGenres[6]} bgGradient="from-blue-300 to-indigo-300" />
+          <SliderCard data={sevenData} title={shuffledGenres[6]} bgGradient="from-blue-300 to-indigo-300 hidden sm:block" />
           <SliderCard data={eightData} title={shuffledGenres[7]} bgGradient="from-red-300 to-orange-300 hidden lg:block" />
         </CarouselItem>
       </CarouselContent>

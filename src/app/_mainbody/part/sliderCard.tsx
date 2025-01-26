@@ -22,14 +22,14 @@ const SliderCard = ({data, title, bgGradient}: any) => {
 const { push } = useRouter();
 const placeHolderImage = `/overgeared.jpg`
   return (
-    <Card className={`w-[238px] h-[355px] bg-gradient-to-br ${bgGradient}`}>
-    <CardTitle className="text-center m-1 text-white text-lg font-bold">
+    <Card className={`w-[180px] h-[280px] md:w-[238px] md:h-[355px] bg-gradient-to-br ${bgGradient}`}>
+    <CardTitle className="text-center mt-1 md:m-1 text-white text-md md:text-lg font-bold">
       {title}
     </CardTitle>
     <CardContent className="flex items-center justify-center p-1">
       {data && (
         <Image
-          className="rounded-r-lg hover:cursor-pointer"
+          className="rounded-r-lg hover:cursor-pointer w-[90px] md:w-[120px]"
           src={placeHolderImage}
           width={120}
           height={120}
@@ -40,12 +40,12 @@ const placeHolderImage = `/overgeared.jpg`
     </CardContent>
     <CardFooter className="grid grid-cols-1">
       <p
-        className="text-sm font-bold text-center hover:cursor-pointer"
+        className="text-[13px] md:text-sm font-bold text-center hover:cursor-pointer"
         onClick={() => push(`/novels/details/${data?.novel_id}`)}
       >
         {data?.title}
       </p>
-      <p className="text-sm">{limitText(data?.synopsis, 100)}</p>
+      <p className="text-[9px] md:text-sm">{limitText(data?.synopsis, 100)}</p>
     </CardFooter>
   </Card>
   )
