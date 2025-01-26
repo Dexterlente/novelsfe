@@ -26,42 +26,44 @@ const LatestNovels = () => {
       <div className="text-2xl font-bold text-white mb-2">
         Most Recently Updated
       </div>
-      <Table>
-        <TableBody>
-          {data?.chapters?.map((items: any, index: number) => (
-            <TableRow
-              key={index}
-              className="text-white grid grid-cols-[0.5fr,4fr,2fr,1fr,1fr] items-center"
-            >
-              <TableCell>    
-                <Image
-                  className="rounded-md"
-                  src={ImagePlaceholder}
-                  alt="bookImage"
-                  width={30}
-                  height={40}
-                          />
-              </TableCell>
-              <TableCell
-                className="font-medium hover:underline hover:cursor-pointer"
-                onClick={() => push(`/novels/details/${items.novel_id}`)}
+      <div className="overflow-x-auto">
+        <Table className="min-w-[800px]">
+          <TableBody>
+            {data?.chapters?.map((items: any, index: number) => (
+              <TableRow
+                key={index}
+                className="text-white grid grid-cols-[0.5fr,1.5fr,2fr,1fr,1fr] md:grid-cols-[0.5fr,4fr,2fr,1fr,1fr] items-center hover:bg-[#313131]"
               >
-                {items?.novel_title || "1"}
-              </TableCell>
-              <TableCell
-                className="hover:underline hover:cursor-pointer"
-                onClick={() =>
-                  push(`/novels/chapter/${items.novel_id}/${items.chapter_id}`)
-                }
-              >
-                Chapter {items?.title}
-              </TableCell>
-              <TableCell>{items?.author}</TableCell>
-              <TableCell>{formatTimestamp(items?.timestamp)}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+                <TableCell className="sticky left-0 z-10 bg-[#313131]">    
+                  <Image
+                    className="rounded-md min-w-[30px]"
+                    src={ImagePlaceholder}
+                    alt="bookImage"
+                    width={30}
+                    height={40}
+                            />
+                </TableCell>
+                <TableCell
+                  className="font-medium hover:underline hover:cursor-pointer sticky left-[67px] z-10 bg-[#313131] p-2"
+                  onClick={() => push(`/novels/details/${items.novel_id}`)}
+                >
+                  {items?.novel_title || "1"}
+                </TableCell>
+                <TableCell
+                  className="hover:underline hover:cursor-pointer"
+                  onClick={() =>
+                    push(`/novels/chapter/${items.novel_id}/${items.chapter_id}`)
+                  }
+                >
+                  {items?.title}
+                </TableCell>
+                <TableCell>{items?.author}</TableCell>
+                <TableCell>{formatTimestamp(items?.timestamp)}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </>
   );
 };
