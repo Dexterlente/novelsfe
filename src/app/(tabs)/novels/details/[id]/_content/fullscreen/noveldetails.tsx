@@ -18,8 +18,38 @@ const NovelDetails = ({ data }: any) => {
   console.log(data)
   return (
     <>
+    <div className="block md:hidden">
+    <div className="mt-4 min-w-[200px] flex justify-center items-center">
+          <Image
+            className="rounded-lg object-cover"
+            src={ImagePlaceholder} 
+            alt="bookImage"
+            width={200}
+            height={300}
+          />
+        </div>
+        <div className="text-white">
+            <div className="text-[24px] font-bold my-3">{data?.title}</div>
+            <div className="mb-2">Author: {data?.author}</div>
+            <div className="mb-2 flex items-center space-x-2">
+            <span>Chapters</span> <MdOutlineLibraryBooks />{data?.last_chapter}
+            </div>
+            <div className="flex flex-wrap my-3">
+                {data?.genre?.split(',').map((genre: any, index: any) => (
+                  <Button className="mr-2  mb-1 rounded-lg" size={"sm"} key={index}>
+                    {genre.trim()}
+                  </Button>
+                ))}
+              </div>
+          </div>
+          <div className="text-center text-white p-5 hover:bg-white hover:text-black hover:cursor-pointer rounded-lg border border-solid">
+            READ CHAPTER {data?.first_chapter}
+          </div>
+    </div>
+    {/* md above */}
+    <div className="hidden md:block ">
       <div className="grid grid-cols-[1fr,3fr] text-white mt-10">
-        <div className="mt-4 min-w-[200px]">
+        <div className="mt-4 min-w-[200px] flex items-center">
           <Image
             className="rounded-lg object-cover"
             src={ImagePlaceholder} 
@@ -50,6 +80,8 @@ const NovelDetails = ({ data }: any) => {
             </div>
           </div>
       </div>
+      </div>
+{/* md amd higher */}
 
           <div className="mt-10 text-white mb-3">
             <div className="font-bold text-[20px] mb-3">Synopsis:</div>
