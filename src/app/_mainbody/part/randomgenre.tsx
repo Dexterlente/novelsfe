@@ -19,19 +19,20 @@ const Randomgenre = () => {
 
   return (
     <>
-      <div>
-        {Object.values(NEWGENRE).map((genreType) => (
-          <Button
-            key={genreType}
-            className="mr-2"
-            variant={toggler === genreType ? undefined : "outline"}
-            onClick={() => setToggler(genreType)}
-          >
-            {genreType.toUpperCase()}
-          </Button>
-        ))}
-      </div>
-
+      <div className="scroll-container overflow-x-auto whitespace-nowrap md:overflow-visible md:whitespace-normal">
+        <div className="flex flex-nowrap">
+            {Object.values(NEWGENRE).map((genreType) => (
+              <Button
+                key={genreType}
+                className="mr-2"
+                variant={toggler === genreType ? undefined : "outline"}
+                onClick={() => setToggler(genreType)}
+              >
+                {genreType.toUpperCase()}
+              </Button>
+            ))}
+          </div>
+        </div>
       <div>
         {isLoading ? (
           <div>Loading...</div>
