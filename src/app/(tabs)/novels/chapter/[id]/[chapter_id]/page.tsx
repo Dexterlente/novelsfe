@@ -10,6 +10,7 @@ const Page = () => {
   const { data } = useGetChapter(params.id, params.chapter_id, params.subchapter);
   return (
     <>
+    {/* FYCK NOT RENDERING */}
       <FullScreenAdhoc>
         <Chapter data={data} />
       </FullScreenAdhoc>

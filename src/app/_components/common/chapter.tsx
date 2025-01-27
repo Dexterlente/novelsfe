@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import { formatTimestamp } from "../utils/dateFormatter";
 import FormattedText from "./formatterContent";
@@ -6,7 +7,6 @@ import { useRouter } from "next/navigation";
 import ChapterButton from "./ChapterButton";
 
 const Chapter = ({ data }: any) => {
-  const { push } = useRouter();
   console.log(data)
 
   return (
