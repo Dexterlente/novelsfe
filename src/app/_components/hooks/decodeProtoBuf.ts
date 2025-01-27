@@ -1,5 +1,3 @@
-import { novels } from '@/app/_proto/novels';
-
 const decodeProtobuf = (base64String: string, schema: any): any => {
   try {
     // Validate base64 string before decoding
