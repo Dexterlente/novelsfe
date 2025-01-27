@@ -3,7 +3,7 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   const id = params.id;
-  const url =  `${process.env.API_URL}/novel-details/${id}/`
+  const url =  `${process.env.API_URL}/novel-details/${id}/?timestamp=${Date.now()}`
 
     try {
       const response = await fetch(url, {
