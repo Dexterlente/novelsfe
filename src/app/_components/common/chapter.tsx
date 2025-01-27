@@ -27,7 +27,7 @@ console.log(data)
       </div>
       <div className="grid grid-cols-2 mb-4">
         {data?.index_before && (
-          <ChapterButton novel_id={data?.novel_id} direction={data?.previous_chapter_id} 
+          <ChapterButton novel_id={data?.novel_id} direction={data?.index_before?.index} 
           style={"col-start-1"} btnTitle={"Previous"} subchapter={data?.index_before?.subchapter} />
         )}
 

@@ -1,12 +1,14 @@
 import React from "react";
+import DOMPurify from "dompurify";
 
 interface FormattedTextProps {
   text: string;
 }
 
 const FormattedText: React.FC<FormattedTextProps> = ({ text }) => {
-  // Split text into paragraphs using double newlines
-  const paragraphs = text?.split("\n\n");
+  const sanitizedText = DOMPurify.sanitize(text);
+
+  const paragraphs = sanitizedText?.split("\n\n");
 
   return (
     <div>
@@ -14,9 +16,8 @@ const FormattedText: React.FC<FormattedTextProps> = ({ text }) => {
         <p
           key={index}
           style={{ marginBottom: "1.5em", whiteSpace: "pre-line" }}
-        >
-          {paragraph}
-        </p>
+          dangerouslySetInnerHTML={{ __html: paragraph }}
+        />
       ))}
     </div>
   );
