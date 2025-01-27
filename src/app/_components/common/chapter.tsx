@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import ChapterButton from "./ChapterButton";
 
 const Chapter = ({ data }: any) => {
-  console.log(data)
 
   return (
     <div className="min-h-screen text-white">

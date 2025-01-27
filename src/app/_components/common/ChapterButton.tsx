@@ -7,8 +7,8 @@ const ChapterButton = ({novel_id, direction, style, btnTitle, subchapter}: any) 
 const { push } = useRouter();
 
 const url = subchapter && subchapter > 0 
-    ? `/novels/chapters/${novel_id}/${direction}/${subchapter}` 
-    : `/novels/chapters/${novel_id}/${direction}`;
+    ? `/novels/chapter/${novel_id}/${direction}/${subchapter}` 
+    : `/novels/chapter/${novel_id}/${direction}`;
 
   return (
     <div className={`${style}`}>

@@ -17,8 +17,6 @@ const Page = ({ params }: { params: { id: string } }) => {
     const [currentPage, setCurrentPage] = useState(1)
     const {data, isLoading, error} = useFetchAllChapters(params.id, currentPage)
 
-    console.log(data)
-
     const handlePageChange = (newPage: any) => {
         setCurrentPage(newPage);
     }
