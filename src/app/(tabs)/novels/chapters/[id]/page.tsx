@@ -12,8 +12,11 @@ import {
   } from '@/components/ui/pagination';
 
 import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation';
 
 const Page = ({ params }: { params: { id: string } }) => {
+    const { push } = useRouter();
+
     const [currentPage, setCurrentPage] = useState(1)
     const {data, isLoading, error} = useFetchAllChapters(params.id, currentPage)
 
@@ -31,7 +34,7 @@ const Page = ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="container mx-auto p-4 min-h-screen">
-        <h1 className="text-3xl font-bold mb-4">All Chapters</h1>
+        <h1 className="text-3xl text-center text-white font-bold mb-4">All Chapters</h1>
         <div className="flex justify-center my-4">
                 <Pagination>
                     <PaginationContent>
@@ -56,7 +59,13 @@ const Page = ({ params }: { params: { id: string } }) => {
         <div className="md:hidden">
             <ul>
                 {data?.chapters?.map((chapter: any, index: any) => (
-                    <li key={chapter.index} className="mb-2 flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
+                    <li key={chapter.index}
+                        onClick={() => {
+                            const basePath = `/novels/chapter/${chapter?.novel_id}/${chapter?.index}`;
+                            const subChapterPath = chapter?.sub_chapter > 0 ? `/${chapter?.sub_chapter}` : '';
+                            push(basePath + subChapterPath);
+                        }}
+                       className="mb-2 flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
                         <span className="mr-4 text-gray-400">{chapter?.subchapter > 0 ? `${chapter?.index}.${chapter.subchapter}` : chapter?.index}</span>
                         <div className="flex flex-col items-start">
                             <div className='font-bold'>{chapter?.title}</div>
@@ -73,7 +82,11 @@ const Page = ({ params }: { params: { id: string } }) => {
             <div>
             <ul>
                 {data?.chapters?.filter((_: any, index: any) => index % 2 === 0).map((chapter: any) => (
-                <li key={chapter.index} className="mb-2 h-[100px] flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
+                <li key={chapter.index}  onClick={() => {
+                    const basePath = `/novels/chapter/${chapter?.novel_id}/${chapter?.index}`;
+                    const subChapterPath = chapter?.sub_chapter > 0 ? `/${chapter?.sub_chapter}` : '';
+                    push(basePath + subChapterPath);
+                  }} className="mb-2 h-[100px] flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
                     <span className="mr-4 text-gray-400">{chapter?.subchapter > 0 ? `${chapter?.index}.${chapter.subchapter}` : chapter?.index}</span>
                     <div className="flex flex-col items-start">
                         <div className='font-bold'>{chapter?.title}</div>
@@ -86,7 +99,13 @@ const Page = ({ params }: { params: { id: string } }) => {
             <div>
             <ul>
                 {data?.chapters?.filter((_: any, index: any) => index % 2 !== 0).map((chapter: any) => (
-                 <li key={chapter.index} className="mb-2 h-[100px] flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
+                 <li key={chapter.index}
+                    onClick={() => {
+                        const basePath = `/novels/chapter/${chapter?.novel_id}/${chapter?.index}`;
+                        const subChapterPath = chapter?.sub_chapter > 0 ? `/${chapter?.sub_chapter}` : '';
+                        push(basePath + subChapterPath);
+                    }}
+                  className="mb-2 h-[100px] flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
                     <span className="mr-4 font-bold text-gray-400">{chapter?.subchapter > 0 ? `${chapter?.index}.${chapter.subchapter}` : chapter?.index}</span>
                     <div className="flex flex-col items-start">
                         <div className='font-bold'>{chapter.title}</div>
