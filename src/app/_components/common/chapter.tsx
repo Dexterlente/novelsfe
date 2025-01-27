@@ -7,18 +7,18 @@ import { useRouter } from "next/navigation";
 import ChapterButton from "./ChapterButton";
 
 const Chapter = ({ data }: any) => {
-
+console.log(data)
   return (
     <div className="min-h-screen text-white">
       <div className="text-2xl font-bold mt-10">{data?.title}</div>
       <div className="grid grid-cols-2 my-10">
         {data?.index_before && (
           <ChapterButton novel_id={data?.novel_id} direction={data?.index_before?.index} 
-          style={"col-start-1"} btnTitle={"Previous"} />
+          style={"col-start-1"} btnTitle={"Previous"} subchapter={data?.index_before?.subchapter}/>
         )}
         {data?.index_after && (
           <ChapterButton novel_id={data?.novel_id} direction={data?.index_after?.index} 
-          style={"col-start-2 flex justify-end"} btnTitle={"Next"} />
+          style={"col-start-2 flex justify-end"} btnTitle={"Next"} subchapter={data?.index_after?.subchapter}/>
         )}
       </div>
       <div>{formatTimestamp(data?.timestamp)}</div>
@@ -28,12 +28,12 @@ const Chapter = ({ data }: any) => {
       <div className="grid grid-cols-2 mb-4">
         {data?.index_before && (
           <ChapterButton novel_id={data?.novel_id} direction={data?.previous_chapter_id} 
-          style={"col-start-1"} btnTitle={"Previous"} />
+          style={"col-start-1"} btnTitle={"Previous"} subchapter={data?.index_before?.subchapter} />
         )}
 
         {data?.index_after && (
           <ChapterButton novel_id={data?.novel_id} direction={data?.index_after?.index} 
-          style={"col-start-2 flex justify-end"} btnTitle={"Next"} />
+          style={"col-start-2 flex justify-end"} btnTitle={"Next"} subchapter={data?.index_after?.subchapter} />
         )}
       </div>
     </div>
