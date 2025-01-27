@@ -62,7 +62,7 @@ const Page = ({ params }: { params: { id: string } }) => {
                     <li key={chapter.index}
                         onClick={() => {
                             const basePath = `/novels/chapter/${chapter?.novel_id}/${chapter?.index}`;
-                            const subChapterPath = chapter?.sub_chapter > 0 ? `/${chapter?.sub_chapter}` : '';
+                            const subChapterPath = chapter?.subchapter > 0 ? `/${chapter?.subchapter}` : '';
                             push(basePath + subChapterPath);
                         }}
                        className="mb-2 flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
@@ -84,7 +84,7 @@ const Page = ({ params }: { params: { id: string } }) => {
                 {data?.chapters?.filter((_: any, index: any) => index % 2 === 0).map((chapter: any) => (
                 <li key={chapter.index}  onClick={() => {
                     const basePath = `/novels/chapter/${chapter?.novel_id}/${chapter?.index}`;
-                    const subChapterPath = chapter?.sub_chapter > 0 ? `/${chapter?.sub_chapter}` : '';
+                    const subChapterPath = chapter?.subchapter > 0 ? `/${chapter?.subchapter}` : '';
                     push(basePath + subChapterPath);
                   }} className="mb-2 h-[100px] flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
                     <span className="mr-4 text-gray-400">{chapter?.subchapter > 0 ? `${chapter?.index}.${chapter.subchapter}` : chapter?.index}</span>
@@ -102,7 +102,7 @@ const Page = ({ params }: { params: { id: string } }) => {
                  <li key={chapter.index}
                     onClick={() => {
                         const basePath = `/novels/chapter/${chapter?.novel_id}/${chapter?.index}`;
-                        const subChapterPath = chapter?.sub_chapter > 0 ? `/${chapter?.sub_chapter}` : '';
+                        const subChapterPath = chapter?.subchapter > 0 ? `/${chapter?.subchapter}` : '';
                         push(basePath + subChapterPath);
                     }}
                   className="mb-2 h-[100px] flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
