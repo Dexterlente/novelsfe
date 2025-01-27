@@ -44,12 +44,11 @@ const NovelDetails = ({ data }: any) => {
           </div>
           <div onClick={() => {
                     const basePath = `/novels/chapter/${data?.novel_id}/${data?.first_chapter}`;
-                    // BE TODO FOR SUBCHAPTER
                     const subChapterPath = data?.first_sub_chapter > 0 ? `/${data?.first_sub_chapter}` : '';
                     push(basePath + subChapterPath);
                 }}
             className="text-center text-white p-5 hover:bg-white hover:text-black hover:cursor-pointer rounded-lg border border-solid">
-            READ CHAPTER {data?.first_chapter}.{data?.first_sub_chapter}
+            READ CHAPTER {data?.first_chapter}{data?.first_sub_chapter > 0 ? `.${data?.first_sub_chapter}` : ''}
           </div>
     </div>
     {/* md above */}
@@ -88,7 +87,7 @@ const NovelDetails = ({ data }: any) => {
                   push(basePath + subChapterPath);
               }}    
               className="mt-4">
-                <Button className="font-bold p-6">READ CHAPTER {data?.first_chapter}.{data?.first_sub_chapter}</Button>
+                <Button className="font-bold p-6">READ CHAPTER {data?.first_chapter}{data?.first_sub_chapter > 0 ? `.${data?.first_sub_chapter}` : ''}</Button>
               </div>
             </div>
           </div>
