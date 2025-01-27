@@ -20,7 +20,6 @@ const LatestNovels = () => {
   const { push } = useRouter();
   const ImagePlaceholder = '/overgeared.jpg'
 
-
   return (
     <>
       <div className="text-2xl font-bold text-white mb-2">
@@ -49,11 +48,14 @@ const LatestNovels = () => {
                 >
                   {items?.novel_title || "1"}
                 </TableCell>
+            
                 <TableCell
                   className="hover:underline hover:cursor-pointer"
-                  onClick={() =>
-                    push(`/novels/chapter/${items.novel_id}/${items.chapter_id}`)
-                  }
+                  onClick={() => {
+                    const basePath = `/novels/chapter/${items?.novel_id}/${items?.index}`;
+                    const subChapterPath = items?.sub_chapter > 0 ? `/${items?.sub_chapter}` : '';
+                    push(basePath + subChapterPath);
+                    }}
                 >
                   {items?.title}
                 </TableCell>
