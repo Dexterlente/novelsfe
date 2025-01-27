@@ -8,8 +8,8 @@ export const useGetChapter = (id: any, chapter_id: any, sub_chapter?: any) => {
   const [error, setError] = useState<string | null>(null);
 
   let url = sub_chapter 
-    ? `/api/novels/chapters/${id}/${chapter_id}/${sub_chapter}/` 
-    : `/api/novels/chapters/${id}/${chapter_id}/`;
+    ? `api/novels/chapters/${id}/${chapter_id}/${sub_chapter}/` 
+    : `api/novels/chapters/${id}/${chapter_id}/`;
 
   useEffect(() => {
     if (!id || !chapter_id) {

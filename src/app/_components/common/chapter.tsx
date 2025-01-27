@@ -3,40 +3,23 @@ import { formatTimestamp } from "../utils/dateFormatter";
 import FormattedText from "./formatterContent";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import ChapterButton from "./ChapterButton";
 
 const Chapter = ({ data }: any) => {
   const { push } = useRouter();
+  console.log(data)
 
   return (
     <div className="min-h-screen text-white">
       <div className="text-2xl font-bold mt-10">{data?.title}</div>
       <div className="grid grid-cols-2 my-10">
-        {data?.previous_chapter_id !== null && (
-          <div className="col-start-1">
-            <Button
-              onClick={() =>
-                push(
-                  `/novels/chapter/${data?.novel_id}/${data?.previous_chapter_id}`
-                )
-              }
-            >
-              Previous
-            </Button>
-          </div>
+        {data?.index_before && (
+          <ChapterButton novel_id={data?.novel_id} direction={data?.index_before?.index} 
+          style={"col-start-1"} btnTitle={"Previous"} />
         )}
-
-        {data?.next_chapter_id !== null && (
-          <div className="col-start-2 flex justify-end">
-            <Button
-              onClick={() =>
-                push(
-                  `/novels/chapter/${data?.novel_id}/${data?.next_chapter_id}`
-                )
-              }
-            >
-              Next
-            </Button>
-          </div>
+        {data?.index_after && (
+          <ChapterButton novel_id={data?.novel_id} direction={data?.index_after?.index} 
+          style={"col-start-2 flex justify-end"} btnTitle={"Next"} />
         )}
       </div>
       <div>{formatTimestamp(data?.timestamp)}</div>
@@ -44,32 +27,14 @@ const Chapter = ({ data }: any) => {
         <FormattedText text={data?.content} />
       </div>
       <div className="grid grid-cols-2 mb-4">
-        {data?.previous_chapter_id !== null && (
-          <div className="col-start-1">
-            <Button
-              onClick={() =>
-                push(
-                  `/novels/chapter/${data?.novel_id}/${data?.previous_chapter_id}`
-                )
-              }
-            >
-              Previous
-            </Button>
-          </div>
+        {data?.index_before && (
+          <ChapterButton novel_id={data?.novel_id} direction={data?.previous_chapter_id} 
+          style={"col-start-1"} btnTitle={"Previous"} />
         )}
 
-        {data?.next_chapter_id !== null && (
-          <div className="col-start-2 flex justify-end">
-            <Button
-              onClick={() =>
-                push(
-                  `/novels/chapter/${data?.novel_id}/${data?.next_chapter_id}`
-                )
-              }
-            >
-              Next
-            </Button>
-          </div>
+        {data?.index_after && (
+          <ChapterButton novel_id={data?.novel_id} direction={data?.index_after?.index} 
+          style={"col-start-2 flex justify-end"} btnTitle={"Next"} />
         )}
       </div>
     </div>

@@ -14,6 +14,8 @@ export namespace chapters {
             index?: number;
             subchapter?: number;
             content?: string;
+            index_before?: ChapterDetails.ChapterIndex;
+            index_after?: ChapterDetails.ChapterIndex;
         }) {
             super();
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
@@ -35,6 +37,12 @@ export namespace chapters {
                 }
                 if ("content" in data && data.content != undefined) {
                     this.content = data.content;
+                }
+                if ("index_before" in data && data.index_before != undefined) {
+                    this.index_before = data.index_before;
+                }
+                if ("index_after" in data && data.index_after != undefined) {
+                    this.index_after = data.index_after;
                 }
             }
         }
@@ -74,6 +82,24 @@ export namespace chapters {
         set content(value: string) {
             pb_1.Message.setField(this, 6, value);
         }
+        get index_before() {
+            return pb_1.Message.getWrapperField(this, ChapterDetails.ChapterIndex, 7) as ChapterDetails.ChapterIndex;
+        }
+        set index_before(value: ChapterDetails.ChapterIndex) {
+            pb_1.Message.setWrapperField(this, 7, value);
+        }
+        get has_index_before() {
+            return pb_1.Message.getField(this, 7) != null;
+        }
+        get index_after() {
+            return pb_1.Message.getWrapperField(this, ChapterDetails.ChapterIndex, 8) as ChapterDetails.ChapterIndex;
+        }
+        set index_after(value: ChapterDetails.ChapterIndex) {
+            pb_1.Message.setWrapperField(this, 8, value);
+        }
+        get has_index_after() {
+            return pb_1.Message.getField(this, 8) != null;
+        }
         static fromObject(data: {
             novel_id?: number;
             title?: string;
@@ -81,6 +107,8 @@ export namespace chapters {
             index?: number;
             subchapter?: number;
             content?: string;
+            index_before?: ReturnType<typeof ChapterDetails.ChapterIndex.prototype.toObject>;
+            index_after?: ReturnType<typeof ChapterDetails.ChapterIndex.prototype.toObject>;
         }): ChapterDetails {
             const message = new ChapterDetails({});
             if (data.novel_id != null) {
@@ -101,6 +129,12 @@ export namespace chapters {
             if (data.content != null) {
                 message.content = data.content;
             }
+            if (data.index_before != null) {
+                message.index_before = ChapterDetails.ChapterIndex.fromObject(data.index_before);
+            }
+            if (data.index_after != null) {
+                message.index_after = ChapterDetails.ChapterIndex.fromObject(data.index_after);
+            }
             return message;
         }
         toObject() {
@@ -111,6 +145,8 @@ export namespace chapters {
                 index?: number;
                 subchapter?: number;
                 content?: string;
+                index_before?: ReturnType<typeof ChapterDetails.ChapterIndex.prototype.toObject>;
+                index_after?: ReturnType<typeof ChapterDetails.ChapterIndex.prototype.toObject>;
             } = {};
             if (this.novel_id != null) {
                 data.novel_id = this.novel_id;
@@ -130,6 +166,12 @@ export namespace chapters {
             if (this.content != null) {
                 data.content = this.content;
             }
+            if (this.index_before != null) {
+                data.index_before = this.index_before.toObject();
+            }
+            if (this.index_after != null) {
+                data.index_after = this.index_after.toObject();
+            }
             return data;
         }
         serialize(): Uint8Array;
@@ -148,6 +190,10 @@ export namespace chapters {
                 writer.writeInt32(5, this.subchapter);
             if (this.content.length)
                 writer.writeString(6, this.content);
+            if (this.has_index_before)
+                writer.writeMessage(7, this.index_before, () => this.index_before.serialize(writer));
+            if (this.has_index_after)
+                writer.writeMessage(8, this.index_after, () => this.index_after.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -175,6 +221,12 @@ export namespace chapters {
                     case 6:
                         message.content = reader.readString();
                         break;
+                    case 7:
+                        reader.readMessage(message.index_before, () => message.index_before = ChapterDetails.ChapterIndex.deserialize(reader));
+                        break;
+                    case 8:
+                        reader.readMessage(message.index_after, () => message.index_after = ChapterDetails.ChapterIndex.deserialize(reader));
+                        break;
                     default: reader.skipField();
                 }
             }
@@ -185,6 +237,98 @@ export namespace chapters {
         }
         static deserializeBinary(bytes: Uint8Array): ChapterDetails {
             return ChapterDetails.deserialize(bytes);
+        }
+    }
+    export namespace ChapterDetails {
+        export class ChapterIndex extends pb_1.Message {
+            #one_of_decls: number[][] = [];
+            constructor(data?: any[] | {
+                index?: number;
+                subchapter?: number;
+            }) {
+                super();
+                pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+                if (!Array.isArray(data) && typeof data == "object") {
+                    if ("index" in data && data.index != undefined) {
+                        this.index = data.index;
+                    }
+                    if ("subchapter" in data && data.subchapter != undefined) {
+                        this.subchapter = data.subchapter;
+                    }
+                }
+            }
+            get index() {
+                return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
+            }
+            set index(value: number) {
+                pb_1.Message.setField(this, 1, value);
+            }
+            get subchapter() {
+                return pb_1.Message.getFieldWithDefault(this, 2, 0) as number;
+            }
+            set subchapter(value: number) {
+                pb_1.Message.setField(this, 2, value);
+            }
+            static fromObject(data: {
+                index?: number;
+                subchapter?: number;
+            }): ChapterIndex {
+                const message = new ChapterIndex({});
+                if (data.index != null) {
+                    message.index = data.index;
+                }
+                if (data.subchapter != null) {
+                    message.subchapter = data.subchapter;
+                }
+                return message;
+            }
+            toObject() {
+                const data: {
+                    index?: number;
+                    subchapter?: number;
+                } = {};
+                if (this.index != null) {
+                    data.index = this.index;
+                }
+                if (this.subchapter != null) {
+                    data.subchapter = this.subchapter;
+                }
+                return data;
+            }
+            serialize(): Uint8Array;
+            serialize(w: pb_1.BinaryWriter): void;
+            serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+                const writer = w || new pb_1.BinaryWriter();
+                if (this.index != 0)
+                    writer.writeInt32(1, this.index);
+                if (this.subchapter != 0)
+                    writer.writeInt32(2, this.subchapter);
+                if (!w)
+                    return writer.getResultBuffer();
+            }
+            static deserialize(bytes: Uint8Array | pb_1.BinaryReader): ChapterIndex {
+                const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new ChapterIndex();
+                while (reader.nextField()) {
+                    if (reader.isEndGroup())
+                        break;
+                    switch (reader.getFieldNumber()) {
+                        case 1:
+                            message.index = reader.readInt32();
+                            break;
+                        case 2:
+                            message.subchapter = reader.readInt32();
+                            break;
+                        default: reader.skipField();
+                    }
+                }
+                return message;
+            }
+            serializeBinary(): Uint8Array {
+                return this.serialize();
+            }
+            static deserializeBinary(bytes: Uint8Array): ChapterIndex {
+                return ChapterIndex.deserialize(bytes);
+            }
         }
     }
 }
