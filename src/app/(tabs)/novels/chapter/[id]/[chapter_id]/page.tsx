@@ -12,7 +12,9 @@ const Page = () => {
   return (
     <>
       <FullScreenAdhoc>
-        <Chapter data={data} />
+        <div className="2xl:mx-[100px]">
+          <Chapter data={data} />
+        </div>
       </FullScreenAdhoc>
     </>
   );

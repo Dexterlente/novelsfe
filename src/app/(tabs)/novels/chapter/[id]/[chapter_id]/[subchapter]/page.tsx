@@ -13,7 +13,9 @@ const Page = () => {
     <>
     {/* FYCK NOT RENDERING */}
       <FullScreenAdhoc>
+      <div className="2xl:mx-[100px]">
         <Chapter data={data} />
+      </div>
       </FullScreenAdhoc>
     </>
   );
