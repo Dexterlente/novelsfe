@@ -23,7 +23,7 @@ console.log(data)
         )}
       </div>
         <div className="flex justify-center">
-          <div onClick={() => push(`/novels/chapters/${data?.novel_id}`)} className="bg-[#131415] cursor-pointer p-3 rounded-lg hover:bg-[#0F1729E6]">
+          <div onClick={() => push(`/novels/details/${data?.novel_id}`)} className="bg-[#131415] cursor-pointer p-3 rounded-lg hover:bg-[#0F1729E6]">
             <FaHome className="text-xl" />
           </div>
         </div>
@@ -48,7 +48,7 @@ console.log(data)
         )}
         </div>
         <div className="flex justify-center">
-          <div onClick={() => push(`/novels/chapters/${data?.novel_id}`)} className="bg-[#131415] cursor-pointer p-3 rounded-lg hover:bg-[#0F1729E6]">
+          <div onClick={() => push(`/novels/details/${data?.novel_id}`)} className="bg-[#131415] cursor-pointer p-3 rounded-lg hover:bg-[#0F1729E6]">
             <FaHome className="text-xl" />
           </div>
         </div>
