@@ -1,11 +1,12 @@
+import FullScreenAdhoc from '@/app/_adhoc/fullscreenadhoc'
 import NoveList from '@/app/_components/common/NoveList'
 import React from 'react'
 
 const page = () => {
   return (
-    <div className='min-h-screen'>
+    <FullScreenAdhoc>
         <NoveList />
-    </div>
+    </FullScreenAdhoc>
   )
 }
 

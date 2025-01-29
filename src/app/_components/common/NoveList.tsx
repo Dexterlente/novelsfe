@@ -8,8 +8,13 @@ const NoveList = () => {
  const {data} = useFetchAllGenre()
  console.log(data)
   return (
-    <div>
+    <div className='min-h-screen'>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
+        <Button
+          onClick={() => alert('You clicked All genres')}
+        >
+          All
+        </Button>
         {data && Array.isArray(data?.novels) && data?.novels?.map((item:any, index:any) => (
           <Button
             key={index}
