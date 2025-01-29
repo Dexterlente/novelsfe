@@ -254,4 +254,138 @@ export namespace novels {
             return NovelList.deserialize(bytes);
         }
     }
+    export class Genres extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            genre?: string;
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("genre" in data && data.genre != undefined) {
+                    this.genre = data.genre;
+                }
+            }
+        }
+        get genre() {
+            return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
+        }
+        set genre(value: string) {
+            pb_1.Message.setField(this, 1, value);
+        }
+        static fromObject(data: {
+            genre?: string;
+        }): Genres {
+            const message = new Genres({});
+            if (data.genre != null) {
+                message.genre = data.genre;
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                genre?: string;
+            } = {};
+            if (this.genre != null) {
+                data.genre = this.genre;
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.genre.length)
+                writer.writeString(1, this.genre);
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): Genres {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new Genres();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        message.genre = reader.readString();
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): Genres {
+            return Genres.deserialize(bytes);
+        }
+    }
+    export class GenreList extends pb_1.Message {
+        #one_of_decls: number[][] = [];
+        constructor(data?: any[] | {
+            novels?: Genres[];
+        }) {
+            super();
+            pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [1], this.#one_of_decls);
+            if (!Array.isArray(data) && typeof data == "object") {
+                if ("novels" in data && data.novels != undefined) {
+                    this.novels = data.novels;
+                }
+            }
+        }
+        get novels() {
+            return pb_1.Message.getRepeatedWrapperField(this, Genres, 1) as Genres[];
+        }
+        set novels(value: Genres[]) {
+            pb_1.Message.setRepeatedWrapperField(this, 1, value);
+        }
+        static fromObject(data: {
+            novels?: ReturnType<typeof Genres.prototype.toObject>[];
+        }): GenreList {
+            const message = new GenreList({});
+            if (data.novels != null) {
+                message.novels = data.novels.map(item => Genres.fromObject(item));
+            }
+            return message;
+        }
+        toObject() {
+            const data: {
+                novels?: ReturnType<typeof Genres.prototype.toObject>[];
+            } = {};
+            if (this.novels != null) {
+                data.novels = this.novels.map((item: Genres) => item.toObject());
+            }
+            return data;
+        }
+        serialize(): Uint8Array;
+        serialize(w: pb_1.BinaryWriter): void;
+        serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
+            const writer = w || new pb_1.BinaryWriter();
+            if (this.novels.length)
+                writer.writeRepeatedMessage(1, this.novels, (item: Genres) => item.serialize(writer));
+            if (!w)
+                return writer.getResultBuffer();
+        }
+        static deserialize(bytes: Uint8Array | pb_1.BinaryReader): GenreList {
+            const reader = bytes instanceof pb_1.BinaryReader ? bytes : new pb_1.BinaryReader(bytes), message = new GenreList();
+            while (reader.nextField()) {
+                if (reader.isEndGroup())
+                    break;
+                switch (reader.getFieldNumber()) {
+                    case 1:
+                        reader.readMessage(message.novels, () => pb_1.Message.addToRepeatedWrapperField(message, 1, Genres.deserialize(reader), Genres));
+                        break;
+                    default: reader.skipField();
+                }
+            }
+            return message;
+        }
+        serializeBinary(): Uint8Array {
+            return this.serialize();
+        }
+        static deserializeBinary(bytes: Uint8Array): GenreList {
+            return GenreList.deserialize(bytes);
+        }
+    }
 }
