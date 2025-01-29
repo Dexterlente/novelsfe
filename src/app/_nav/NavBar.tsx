@@ -25,7 +25,7 @@ const NavBar = () => {
         >
           Master Novels
         </div>
-        <div className="ml-3">
+        {/* <div className="ml-3">
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
@@ -79,7 +79,9 @@ const NavBar = () => {
               </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
-        </div>
+        </div> */}
+
+        {/* WARDS */}
 
         <div className="ml-auto">
           <SearchComponent />
