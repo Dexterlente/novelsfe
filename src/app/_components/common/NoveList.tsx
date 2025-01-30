@@ -75,7 +75,7 @@ const NoveList = () => {
         styles={customStyles} // Apply custom styles
       />
 
-      <p className="text-white">
+      <p className="text-white text-center text-2xl m-3 font-bold">
         {selectedGenre.value === 'all' ? 'All Genres' : displayLabel}
       </p>
     </div>
