@@ -2,9 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useFetchAllGenre } from '../hooks/useFetchAllGenre';
-import { useRouter, usePathname } from 'next/navigation'; // Import usePathname to access current URL
+import { useRouter, usePathname } from 'next/navigation';
 import { useFetchNovelsGenre } from '../hooks/useFetchNovelsGenre';
 import { useFetchNovels } from '../hooks/useFetchNovels';
+import Image from "next/image";
 
 const NoveList = () => {
   const { push } = useRouter();
@@ -74,10 +75,11 @@ const NoveList = () => {
 
     
   const displayLabel = selectedGenre.label.replace(/%20/g, ' ');
+  const ImagePlaceholder = '/overgeared.jpg'
 
 
   return (
-    <div className='min-h-screen flex flex-col mt-3'>
+    <div className='min-h-screen flex flex-col mt-3 '>
       <Select
         options={[{ value: 'all', label: 'All Genres' }, ...genreOptions]}
         value={selectedGenre}
@@ -89,12 +91,77 @@ const NoveList = () => {
           });
         }}
         isSearchable
-        styles={customStyles} // Apply custom styles
+        styles={customStyles} 
       />
 
       <p className="text-white text-center text-2xl m-3 font-bold">
         {selectedGenre.value === 'all' ? 'All Genres' : displayLabel}
       </p>
+      <div className='block sm:hidden'>
+      <div>
+  {dataList?.novels?.map((novel: any) => (
+    <div key={novel.novel_id} className="flex mb-10 h-[200px]">
+      <div className="flex-shrink-0 mr-4">
+        <Image
+          src={ImagePlaceholder}
+          alt={novel.title}
+          width={150}
+          height={240}
+          className="rounded-lg hover:cursor-pointer"
+        />
+      </div>
+      <div className="text-white flex-1">
+        <div className="text-md font-bold mb-2 hover:underline hover:cursor-pointer">{novel.title}</div>
+        <p className="text-[11px] hover:underline hover:cursor-pointer">{novel.synopsis || "No synopsis available"}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+      </div>
+    <div className='hidden sm:block'>
+      <div className="grid grid-cols-2 gap-4 align-center items-center">
+        <div className="left-grid">
+          {dataList?.novels?.slice(0, 5).map((novel: any) => (
+            <div key={novel.novel_id} className="grid grid-cols-2 mb-10 h-[200px]">
+              <div className='flex flex-row-reverse mr-2'>
+                <Image
+                  src={ImagePlaceholder}
+                  alt={novel.title}
+                  width={150}
+                  height={240}
+                  className="rounded-lg hover:cursor-pointer"
+                />
+              </div>
+              <div className="text-white">
+                <div className="text-md font-bold mb-2 hover:underline hover:cursor-pointer">{novel.title}</div>
+                <p className="text-[11px] hover:underline hover:cursor-pointer">{novel.synopsis || "No synopsis available"}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+          <div className="right-grid">
+              {dataList?.novels?.slice(5, 10).map((novel: any) => (
+                <div key={novel.novel_id} className="grid grid-cols-2 mb-10 h-[200px]">
+                  <div className='flex flex-row-reverse mr-3 hover:cursor-pointer'>
+                    <Image
+                      src={ImagePlaceholder}
+                      alt={novel.title}
+                      width={150}
+                      height={240}
+                      className="rounded-lg"
+                    />
+                  </div>
+                  <div className="text-white">
+                    <div className="text-md font-bold mb-2 hover:underline hover:cursor-pointer">{novel.title}</div>
+                    <p className="text-[11px] hover:underline hover:cursor-pointer">{novel.synopsis || "No synopsis available"}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+      </div>
     </div>
   );
 };
