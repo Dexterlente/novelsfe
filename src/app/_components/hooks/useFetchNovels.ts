@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import decodeProtobuf from "./decodeProtoBuf";
 import { novels } from '@/app/_proto/novels';
 
-export const useFetchNovels = (page: number) => {
+export const useFetchNovels = (page: any) => {
   const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

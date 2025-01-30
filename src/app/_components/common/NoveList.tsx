@@ -1,18 +1,22 @@
 'use client'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Select from 'react-select';
 import { useFetchAllGenre } from '../hooks/useFetchAllGenre';
 import { useRouter, usePathname } from 'next/navigation';
 import { useFetchNovelsGenre } from '../hooks/useFetchNovelsGenre';
 import { useFetchNovels } from '../hooks/useFetchNovels';
 import Image from "next/image";
+import { PaginationButton } from "./pagination";
+import { useSearchParams } from "next/navigation";
+
 
 const NoveList = () => {
   const { push } = useRouter();
   const pathname = usePathname(); // To get the current URL
   const { data } = useFetchAllGenre();
 
-
+  const searchParams = useSearchParams();
+  const page = searchParams.get("page") || "1";
   // Initialize selectedGenre based on the URL or default to 'all'
 
   const initialGenre = pathname?.split('/').pop() || 'all';
@@ -31,11 +35,11 @@ const NoveList = () => {
   let dataList
   let isLoadingList
   if (selectedGenre.label === "All Genres") {
-    const { data: novelList, isLoading: isAllNovelsLoading } = useFetchNovels(1);
+    const { data: novelList, isLoading: isAllNovelsLoading } = useFetchNovels(page);
     dataList = novelList;
     isLoadingList = isAllNovelsLoading;
   } else {
-    const { data: novelGenreList, isLoading: isGenreLoading } = useFetchNovelsGenre(selectedGenre.label, 1);
+    const { data: novelGenreList, isLoading: isGenreLoading } = useFetchNovelsGenre(selectedGenre.label, page);
     dataList = novelGenreList;
   isLoadingList = isGenreLoading;
   }
@@ -67,19 +71,28 @@ const NoveList = () => {
 
   useEffect(() => {
     if (selectedGenre.value !== 'all') {
-      push(`/novels/genres/${selectedGenre.value}`);
+      push(`/novels/genres/${selectedGenre.value}?page=${page}`);
     } else {
-      push('/novels/genres/all');
+      push(`/novels/genres/all?page=${page}`);
     }
   }, [selectedGenre, push]);
 
     
   const displayLabel = selectedGenre.label.replace(/%20/g, ' ');
   const ImagePlaceholder = '/overgeared.jpg'
+  const genreChanged = useRef(false);
+
+  useEffect(() => {
+    if (!genreChanged.current) {
+      genreChanged.current = true;
+      return;
+    }
+    push(`/novels/genres/${selectedGenre.value}?page=1`);
+  }, [selectedGenre, push]);
 
 
   return (
-    <div className='min-h-screen flex flex-col mt-3 '>
+    <div className='min-h-screen flex flex-col mt-10'>
       <Select
         options={[{ value: 'all', label: 'All Genres' }, ...genreOptions]}
         value={selectedGenre}
@@ -87,14 +100,14 @@ const NoveList = () => {
           const newGenre = selectedOption as any;
           setSelectedGenre({
             value: newGenre.value,
-            label: decodeURIComponent(newGenre.label),  // Decode the label for display
+            label: decodeURIComponent(newGenre.label),
           });
         }}
         isSearchable
         styles={customStyles} 
       />
 
-      <p className="text-white text-center text-2xl m-3 font-bold">
+      <p className="text-white text-center text-2xl my-6 font-bold">
         {selectedGenre.value === 'all' ? 'All Genres' : displayLabel}
       </p>
       <div className='block sm:hidden'>
@@ -119,11 +132,10 @@ const NoveList = () => {
 </div>
 
       </div>
-    <div className='hidden sm:block'>
-      <div className="grid grid-cols-2 gap-4 align-center items-center">
-        <div className="left-grid">
-          {dataList?.novels?.slice(0, 5).map((novel: any) => (
-            <div key={novel.novel_id} className="grid grid-cols-2 mb-10 h-[200px]">
+      <div className='hidden sm:block'>
+        <div className="grid grid-cols-2 gap-4">
+          {dataList?.novels?.map((novel: any) => (
+            <div key={novel.novel_id} className="grid grid-cols-2 gap-2">
               <div className='flex flex-row-reverse mr-2'>
                 <Image
                   src={ImagePlaceholder}
@@ -134,34 +146,24 @@ const NoveList = () => {
                 />
               </div>
               <div className="text-white">
-                <div className="text-md font-bold mb-2 hover:underline hover:cursor-pointer">{novel.title}</div>
-                <p className="text-[11px] hover:underline hover:cursor-pointer">{novel.synopsis || "No synopsis available"}</p>
+                <div className="text-md font-bold mb-2 hover:underline hover:cursor-pointer">
+                  {novel.title}
+                </div>
+                <p className="text-[11px] hover:underline hover:cursor-pointer">
+                  {novel.synopsis || "No synopsis available"}
+                </p>
               </div>
             </div>
           ))}
         </div>
-
-          <div className="right-grid">
-              {dataList?.novels?.slice(5, 10).map((novel: any) => (
-                <div key={novel.novel_id} className="grid grid-cols-2 mb-10 h-[200px]">
-                  <div className='flex flex-row-reverse mr-3 hover:cursor-pointer'>
-                    <Image
-                      src={ImagePlaceholder}
-                      alt={novel.title}
-                      width={150}
-                      height={240}
-                      className="rounded-lg"
-                    />
-                  </div>
-                  <div className="text-white">
-                    <div className="text-md font-bold mb-2 hover:underline hover:cursor-pointer">{novel.title}</div>
-                    <p className="text-[11px] hover:underline hover:cursor-pointer">{novel.synopsis || "No synopsis available"}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
       </div>
+                <div className='my-8'>
+                <PaginationButton
+                      currentPage={dataList?.current_page}
+                      totalPages={dataList?.total_pages}
+                      path={initialGenre}
+                    />
+                </div>
     </div>
   );
 };
