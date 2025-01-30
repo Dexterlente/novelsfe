@@ -120,11 +120,16 @@ const NoveList = () => {
           width={150}
           height={240}
           className="rounded-lg hover:cursor-pointer"
+          onClick={() => push(`/novels/details/${novel.novel_id}`)}
         />
       </div>
       <div className="text-white flex-1">
-        <div className="text-md font-bold mb-2 hover:underline hover:cursor-pointer">{novel.title}</div>
-        <p className="text-[11px] hover:underline hover:cursor-pointer">{novel.synopsis || "No synopsis available"}</p>
+        <div className="text-md font-bold mb-2 hover:underline hover:cursor-pointer"
+         onClick={() => push(`/novels/details/${novel.novel_id}`)}
+         >{novel.title}</div>
+        <p className="text-[11px] hover:underline hover:cursor-pointer"
+         onClick={() => push(`/novels/details/${novel.novel_id}`)}
+         >{novel.synopsis || "No synopsis available"}</p>
       </div>
     </div>
   ))}
@@ -142,13 +147,16 @@ const NoveList = () => {
                   width={150}
                   height={240}
                   className="rounded-lg hover:cursor-pointer"
+                  onClick={() => push(`/novels/details/${novel.novel_id}`)}
                 />
               </div>
               <div className="text-white">
-                <div className="text-md font-bold mb-2 hover:underline hover:cursor-pointer">
+                <div className="text-md font-bold mb-2 hover:underline hover:cursor-pointer"
+                 onClick={() => push(`/novels/details/${novel.novel_id}`)}>
                   {novel.title}
                 </div>
-                <p className="text-[11px] hover:underline hover:cursor-pointer">
+                <p className="text-[11px] hover:underline hover:cursor-pointer"
+                 onClick={() => push(`/novels/details/${novel.novel_id}`)}>
                   {novel.synopsis || "No synopsis available"}
                 </p>
               </div>

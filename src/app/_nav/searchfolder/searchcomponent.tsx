@@ -30,7 +30,7 @@ function SearchComponent() {
               <div>
                 <form onSubmit={handleSubmit}>
                   <input
-                    className="border-2 rounded-full pb-1 p-[2px] focus:outline-none focus:border-transparent"
+                    className="border-2 rounded-full w-[180px] sm:w-[250px] pb-1 p-[2px] focus:outline-none focus:border-transparent"
                     type="text"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
@@ -42,7 +42,7 @@ function SearchComponent() {
                     }}
                   />
                   <button
-                    className="text-[12px] rounded-full bg-[#e3e3e3] ml-1 mr-2 text-black p-[7px]"
+                    className="text-[12px] rounded-full bg-[#e3e3e3] ml-1 mr-2 text-black p-[7px] hover:bg-black hover:text-white font-bold"
                     type="submit"
                   >
                     GO
