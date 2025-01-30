@@ -12,7 +12,7 @@ export async function GET(
   const page = req.nextUrl.searchParams.get("page");
 
   if (page !== null) {
-    url += `?page=${page}&timestamp=${Date.now()}`;
+    url += `&page=${page}&timestamp=${Date.now()}`;
   }
 
   try {

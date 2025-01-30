@@ -10,7 +10,6 @@ export async function GET(req: NextRequest,) {
       url += `?page=${page}&timestamp=${Date.now()}`;
     }
   
-    console.log('Fetching from URL:', url); // Debugging log
       try {
         const response = await fetch(url, {
           headers: {

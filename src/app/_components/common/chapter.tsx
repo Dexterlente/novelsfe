@@ -2,7 +2,6 @@
 import React from "react";
 import { formatTimestamp } from "../utils/dateFormatter";
 import FormattedText from "./formatterContent";
-import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import ChapterButton from "./ChapterButton";
 import { FaHome } from "react-icons/fa";
@@ -10,8 +9,6 @@ import { FaHome } from "react-icons/fa";
 const Chapter = ({ data }: any) => {
 const { push } = useRouter();
   
-
-console.log(data)
   return (
     <div className="min-h-screen text-white">
       <div className="text-2xl font-bold mt-10">{data?.title}</div>

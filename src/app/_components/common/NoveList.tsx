@@ -3,13 +3,17 @@ import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { useFetchAllGenre } from '../hooks/useFetchAllGenre';
 import { useRouter, usePathname } from 'next/navigation'; // Import usePathname to access current URL
+import { useFetchNovelsGenre } from '../hooks/useFetchNovelsGenre';
+import { useFetchNovels } from '../hooks/useFetchNovels';
 
 const NoveList = () => {
   const { push } = useRouter();
   const pathname = usePathname(); // To get the current URL
   const { data } = useFetchAllGenre();
-  
+
+
   // Initialize selectedGenre based on the URL or default to 'all'
+
   const initialGenre = pathname?.split('/').pop() || 'all';
   const [selectedGenre, setSelectedGenre] = useState({
     value: initialGenre,
@@ -22,7 +26,20 @@ const NoveList = () => {
     label: decodeURIComponent(item.genre),
   })) || [];
 
-  // Custom styles
+// using let without re-triggering hooks unnecessarily
+  let dataList
+  let isLoadingList
+  if (selectedGenre.label === "All Genres") {
+    const { data: novelList, isLoading: isAllNovelsLoading } = useFetchNovels(1);
+    dataList = novelList;
+    isLoadingList = isAllNovelsLoading;
+  } else {
+    const { data: novelGenreList, isLoading: isGenreLoading } = useFetchNovelsGenre(selectedGenre.label, 1);
+    dataList = novelGenreList;
+  isLoadingList = isGenreLoading;
+  }
+
+  console.log(dataList)
   const customStyles = {
     control: (provided: any, state: any) => ({
       ...provided,

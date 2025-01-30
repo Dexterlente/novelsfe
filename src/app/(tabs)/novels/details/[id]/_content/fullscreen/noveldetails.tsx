@@ -15,7 +15,7 @@ const NovelDetails = ({ data }: any) => {
   const cleanedText = data?.synopsis?.replace(/<\/?p>/g, '').replace(/\n/g, '<br />');
 
   const ImagePlaceholder = '/overgeared.jpg'
-  console.log(data)
+
   return (
     <>
     <div className="block md:hidden">
