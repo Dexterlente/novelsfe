@@ -2,16 +2,7 @@
 import React from "react";
 import SearchComponent from "./searchfolder/searchcomponent";
 import { useRouter } from "next/navigation";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
+import { SiFirefoxbrowser } from "react-icons/si";
 
 const NavBar = () => {
   const { push } = useRouter();
@@ -25,63 +16,7 @@ const NavBar = () => {
         >
           Master Novels
         </div>
-        {/* <div className="ml-3">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-md mt-[2px]">
-                  Genre
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <NavigationMenuLink
-                    className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer"
-                    onClick={() => push("/novels/action")}
-                  >
-                    Action
-                  </NavigationMenuLink>
-                  <NavigationMenuLink
-                    className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer"
-                    onClick={() => push("/novels/comedy")}
-                  >
-                    Comedy
-                  </NavigationMenuLink>
-                  <NavigationMenuLink
-                    className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer"
-                    onClick={() => push("/novels/adventure")}
-                  >
-                    Adventure
-                  </NavigationMenuLink>
-                  <NavigationMenuLink
-                    className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer"
-                    onClick={() => push("/novels/drama")}
-                  >
-                    Drama
-                  </NavigationMenuLink>
-                  <NavigationMenuLink
-                    className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer"
-                    onClick={() => push("/novels/eastern")}
-                  >
-                    Eastern
-                  </NavigationMenuLink>
-                  <NavigationMenuLink
-                    className="border-b mb-2 pb-2 hover:underline hover:cursor-pointer"
-                    onClick={() => push("/novels/fantasy")}
-                  >
-                    Fantasy
-                  </NavigationMenuLink>
-                  <NavigationMenuLink
-                    className="hover:underline hover:cursor-pointer"
-                    onClick={() => push("/novels/harem")}
-                  >
-                    Harem
-                  </NavigationMenuLink>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-        </div> */}
-
-        {/* WARDS */}
+        <div onClick={() => push("/novels/genres/all?page=1")} className="text-white ml-5 flex items-center justify-center hover:bg-white hover:text-black hover:cursor-pointer p-1 rounded-md"><SiFirefoxbrowser /><div className="ml-1">Browse</div></div>
 
         <div className="ml-auto">
           <SearchComponent />

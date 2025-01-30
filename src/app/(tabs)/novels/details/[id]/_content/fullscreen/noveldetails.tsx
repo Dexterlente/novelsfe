@@ -16,6 +16,11 @@ const NovelDetails = ({ data }: any) => {
 
   const ImagePlaceholder = '/overgeared.jpg'
 
+  const handleGenreClick = (genre: string) => {
+    push(`/novels/genres/${genre}?page=1`);
+  };
+
+
   return (
     <>
     <div className="block md:hidden">
@@ -76,7 +81,7 @@ const NovelDetails = ({ data }: any) => {
           <div>
               <div className="flex flex-wrap">
                 {data?.genre?.split(',').map((genre: any, index: any) => (
-                  <Button className="mr-2  mb-1 rounded-lg" size={"sm"} key={index}>
+                  <Button className="mr-2  mb-1 rounded-lg" size={"sm"} key={index} onClick={() => handleGenreClick(genre.trim())}>
                     {genre.trim()}
                   </Button>
                 ))}

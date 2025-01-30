@@ -44,7 +44,6 @@ const NoveList = () => {
   isLoadingList = isGenreLoading;
   }
 
-  console.log(dataList)
   const customStyles = {
     control: (provided: any, state: any) => ({
       ...provided,
