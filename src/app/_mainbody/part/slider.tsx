@@ -19,7 +19,6 @@ const SLIDER_CARD_CONFIGS = [
   { bgGradient: "from-red-300 to-orange-300", hidden: "hidden lg:block" },
 ];
 
-// Always maintain 8 hooks regardless of content
 const INITIAL_GENRES = Array(8).fill('');
 
 const Slider = () => {
@@ -32,7 +31,6 @@ const Slider = () => {
     setIsMounted(true);
   }, []);
 
-  // Maintain 8 consistent hooks regardless of genre state
   const data = [
     useFetchSingleRandom(shuffledGenres[0]).data,
     useFetchSingleRandom(shuffledGenres[1]).data,
@@ -45,38 +43,30 @@ const Slider = () => {
   ];
 
   if (!isMounted) {
-    return null; // Don't render on server or during initial mount
-  }
-
-  const chunkedData = [];
-  for (let i = 0; i < data.length; i += 4) {
-    chunkedData.push(data.slice(i, i + 4));
+    return null;
   }
 
   return (
-    <Carousel className="max-w-5xl">
-      <CarouselContent>
-        {chunkedData.map((chunk, chunkIndex) => (
+  <Carousel className="max-w-5xl w-full">
+    <CarouselContent className="pl-0 ml-0 sm:gap-4">
+      {data.map((itemData, index) => {
+        const configIndex = index;
+        return (
           <CarouselItem 
-            key={chunkIndex}
-            className="flex justify-center xl:justify-start gap-5 xl:gap-10"
+            key={index}
+            className="pl-0 basis-1/2 sm:basis-1/3 md:basis-1/4 flex justify-center"
           >
-            {chunk.map((itemData, index) => {
-              const configIndex = chunkIndex * 4 + index;
-              return (
-                <SliderCard
-                  key={configIndex}
-                  data={itemData}
-                  title={shuffledGenres[configIndex]}
-                  bgGradient={SLIDER_CARD_CONFIGS[configIndex].bgGradient}
-                  className={SLIDER_CARD_CONFIGS[configIndex].hidden}
-                />
-              );
-            })}
+            <SliderCard
+              data={itemData}
+              title={shuffledGenres[configIndex]}
+              bgGradient={SLIDER_CARD_CONFIGS[configIndex].bgGradient}
+              className={SLIDER_CARD_CONFIGS[configIndex].hidden}
+            />
           </CarouselItem>
-        ))}
-      </CarouselContent>
-    </Carousel>
+        );
+      })}
+    </CarouselContent>
+  </Carousel>
   );
 };
 
