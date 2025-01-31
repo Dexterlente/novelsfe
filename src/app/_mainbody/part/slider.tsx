@@ -48,7 +48,7 @@ const Slider = () => {
 
   return (
   <Carousel className="max-w-5xl w-full">
-    <CarouselContent className="pl-0 ml-0 sm:gap-4">
+    <CarouselContent className="pl-0 ml-0 gap-1">
       {data.map((itemData, index) => {
         const configIndex = index;
         return (
