@@ -54,7 +54,7 @@ const Slider = () => {
         return (
           <CarouselItem 
             key={index}
-            className="pl-0 basis-1/2 sm:basis-1/3 md:basis-1/4 flex justify-center"
+            className="pl-0 basis-1/2 sm:basis-1/3 md:basis-1/4 flex justify-center md:justify-start"
           >
             <SliderCard
               data={itemData}
