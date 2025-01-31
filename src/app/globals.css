@@ -84,3 +84,17 @@
 .scroll-container::-webkit-scrollbar {
   display: none;  /* Chrome, Safari, Opera */
 }
+
+/* In styles/globals.css or any custom CSS file */
+@keyframes slow-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.slow-spin {
+  animation: slow-spin 4s linear infinite; /* 30 seconds for a full rotation */
+}
