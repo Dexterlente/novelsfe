@@ -5,7 +5,7 @@ import Image from "next/image";
 const ImageSpinner = "/circular.png"
 const ImageLogo = "/circular2.png"
 
-const page = () => {
+const Loader = () => {
   return (
     <>
       <div className='hidden sm:block animate-blink'>
@@ -58,4 +58,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Loader
