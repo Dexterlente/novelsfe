@@ -1,16 +1,33 @@
 import axios from "axios";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   const searchParams = req.nextUrl.searchParams;
   const query = searchParams.get("query");
   const page = searchParams.get("page");
+  
+  if (!query) {
+    return new NextResponse("Missing query parameter", { status: 400 });
+  }
+  let url = `${process.env.API_URL}/novels/search?title=${encodeURIComponent(query)}`
 
-  const params = { query: query ? query : undefined, page };
+  if (page !== null) {
+    url += `&page=${page}&timestamp=${Date.now()}`;
+  }
+  console.log("Constructed URL:", url);
 
-  const response = await axios.get(`${process.env.API_URL}/search`, {
-    params,
-  });
-  const data = response.data;
-  return Response.json(data);
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Accept: "application/x-protobuf",
+      },
+    });
+
+    return response;
+
+  } catch (error) {
+    console.error("Error fetching protobuf data:", error);
+    return new Response("Error", { status: 500 });
+  }
+
 }

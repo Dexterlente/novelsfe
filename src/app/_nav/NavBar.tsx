@@ -16,7 +16,7 @@ const NavBar = () => {
         >
           Master Novels
         </div>
-        <div onClick={() => push("/novels/genres/all?page=1")} className="text-white ml-1 flex items-center justify-center hover:bg-white hover:text-black hover:cursor-pointer p-1 rounded-md"><SiFirefoxbrowser /><div className="ml-1">Browse</div></div>
+        <div onClick={() => push("/novels/genres/all?page=1")} className="text-white ml-1 sm:ml-5 flex items-center justify-center hover:bg-white hover:text-black hover:cursor-pointer p-1 rounded-md"><SiFirefoxbrowser /><div className="ml-1">Browse</div></div>
 
         <div className="ml-auto">
           <SearchComponent />
