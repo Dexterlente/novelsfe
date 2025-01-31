@@ -24,7 +24,7 @@ const BookList = ({ data, searched, path }: Props) => {
           <div className="text-lg">Novels not found....</div>
         )}
         <div className="grid grid-cols-2">
-          {data?.novels.map?.((books: any, index: number) => (
+          {data?.novels?.map?.((books: any, index: number) => (
             <div key={index}>
               <div className="grid grid-cols-[1fr,2fr] m-3">
                 {data && (

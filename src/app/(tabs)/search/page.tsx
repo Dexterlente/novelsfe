@@ -12,7 +12,7 @@ const Page = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("query");
   const page = searchParams.get("page");
-  const { data, searchQuery, isLoading } = useSearchNovels(query, page);
+  const { data, searchQuery, isLoading, error  } = useSearchNovels(query, page);
 
   return (
     <div className="min-h-screen">
@@ -23,9 +23,6 @@ const Page = () => {
           path={`search?query=${searchQuery}`}
         />
       </FullScreenAdhoc>
-      <LgScreenAdhoc>a</LgScreenAdhoc>
-      <MdScreenAdhoc>a</MdScreenAdhoc>
-      <MobileScreenAdhoc> a</MobileScreenAdhoc>
     </div>
   );
 };
