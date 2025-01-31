@@ -8,7 +8,7 @@ const ImageLogo = "/circular2.png"
 const page = () => {
   return (
     <>
-      <div className='hidden sm:block'>
+      <div className='hidden sm:block animate-blink'>
           <div
           className='min-h-[calc(100vh-164.062px)] flex items-center justify-center relative'>
                   <div className='w-400px h-400px '>
@@ -31,7 +31,7 @@ const page = () => {
               </div>
           </div>
       </div>
-      <div className='block sm:hidden'>
+      <div className='block sm:hidden animate-blink'>
           <div
           className='h-[calc(100vh-153.375px)] flex items-center justify-center relative'>
                   <div className='w-400px h-400px '>

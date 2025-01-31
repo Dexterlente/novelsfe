@@ -98,3 +98,15 @@
 .slow-spin {
   animation: slow-spin 4s linear infinite; /* 30 seconds for a full rotation */
 }
+
+@layer utilities {
+  @keyframes blink {
+    10% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  .animate-blink {
+    animation: blink 2s infinite;
+  }
+}
