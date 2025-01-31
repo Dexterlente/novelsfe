@@ -42,7 +42,7 @@ export const useSearchNovels = (query: any, page: any) => {
     };
 
     fetchProtobufData(); 
-  }, []);
+  }, [query, page]);
 
   console.log(data)
   return { data, searchQuery, isLoading, error };

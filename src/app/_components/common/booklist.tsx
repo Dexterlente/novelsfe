@@ -3,7 +3,8 @@ import Image from "next/image";
 import { limitText } from "../utils/limittext";
 import { mapGenre } from "../enums/genre";
 import { PaginationButton } from "./pagination";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
+import List from "./List";
 
 interface Props {
   data: any;
@@ -12,7 +13,6 @@ interface Props {
 }
 
 const BookList = ({ data, searched, path }: Props) => {
-  const { push } = useRouter();
 
   return (
     <div className="min-h-screen relative mb-20">
@@ -23,44 +23,8 @@ const BookList = ({ data, searched, path }: Props) => {
         {data?.novels?.length === 0 && (
           <div className="text-lg">Novels not found....</div>
         )}
-        <div className="grid grid-cols-2">
-          {data?.novels?.map?.((books: any, index: number) => (
-            <div key={index}>
-              <div className="grid grid-cols-[1fr,2fr] m-3">
-                {data && (
-                  <Image
-                    className="rounded-lg hover:cursor-pointer"
-                    src={books?.image_url_cover}
-                    width={120}
-                    height={120}
-                    alt="BookImage"
-                    onClick={() => push(`/novels/details/${books.novel_id}`)}
-                  />
-                )}
-                <div className="text-sm">
-                  <p
-                    className="font-bold hover:cursor-pointer"
-                    onClick={() => push(`/novels/details/${books.novel_id}`)}
-                  >
-                    {books.title}
-                  </p>
-                  <p className="mt-3">{limitText(books.synopsis, 130)}</p>
-                  <p className="font-bold mt-2">{mapGenre(books.genre)}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
-      <div className="absolute -bottom-[100px] text-white inset-x-0 mb-10">
-        {data?.novels?.length !== 0 && (
-          <PaginationButton
-            currentPage={data?.current_page}
-            totalPages={data?.total_pages}
-            path={path}
-          />
-        )}
-      </div>
+      <List data={data} path={path} />
     </div>
   );
 };
