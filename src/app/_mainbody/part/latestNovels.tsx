@@ -31,9 +31,9 @@ const LatestNovels = () => {
             {data?.chapters?.map((items: any, index: number) => (
               <TableRow
                 key={index}
-                className="text-white grid grid-cols-[0.5fr,1.5fr,2fr,1fr,1fr] md:grid-cols-[0.5fr,4fr,2fr,1fr,1fr] items-center hover:bg-[#313131]"
+                className="text-white grid grid-cols-[0.5fr,1.5fr,2fr,1fr,1fr] md:grid-cols-[0.5fr,4fr,2fr,1fr,1fr] items-center hover:bg-[#464646]"
               >
-                <TableCell className="sticky left-0 z-10 bg-[#313131]">    
+                <TableCell className="sticky left-0 z-10 bg-[#464646]">    
                   <Image
                     className="rounded-md min-w-[30px]"
                     src={ImagePlaceholder}
@@ -43,7 +43,7 @@ const LatestNovels = () => {
                             />
                 </TableCell>
                 <TableCell
-                  className="font-medium hover:underline hover:cursor-pointer sticky left-[67px] z-10 bg-[#313131] p-2"
+                  className="font-medium hover:underline hover:cursor-pointer sticky left-[67px] z-10 bg-[#464646] p-2"
                   onClick={() => push(`/novels/details/${items.novel_id}`)}
                 >
                   {items?.novel_title || "1"}

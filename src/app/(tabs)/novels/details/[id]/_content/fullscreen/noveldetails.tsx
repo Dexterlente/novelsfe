@@ -7,10 +7,14 @@ import { MdOutlineLibraryBooks } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import NovelTags from "./noveltags";
 import { useRouter } from "next/navigation";
+import { useFetchAllChapters } from "@/app/_components/hooks/useFetchAllChapters";
 
 
 const NovelDetails = ({ data }: any) => {
   const { push } = useRouter();
+  const {data: DataAllChapters} = useFetchAllChapters(data?.novel_id, 1)
+  console.log("ALL", DataAllChapters)
+  
 
   const cleanedText = data?.synopsis?.replace(/<\/?p>/g, '').replace(/\n/g, '<br />');
 
@@ -115,11 +119,13 @@ const NovelDetails = ({ data }: any) => {
             )}</div>
           </div>
           
+    {DataAllChapters?.chapters?.length > 0 && (
       <div className="text-center text-white p-5 hover:bg-white hover:text-black hover:cursor-pointer rounded-lg border border-solid" 
       onClick={() => push(`/novels/chapters/${data?.novel_id}`)}>
           <div className="md:text-2xl font-bold">Novel Chapters</div>
           <div>Chapter {data?.last_chapter}</div>
       </div>
+    )}
       <NovelTags data={data} />
     </>
   );
