@@ -4,6 +4,7 @@ import LgScreenAdhoc from "@/app/_adhoc/lgscreenadhoc";
 import MdScreenAdhoc from "@/app/_adhoc/mdscreenadhoc";
 import MobileScreenAdhoc from "@/app/_adhoc/mobilescreenadhoc";
 import BookList from "@/app/_components/common/booklist";
+import Loader from "@/app/_components/common/loader";
 import { useSearchNovels } from "@/app/_components/hooks/useSearchNovels";
 import { useSearchParams } from "next/navigation";
 import React from "react";
@@ -17,11 +18,15 @@ const Page = () => {
   return (
     <div className="min-h-screen">
       <FullScreenAdhoc>
-        <BookList
+      {isLoading ? (
+         <Loader /> )
+         :
+        (<BookList
           data={data}
           searched={searchQuery}
           path={`search?query=${searchQuery}`}
         />
+      )}
       </FullScreenAdhoc>
     </div>
   );
