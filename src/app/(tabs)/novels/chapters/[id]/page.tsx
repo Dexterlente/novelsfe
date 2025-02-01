@@ -14,6 +14,7 @@ import {
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation';
 import Loader from '@/app/_components/common/loader';
+import ArrowButton from '@/app/_components/utils/arrowbutton';
 
 const Page = ({ params }: { params: { id: string } }) => {
     const { push } = useRouter();
@@ -125,7 +126,7 @@ const Page = ({ params }: { params: { id: string } }) => {
  
         </div>
         </div>
-        {/* TODO BUTTON WSCROOLL UP */}
+        <ArrowButton />
     </div>
     )}
     </>

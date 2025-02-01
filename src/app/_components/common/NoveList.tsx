@@ -7,6 +7,7 @@ import { useFetchNovelsGenre } from '../hooks/useFetchNovelsGenre';
 import { useFetchNovels } from '../hooks/useFetchNovels';
 import Loader from './loader';
 import List from './List';
+import ArrowButton from '../utils/arrowbutton';
 
 
 const NoveList = () => {
@@ -65,6 +66,7 @@ const NoveList = () => {
       ) : (
         <List data={dataList} path={initialGenre} />
       )}
+      <ArrowButton />
     </div>
   );
 };

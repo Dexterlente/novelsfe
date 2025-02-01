@@ -5,6 +5,7 @@ import { mapGenre } from "../enums/genre";
 import { PaginationButton } from "./pagination";
 import { useRouter, usePathname } from "next/navigation";
 import List from "./List";
+import ArrowButton from "../utils/arrowbutton";
 
 interface Props {
   data: any;
@@ -25,6 +26,7 @@ const BookList = ({ data, searched, path }: Props) => {
         )}
       </div>
       <List data={data} path={path} />
+      <ArrowButton />
     </div>
   );
 };

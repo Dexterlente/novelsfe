@@ -5,6 +5,7 @@ import FormattedText from "./formatterContent";
 import { useRouter } from "next/navigation";
 import ChapterButton from "./ChapterButton";
 import { FaHome } from "react-icons/fa";
+import ArrowButton from "../utils/arrowbutton";
 
 const Chapter = ({ data }: any) => {
 const { push } = useRouter();
@@ -59,7 +60,9 @@ const { push } = useRouter();
           style={"col-start-2 flex justify-end"} btnTitle={"Next"} subchapter={data?.index_after?.subchapter} />
         )}
       </div>
+
       </div>
+      <ArrowButton />
     </div>
   );
 };
