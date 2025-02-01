@@ -110,3 +110,23 @@
     animation: blink 2s infinite;
   }
 }
+
+/* Global styles for React Select using Tailwind */
+.select__control {
+  @apply bg-gray-100 border-gray-300 rounded-lg; /* Custom control styling */
+}
+
+.select__option {
+  @apply py-2 px-4 text-gray-800 cursor-pointer; /* Option item styling */
+}
+.select__option:hover {
+  background-color: #e2e8f0; /* Light gray background on hover */
+}
+
+.select__option--is-selected {
+  @apply bg-black text-white !important; /* Add !important to override */
+}
+
+.select__menu {
+  @apply mt-1 rounded-lg shadow-lg border-white; /* Dropdown menu styling */
+}

@@ -5,13 +5,9 @@ import { useFetchAllGenre } from '../hooks/useFetchAllGenre';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { useFetchNovelsGenre } from '../hooks/useFetchNovelsGenre';
 import { useFetchNovels } from '../hooks/useFetchNovels';
-import dynamic from 'next/dynamic';
 import Loader from './loader';
+import List from './List';
 
-const ListDynamic = dynamic(() => import('./List'), {
-  ssr: false,
-  loading: () => <div className="text-white"><Loader /></div>
-});
 
 const NoveList = () => {
   const { push } = useRouter();
@@ -46,6 +42,7 @@ const NoveList = () => {
   return (
     <div className='min-h-screen flex flex-col mt-10'>
       <Select
+      classNamePrefix="select"
         options={[{ value: 'all', label: 'All Genres' }, ...genreOptions]}
         value={selectedGenre}
         onChange={(selectedOption) => {
@@ -66,7 +63,7 @@ const NoveList = () => {
           <Loader />
         </div>
       ) : (
-        <ListDynamic data={dataList} path={initialGenre} />
+        <List data={dataList} path={initialGenre} />
       )}
     </div>
   );
