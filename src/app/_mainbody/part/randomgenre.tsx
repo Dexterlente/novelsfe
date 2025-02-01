@@ -10,6 +10,7 @@ const Randomgenre = () => {
   const [genre, setGenre] = useState(NEWGENRE.ACTION);
 
   const { push } = useRouter();
+  // TODO FIXING SHINKING OF IMAGE
 
   const { data, isLoading } = useFetchSevenRandom(genre);
 

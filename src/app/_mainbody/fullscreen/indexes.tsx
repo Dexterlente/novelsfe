@@ -7,12 +7,6 @@ import dynamic from 'next/dynamic';
 import Slider from "../part/slider";
 
 
-// const ClientSlider = dynamic(() => import('../part/slider'), {
-//   ssr: false,
-//   loading: () => <div className="text-white"><Loader /></div>
-// });
-
-
 const Indexes = () => {
 
   return (
