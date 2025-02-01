@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import decodeProtobuf from './decodeProtoBuf';
 import { chapters } from '@/app/_proto/chapterlist';
 
-export const useFetchAllChapters = (id: string, page:any) => {
+export const useFetchAllChapters = (id: string, page: any, reverse?: boolean) => {
   const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -13,8 +13,13 @@ export const useFetchAllChapters = (id: string, page:any) => {
   if (page !== undefined || page !== null || page !== "") {
     url += `?page=${page}`;
   }
+
+  if (reverse !== undefined || reverse !== null || reverse !== "") {
+    url += `&reverse=${reverse}`;
+  }
 // TODO ADD REVERSE PARAMS
   const fetchProtobufData = async () => {
+    setIsLoading(true);
       try {
         const response = await fetch(url, {
           headers: { 'Accept': 'application/x-protobuf' },
@@ -34,7 +39,7 @@ export const useFetchAllChapters = (id: string, page:any) => {
     };
 
     fetchProtobufData();
-  }, [id, page]);
-  return { data, isLoading, error };
+  }, [id, page, reverse]);
 
+  return { data, isLoading, error };
 };

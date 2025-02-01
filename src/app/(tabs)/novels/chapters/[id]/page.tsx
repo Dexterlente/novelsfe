@@ -15,16 +15,27 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation';
 import Loader from '@/app/_components/common/loader';
 import ArrowButton from '@/app/_components/utils/arrowbutton';
+import { Button } from '@/components/ui/button';
+import { BsReverseListColumnsReverse } from "react-icons/bs";
+
 
 const Page = ({ params }: { params: { id: string } }) => {
     const { push } = useRouter();
+    const [ toggled, setToggled ]= useState(false)
 
     const [currentPage, setCurrentPage] = useState(1)
-    const {data, isLoading, error} = useFetchAllChapters(params.id, currentPage)
+    const {data, isLoading, error} = useFetchAllChapters(params.id, currentPage, toggled)
+    
 
     const handlePageChange = (newPage: any) => {
         setCurrentPage(newPage);
     }
+
+    const toggle = () => {
+        setToggled((prev: any) => !prev);
+        setCurrentPage(1)
+      };
+    
   
     const renderPaginationItem = (page: any) => (
         <PaginationItem key={page}>
@@ -57,6 +68,9 @@ const Page = ({ params }: { params: { id: string } }) => {
                             <PaginationNext href="#" onClick={(e) => { e.preventDefault(); if (currentPage < data?.total_pages) handlePageChange(currentPage + 1); }} />
                         </PaginationItem>
                     </PaginationContent>
+                    <BsReverseListColumnsReverse 
+                className='text-white hover:bg-white hover:text-black h-[40px] w-[40px] p-2 hover:rounded-lg hover:cursor-pointer ' 
+                onClick={toggle} />
                 </Pagination>
         </div>
                 {/* fullsize  below */}

@@ -7,10 +7,16 @@ export async function GET(
   let url = `${process.env.API_URL}/chapters/${params.id}`;
 
     const page = req.nextUrl.searchParams.get("page");
+    const reverse = req.nextUrl.searchParams.get("reverse");
 
     if (page !== null) {
       url += `?page=${page}&timestamp=${Date.now()}`;
     }
+
+    if (reverse !== null) {
+      url += `&reverse=${reverse}`;
+    }
+    console.log(url)
 
     try {
       const response = await fetch(url, {
@@ -18,7 +24,7 @@ export async function GET(
           Accept: "application/x-protobuf",
         },
       });
-
+  
       return response;
 
     } catch (error) {
