@@ -13,6 +13,7 @@ import {
 
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation';
+import Loader from '@/app/_components/common/loader';
 
 const Page = ({ params }: { params: { id: string } }) => {
     const { push } = useRouter();
@@ -33,6 +34,9 @@ const Page = ({ params }: { params: { id: string } }) => {
     );
 
   return (
+    <>
+    {isLoading ? (<Loader /> ) 
+    : (
     <div className="container mx-auto p-4 min-h-screen">
         <h1 className="text-3xl text-center text-white font-bold mb-4">All Chapters</h1>
         <div className="flex justify-center my-4">
@@ -64,6 +68,7 @@ const Page = ({ params }: { params: { id: string } }) => {
                             const basePath = `/novels/chapter/${chapter?.novel_id}/${chapter?.index}`;
                             const subChapterPath = chapter?.subchapter > 0 ? `/${chapter?.subchapter}` : '';
                             push(basePath + subChapterPath);
+                            window.scrollTo(0, 0);
                         }}
                        className="mb-2 flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
                         <span className="mr-4 text-gray-400">{chapter?.subchapter > 0 ? `${chapter?.index}.${chapter.subchapter}` : chapter?.index}</span>
@@ -86,6 +91,7 @@ const Page = ({ params }: { params: { id: string } }) => {
                     const basePath = `/novels/chapter/${chapter?.novel_id}/${chapter?.index}`;
                     const subChapterPath = chapter?.subchapter > 0 ? `/${chapter?.subchapter}` : '';
                     push(basePath + subChapterPath);
+                    window.scrollTo(0, 0);
                   }} className="mb-2 h-[100px] flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
                     <span className="mr-4 text-gray-400">{chapter?.subchapter > 0 ? `${chapter?.index}.${chapter.subchapter}` : chapter?.index}</span>
                     <div className="flex flex-col items-start">
@@ -104,6 +110,7 @@ const Page = ({ params }: { params: { id: string } }) => {
                         const basePath = `/novels/chapter/${chapter?.novel_id}/${chapter?.index}`;
                         const subChapterPath = chapter?.subchapter > 0 ? `/${chapter?.subchapter}` : '';
                         push(basePath + subChapterPath);
+                        window.scrollTo(0, 0);
                     }}
                   className="mb-2 h-[100px] flex items-center border border-solid hover:border-black p-4 rounded-lg w-[350px] lg:w-[400px] hover:cursor-pointer hover:bg-white text-white hover:text-black">
                     <span className="mr-4 font-bold text-gray-400">{chapter?.subchapter > 0 ? `${chapter?.index}.${chapter.subchapter}` : chapter?.index}</span>
@@ -118,7 +125,10 @@ const Page = ({ params }: { params: { id: string } }) => {
  
         </div>
         </div>
+        {/* TODO BUTTON WSCROOLL UP */}
     </div>
+    )}
+    </>
     )
 }
 

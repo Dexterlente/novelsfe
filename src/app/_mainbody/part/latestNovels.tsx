@@ -55,6 +55,7 @@ const LatestNovels = () => {
                     const basePath = `/novels/chapter/${items?.novel_id}/${items?.index}`;
                     const subChapterPath = items?.sub_chapter > 0 ? `/${items?.sub_chapter}` : '';
                     push(basePath + subChapterPath);
+                    window.scrollTo(0, 0);
                     }}
                 >
                   {items?.title}

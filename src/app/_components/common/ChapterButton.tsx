@@ -13,8 +13,9 @@ const url = subchapter && subchapter > 0
   return (
     <div className={`${style}`}>
             <Button
-              onClick={() =>
-                push(url)
+              onClick={() =>{
+                push(url);
+                window.scrollTo(0, 0)}
               }
             >
               {btnTitle}

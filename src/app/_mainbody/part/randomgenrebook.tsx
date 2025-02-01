@@ -56,6 +56,7 @@ const RandomGenreBook = ({ data, isLoading }: Props) => {
                   width={imageSize.W}
                   height={imageSize.H}
                   alt="Book Images"
+                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-800 opacity-40 rounded-lg"></div>
       

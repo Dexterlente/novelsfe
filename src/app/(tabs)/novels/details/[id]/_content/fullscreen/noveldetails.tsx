@@ -121,7 +121,9 @@ const NovelDetails = ({ data }: any) => {
           
     {DataAllChapters?.chapters?.length > 0 && (
       <div className="text-center text-white p-5 hover:bg-white hover:text-black hover:cursor-pointer rounded-lg border border-solid" 
-      onClick={() => push(`/novels/chapters/${data?.novel_id}`)}>
+      onClick={() => {push(`/novels/chapters/${data?.novel_id}`)
+      window.scrollTo(0, 0);
+      }}>
           <div className="md:text-2xl font-bold">Novel Chapters</div>
           <div>Chapter {data?.last_chapter}</div>
       </div>
