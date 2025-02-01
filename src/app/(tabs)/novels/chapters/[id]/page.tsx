@@ -33,7 +33,6 @@ const Page = ({ params }: { params: { id: string } }) => {
 
     const toggle = () => {
         setToggled((prev: any) => !prev);
-        setCurrentPage(1)
       };
     
   

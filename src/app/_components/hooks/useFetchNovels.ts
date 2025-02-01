@@ -34,6 +34,6 @@ export const useFetchNovels = (page: any) => {
     };
 
     fetchProtobufData(); 
-  }, []);
+  }, [page]);
   return { data, isLoading, error };
 };

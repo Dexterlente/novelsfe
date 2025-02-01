@@ -21,6 +21,7 @@ export function PaginationButton({ currentPage, totalPages, path }: Props) {
   const separator = pathname === "/search" ? "&" : "?";
 
   if (totalPages === 1) return <></>;
+  console.log(currentPage)
 
   return (
     <Pagination>
