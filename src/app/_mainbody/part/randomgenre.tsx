@@ -35,11 +35,7 @@ const Randomgenre = () => {
           </div>
         </div>
       <div>
-        {isLoading ? (
-          <div>Loading...</div>
-        ) : (
-          <RandomGenreBook data={data} />
-        )}
+          <RandomGenreBook data={data} isLoading={isLoading}/>
       </div>
     </>
   );

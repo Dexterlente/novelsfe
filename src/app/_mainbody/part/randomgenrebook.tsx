@@ -2,12 +2,15 @@ import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import useResizeData from "@/app/_components/common/useResizeData";
+import { limitText } from "@/app/_components/utils/limittext";
+import { Skeleton } from "@/components/ui/skeleton"
 
 interface Props {
   data?: any;
+  isLoading?: boolean;
 }
 
-const RandomGenreBook = ({ data }: Props) => {
+const RandomGenreBook = ({ data, isLoading }: Props) => {
   const { push } = useRouter();
 
   const placeholderImage = '/overgeared.jpg'
@@ -29,31 +32,43 @@ const RandomGenreBook = ({ data }: Props) => {
   const [resizedData, imageSize] = useResizeData(data?.novels, breakpoints, size);
 
   return (
+    <>
     <div className="flex gap-3 mt-3 mx-1">
       {resizedData &&
         resizedData?.map((book: any) => (
           <div key={book?.novel_id} className="flex flex-col items-center">
-          <div
+            {isLoading ? (
+            <div className="space-y-2">
+                <Skeleton className="w-[134.859px] h-[185.359px]" />
+                <Skeleton className="w-[134.859px] h-[15px]" />
+                <Skeleton className="w-[134.859px] h-[15px]" />
+            </div>
+            ) : (
+            <>
+              <div
+                className="relative hover:cursor-pointer shrink-0"
+                onClick={() => push(`/novels/details/${book.novel_id}`)}
+              >
 
-            className="relative hover:cursor-pointer"
-            onClick={() => push(`/novels/details/${book.novel_id}`)}
-          >
-            <Image
-              className="rounded-lg "
-              src={placeholderImage}
-              width={imageSize.W}
-              height={imageSize.H}
-              alt="Book Images"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-800 opacity-40 rounded-lg"></div>
-   
-          </div>
-          <div className="text-white mt-2 text-sm font-semibold text-center overflow-hidden text-ellipsis" style={{ maxWidth: '200px' }}>
-            {book.title}
-          </div>
+                <Image
+                  className="rounded-lg shrink-0"
+                  src={placeholderImage}
+                  width={imageSize.W}
+                  height={imageSize.H}
+                  alt="Book Images"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-800 opacity-40 rounded-lg"></div>
+      
+              </div>
+            <div className="text-white mt-2 text-[9px] sm:text-sm font-semibold text-center overflow-hidden text-ellipsis" style={{ maxWidth: '200px' }}>
+              {limitText(book.title, 50)}
+            </div>
+          </>
+            )}    
           </div>
         ))}
     </div>
+    </>
   );
 };
 

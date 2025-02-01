@@ -43,9 +43,9 @@ const placeHolderImage = `/overgeared.jpg`
         className="text-[13px] md:text-sm font-bold text-center hover:cursor-pointer"
         onClick={() => push(`/novels/details/${data?.novel_id}`)}
       >
-        {data?.title}
+        {limitText(data?.title, 40)}
       </p>
-      <p className="text-[9px] md:text-sm">{limitText(data?.synopsis, 100)}</p>
+      <p className="text-[9px] font-light md:text-sm">{limitText(data?.synopsis, 100)}</p>
     </CardFooter>
   </Card>
   )
