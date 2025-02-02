@@ -16,6 +16,7 @@ const FormattedText: React.FC<FormattedTextProps> = ({ text }) => {
         <p
           key={index}
           style={{ marginBottom: "1.5em", whiteSpace: "pre-line" }}
+           className="outer-paragraph"
           dangerouslySetInnerHTML={{ __html: paragraph }}
         />
       ))}

@@ -145,3 +145,22 @@
 .select__menu {
   @apply mt-1 rounded-lg shadow-lg border-white; /* Dropdown menu styling */
 }
+
+.outer-paragraph {
+  margin: 1.5em 0;
+  white-space: pre-line;
+}
+
+.outer-paragraph p {
+  margin: 1.5em 0;
+}
+
+@media (max-width: 640px) {
+  .outer-paragraph {
+    margin: 0.75em 0; 
+  }
+
+  .outer-paragraph p {
+    margin: 0.75em 0;
+  }
+}
