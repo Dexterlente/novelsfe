@@ -1,7 +1,6 @@
 import * as React from "react";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 
-
 import { cn } from "@/lib/utils";
 import { ButtonProps, buttonVariants } from "@/components/ui/button";
 
@@ -49,13 +48,17 @@ const PaginationLink = ({
   <a
     aria-current={isActive ? "page" : undefined}
     className={cn(
+      // Generate base button styling via buttonVariants
       buttonVariants({
         variant: isActive ? "secondary" : "ghost",
         size,
       }),
+      // Add responsive classes: small padding/text on mobile,
+      // larger padding/text on screens sm and above.
+      "rounded-full px-2 py-1 text-xs sm:px-3 sm:py-2 sm:text-sm",
       className,
-      isActive ? "text-black" : "text-white",
-      "rounded-full"
+      // Adjust text color based on active state.
+      isActive ? "text-black" : "text-white"
     )}
     {...props}
   />
@@ -69,7 +72,12 @@ const PaginationPrevious = ({
   <PaginationLink
     aria-label="Go to previous page"
     size="default"
-    className={cn("gap-1 pl-2.5", className)}
+    className={cn(
+      "gap-1 pl-2.5",
+      // You can add additional responsive overrides if needed
+      "px-2 py-1 text-xs sm:px-3 sm:py-2 sm:text-sm",
+      className
+    )}
     {...props}
   >
     <ChevronLeft className="h-4 w-4" />
@@ -84,7 +92,11 @@ const PaginationNext = ({
   <PaginationLink
     aria-label="Go to next page"
     size="default"
-    className={cn("gap-1 pr-2.5", className)}
+    className={cn(
+      "gap-1 pr-2.5",
+      "px-2 py-1 text-xs sm:px-3 sm:py-2 sm:text-sm",
+      className
+    )}
     {...props}
   >
     <ChevronRight className="h-4 w-4" />
@@ -98,7 +110,11 @@ const PaginationEllipsis = ({
 }: React.ComponentProps<"span">) => (
   <span
     aria-hidden
-    className={cn("flex h-9 w-9 items-center justify-center", className)}
+    className={cn(
+      // For the ellipsis, we set a fixed size that’s small on mobile and a bit larger on bigger screens.
+      "flex h-8 w-8 items-center justify-center sm:h-9 sm:w-9",
+      className
+    )}
     {...props}
   >
     <MoreHorizontal className="h-4 w-4 text-white" />
