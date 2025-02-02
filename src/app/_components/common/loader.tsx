@@ -2,8 +2,8 @@
 import React from 'react'
 import Image from "next/image";
 
-const ImageSpinner = "/circular.png"
-const ImageLogo = "/circular2.png"
+const ImageSpinner = "/loadd.png"
+const ImageLogo = "/logoo.png"
 
 const Loader = () => {
   return (
@@ -20,13 +20,13 @@ const Loader = () => {
                                       className="rounded-full slow-spin"
                                       />
                   </div>
-                  <div className='w-150px h-150px z-10 absolute'>
+                  <div className='w-100px h-100px z-10  rounded-full absolute'>
                       <Image
                                       src={ImageLogo}
                                       alt="loading"
-                                      width={100}
-                                      height={100}
-                                      className="rounded-full bg-white"
+                                      width={120}
+                                      height={120}
+                                      className="rounded-full"
                                       />
               </div>
           </div>
@@ -47,9 +47,9 @@ const Loader = () => {
                       <Image
                                       src={ImageLogo}
                                       alt="loading"
-                                      width={70}
-                                      height={70}
-                                      className="rounded-full bg-white"
+                                      width={75}
+                                      height={75}
+                                      className="rounded-full"
                                       />
               </div>
           </div>
