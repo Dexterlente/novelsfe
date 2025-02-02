@@ -8,14 +8,17 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { usePathname } from "next/navigation";
+import { BsReverseListColumnsReverse } from "react-icons/bs";
 
 interface Props {
   currentPage: number;
   totalPages: number;
   path: string;
+  isFilter?: boolean;
+  toggle?: any;
 }
 
-export function PaginationButton({ currentPage, totalPages, path }: Props) {
+export function PaginationButton({ currentPage, totalPages, path, isFilter, toggle }: Props) {
   const pathname = usePathname();
   const separator = pathname === "/search" ? "&" : "?";
 
@@ -93,6 +96,11 @@ export function PaginationButton({ currentPage, totalPages, path }: Props) {
           )}
         </PaginationItem>
       </PaginationContent>
+      { isFilter && (
+      <BsReverseListColumnsReverse 
+      onClick={toggle}
+                className='text-white hover:bg-white hover:text-black h-[10px] w-[10px] sm:h-[40px] sm:w-[40px] p-2 hover:rounded-lg hover:cursor-pointer ' />
+      )}
     </Pagination>
   );
 }

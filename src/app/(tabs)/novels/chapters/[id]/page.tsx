@@ -12,37 +12,26 @@ import {
   } from '@/components/ui/pagination';
 
 import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Loader from '@/app/_components/common/loader';
 import ArrowButton from '@/app/_components/utils/arrowbutton';
 import { Button } from '@/components/ui/button';
 import { BsReverseListColumnsReverse } from "react-icons/bs";
+import { PaginationButton } from '@/app/_components/common/pagination';
 
 
 const Page = ({ params }: { params: { id: string } }) => {
     const { push } = useRouter();
     const [ toggled, setToggled ]= useState(false)
-
-    const [currentPage, setCurrentPage] = useState(1)
-    const {data, isLoading, error} = useFetchAllChapters(params.id, currentPage, toggled)
-    // TODO PAGINATION PROB REFRESH
-
-    const handlePageChange = (newPage: any) => {
-        setCurrentPage(newPage);
-    }
+    const searchParams = useSearchParams();
+    const pathname = usePathname()
+    const page = Number(searchParams.get("page") || "1");
+  
+    const {data, isLoading, error} = useFetchAllChapters(params.id, page, toggled)
 
     const toggle = () => {
         setToggled((prev: any) => !prev);
       };
-    
-  
-    const renderPaginationItem = (page: any) => (
-        <PaginationItem key={page}>
-            <PaginationLink href="#" isActive={page === currentPage} onClick={(e) => { e.preventDefault(); handlePageChange(page); }}>
-                {page}
-            </PaginationLink>
-        </PaginationItem>
-    );
 
   return (
     <>
@@ -51,26 +40,13 @@ const Page = ({ params }: { params: { id: string } }) => {
     <div className="container mx-auto p-4 min-h-screen">
         <h1 className="text-3xl text-center text-white font-bold mb-4">All Chapters</h1>
         <div className="flex justify-center my-4">
-                <Pagination>
-                    <PaginationContent>
-                        <PaginationItem>
-                            <PaginationPrevious href="#" onClick={(e) => { e.preventDefault(); if (currentPage > 1) handlePageChange(currentPage - 1); }} />
-                        </PaginationItem>
-                        {currentPage > 2 && renderPaginationItem(1)}
-                        {currentPage > 3 && <PaginationEllipsis />}
-                        {currentPage > 1 && renderPaginationItem(currentPage - 1)}
-                        {renderPaginationItem(currentPage)}
-                        {currentPage < data?.total_pages && renderPaginationItem(currentPage + 1)}
-                        {currentPage < data?.total_pages - 1 && <PaginationEllipsis />}
-                        {currentPage < data?.total_pages - 1 && renderPaginationItem(data?.total_pages)}
-                        <PaginationItem>
-                            <PaginationNext href="#" onClick={(e) => { e.preventDefault(); if (currentPage < data?.total_pages) handlePageChange(currentPage + 1); }} />
-                        </PaginationItem>
-                    </PaginationContent>
-                    <BsReverseListColumnsReverse 
-                className='text-white hover:bg-white hover:text-black h-[40px] w-[40px] p-2 hover:rounded-lg hover:cursor-pointer ' 
-                onClick={toggle} />
-                </Pagination>
+                <PaginationButton
+                                        currentPage={data?.current_page}
+                                        totalPages={data?.total_pages}
+                                        path={pathname}
+                                        isFilter={true}
+                                        toggle={toggle}
+                                    />
         </div>
                 {/* fullsize  below */}
         <div className="flex items-center justify-center">

@@ -30,8 +30,6 @@ const NoveList = () => {
     label: decodeURIComponent(item.genre),
   })) || [];
 
-  const isAllGenre = selectedGenre.value === "all";
-
   const isAllGenres = selectedGenre.value === "all";
   const { data: dataList, isLoading: isLoadingList } = isAllGenres 
     ? useFetchNovels(page) 
