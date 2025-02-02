@@ -17,87 +17,79 @@ interface Props {
 
 export function PaginationButton({ currentPage, totalPages, path }: Props) {
   const pathname = usePathname();
-
   const separator = pathname === "/search" ? "&" : "?";
 
-  if (totalPages === 1) return <></>;
-  console.log(currentPage)
+  if (totalPages === 1) return null;
+
+  // Calculate the set of pages that should always be visible.
+  const pagesSet = new Set<number>();
+  pagesSet.add(1);
+  pagesSet.add(totalPages);
+
+  // Always include the active page and its immediate neighbors
+  if (currentPage - 1 >= 1) pagesSet.add(currentPage - 1);
+  pagesSet.add(currentPage);
+  if (currentPage + 1 <= totalPages) pagesSet.add(currentPage + 1);
+
+  // Create a sorted array of the pages
+  const visiblePages = Array.from(pagesSet).sort((a, b) => a - b);
+
+  // Build the final list of items (numbers or ellipsis)
+  const paginationItems: (number | "ellipsis")[] = [];
+  for (let i = 0; i < visiblePages.length; i++) {
+    if (i === 0) {
+      paginationItems.push(visiblePages[i]);
+      continue;
+    }
+
+    const prevPage = visiblePages[i - 1];
+    const currentPageNum = visiblePages[i];
+
+    if (currentPageNum - prevPage === 2) {
+      // There is only one missing page so we show it
+      paginationItems.push(prevPage + 1);
+    } else if (currentPageNum - prevPage > 2) {
+      // More than one page missing so we render an ellipsis
+      paginationItems.push("ellipsis");
+    }
+
+    paginationItems.push(currentPageNum);
+  }
 
   return (
     <Pagination>
       <PaginationContent>
         <PaginationItem>
           {currentPage !== 1 && (
-            <PaginationPrevious
-              href={`${path}${separator}page=${currentPage - 1}`}
-            />
+            <PaginationPrevious href={`${path}${separator}page=${currentPage - 1}`} />
           )}
         </PaginationItem>
-        {[...Array(totalPages)].map((_, index) => {
-          if (totalPages === currentPage) {
-            // Logic to render only the left side when on the last page
-            if (
-              index === 0 ||
-              index === currentPage - 3 ||
-              index === currentPage - 2 ||
-              index === currentPage - 1
-            ) {
-              return (
-                <PaginationItem key={index}>
-                  <PaginationLink
-                    href={`${path}${separator}page=${index + 1}`}
-                    isActive={index + 1 === currentPage}
-                  >
-                    {index + 1}
-                  </PaginationLink>
-                </PaginationItem>
-              );
-            }
-            // Render ellipsis before the last three pages if there are more pages before
-            if (index === 1 && currentPage > 4) {
-              return (
-                <PaginationItem key={index}>
-                  <PaginationEllipsis />
-                </PaginationItem>
-              );
-            }
-          } else {
-            // Original logic for when totalPages is not equal to currentPage
-            if (
-              index === 0 ||
-              index === currentPage - 1 ||
-              index === currentPage ||
-              index === currentPage + 1 ||
-              index === totalPages - 1
-            ) {
-              return (
-                <PaginationItem key={index}>
-                  <PaginationLink
-                    href={`${path}${separator}page=${index + 1}`}
-                    isActive={index + 1 === currentPage}
-                  >
-                    {index + 1}
-                  </PaginationLink>
-                </PaginationItem>
-              );
-            }
-            // Render ellipsis
-            if (index === 1 || index === totalPages - 2) {
-              return (
-                <PaginationItem key={index}>
-                  <PaginationEllipsis />
-                </PaginationItem>
-              );
-            }
+
+        {paginationItems.map((item, idx) => {
+          if (item === "ellipsis") {
+            return (
+              <PaginationItem key={`ellipsis-${idx}`}>
+                <PaginationEllipsis />
+              </PaginationItem>
+            );
           }
-          return null;
+
+          // Render a page button
+          return (
+            <PaginationItem key={item}>
+              <PaginationLink
+                href={`${path}${separator}page=${item}`}
+                isActive={item === currentPage}
+              >
+                {item}
+              </PaginationLink>
+            </PaginationItem>
+          );
         })}
 
         <PaginationItem>
           {currentPage !== totalPages && (
-            <PaginationNext
-              href={`${path}${separator}page=${currentPage + 1}`}
-            />
+            <PaginationNext href={`${path}${separator}page=${currentPage + 1}`} />
           )}
         </PaginationItem>
       </PaginationContent>

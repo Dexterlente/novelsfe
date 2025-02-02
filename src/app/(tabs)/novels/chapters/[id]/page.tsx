@@ -25,7 +25,7 @@ const Page = ({ params }: { params: { id: string } }) => {
 
     const [currentPage, setCurrentPage] = useState(1)
     const {data, isLoading, error} = useFetchAllChapters(params.id, currentPage, toggled)
-    
+    // TODO PAGINATION PROB REFRESH
 
     const handlePageChange = (newPage: any) => {
         setCurrentPage(newPage);
