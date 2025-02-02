@@ -30,12 +30,12 @@ const NoveList = () => {
     label: decodeURIComponent(item.genre),
   })) || [];
 
-  // Ensure hooks are used correctly
-  const { data: novelList, isLoading: isAllNovelsLoading } = useFetchNovels(page);
-  const { data: novelGenreList, isLoading: isGenreLoading } = useFetchNovelsGenre(selectedGenre.value, page);
+  const isAllGenre = selectedGenre.value === "all";
 
-  const isLoadingList = selectedGenre.value === "all" ? isAllNovelsLoading : isGenreLoading;
-  const dataList = selectedGenre.value === "all" ? novelList : novelGenreList;
+  const isAllGenres = selectedGenre.value === "all";
+  const { data: dataList, isLoading: isLoadingList } = isAllGenres 
+    ? useFetchNovels(page) 
+    : useFetchNovelsGenre(selectedGenre.value, page);
 
   useEffect(() => {
     if (selectedGenre.value !== pathname.split('/').pop()) {
