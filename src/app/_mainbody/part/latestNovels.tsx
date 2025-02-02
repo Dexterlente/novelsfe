@@ -13,6 +13,7 @@ import { useFetchLatestNovels } from "@/app/_components/hooks/useFetchLatestNove
 import { formatTimestamp } from "@/app/_components/utils/dateFormatter";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { limitText } from "@/app/_components/utils/limittext";
 
 
 const LatestNovels = () => {
@@ -31,9 +32,9 @@ const LatestNovels = () => {
             {data?.chapters?.map((items: any, index: number) => (
               <TableRow
                 key={index}
-                className="text-white grid grid-cols-[0.5fr,1.5fr,2fr,1fr,1fr] md:grid-cols-[0.5fr,4fr,2fr,1fr,1fr] items-center hover:bg-[#464646]"
+                className="text-white grid grid-cols-[0.5fr,1.5fr,2fr,1fr,1fr] md:grid-cols-[0.5fr,4fr,3fr,1fr,1fr] items-center hover:bg-[#464646]"
               >
-                <TableCell className="sticky left-0 z-10 bg-[#464646]">    
+                <TableCell className="sticky -left-1 z-10 bg-[#464646]">    
                   <Image
                     className="rounded-md min-w-[30px]"
                     src={ImagePlaceholder}
@@ -43,7 +44,7 @@ const LatestNovels = () => {
                             />
                 </TableCell>
                 <TableCell
-                  className="font-medium hover:underline hover:cursor-pointer sticky left-[67px] z-10 bg-[#464646] p-2"
+                  className="font-medium hover:underline hover:cursor-pointer sticky left-[62px] z-10 bg-[#464646] p-2"
                   onClick={() => push(`/novels/details/${items.novel_id}`)}
                 >
                   {items?.novel_title || "1"}
@@ -58,7 +59,7 @@ const LatestNovels = () => {
                     window.scrollTo(0, 0);
                     }}
                 >
-                  {items?.title}
+                  {limitText(items?.title, 65)}
                 </TableCell>
                 <TableCell>{items?.author}</TableCell>
                 <TableCell>{formatTimestamp(items?.timestamp)}</TableCell>
