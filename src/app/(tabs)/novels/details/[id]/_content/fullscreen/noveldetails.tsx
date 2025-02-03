@@ -18,7 +18,6 @@ const NovelDetails = ({ data }: any) => {
 
   const cleanedText = data?.synopsis?.replace(/<\/?p>/g, '').replace(/\n/g, '<br />');
 
-  const ImagePlaceholder = '/overgeared.jpg'
 
   const handleGenreClick = (genre: string) => {
     push(`/novels/genres/${genre}?page=1`);
@@ -31,7 +30,7 @@ const NovelDetails = ({ data }: any) => {
     <div className="mt-4 min-w-[200px] flex justify-center items-center">
           <Image
             className="rounded-lg object-cover"
-            src={ImagePlaceholder} 
+            src={data?.images && data?.images !== "None" ? data?.images : '/book.jpeg'} 
             alt="bookImage"
             width={200}
             height={300}
@@ -68,7 +67,7 @@ const NovelDetails = ({ data }: any) => {
         <div className="mt-4 min-w-[200px] flex items-center">
           <Image
             className="rounded-lg object-cover"
-            src={ImagePlaceholder} 
+            src={data?.images && data?.images !== "None" ? data?.images : '/book.jpeg'} 
             alt="bookImage"
             width={350}
             height={400}

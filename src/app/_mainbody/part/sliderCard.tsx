@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 
 const SliderCard = ({data, title, bgGradient}: any) => {
 const { push } = useRouter();
-const placeHolderImage = `/overgeared.jpg`
+
   return (
     <Card className={`w-[180px] h-[280px] md:w-[238px] md:h-[355px] bg-gradient-to-br ${bgGradient}`}>
     <CardTitle className="text-center mt-1 md:m-1 text-white text-md md:text-lg font-bold">
@@ -30,7 +30,7 @@ const placeHolderImage = `/overgeared.jpg`
       {data && (
         <Image
           className="rounded-r-lg hover:cursor-pointer w-[90px] md:w-[120px]"
-          src={placeHolderImage}
+          src={data?.images && data?.images !== "None" ? data?.images : '/book.jpeg'}
           width={120}
           height={120}
           alt="Book"

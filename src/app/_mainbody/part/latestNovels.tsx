@@ -19,8 +19,6 @@ import { limitText } from "@/app/_components/utils/limittext";
 const LatestNovels = () => {
   const { data } = useFetchLatestNovels();
   const { push } = useRouter();
-  const ImagePlaceholder = '/overgeared.jpg'
-
   return (
     <>
       <div className="text-2xl font-bold text-white mb-2">
@@ -37,7 +35,7 @@ const LatestNovels = () => {
                 <TableCell className="sticky -left-1 z-10 bg-[#464646]">    
                   <Image
                     className="rounded-md min-w-[30px]"
-                    src={ImagePlaceholder}
+                    src={items?.images && items?.images !== "None" ? items?.images : '/book.jpeg'}
                     alt="bookImage"
                     width={30}
                     height={40}

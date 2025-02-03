@@ -13,8 +13,6 @@ interface Props {
 const RandomGenreBook = ({ data, isLoading }: Props) => {
   const { push } = useRouter();
 
-  const placeholderImage = '/overgeared.jpg'
-
   const breakpoints = [
     { width: 640, count: 4 },
     { width: 768, count: 6 },
@@ -52,7 +50,7 @@ const RandomGenreBook = ({ data, isLoading }: Props) => {
 
                 <Image
                   className="rounded-lg shrink-0"
-                  src={placeholderImage}
+                  src={book?.images && book?.images !== "None" ? book?.images : '/book.jpeg'}
                   width={imageSize.W}
                   height={imageSize.H}
                   alt="Book Images"

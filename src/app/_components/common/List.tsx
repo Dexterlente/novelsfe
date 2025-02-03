@@ -3,11 +3,12 @@ import { PaginationButton } from './pagination'
 import { useRouter } from "next/navigation"
 import Image from "next/image";
 
-const ImagePlaceholder = '/overgeared.jpg'
+
 
 
 const List = ({data, path}:any) => {
     const { push} = useRouter()
+
   return (
     <div>
         <div className='block sm:hidden'>
@@ -16,7 +17,7 @@ const List = ({data, path}:any) => {
                 <div key={novel.novel_id} className="flex mb-10 h-[200px]">
                   <div className="flex-shrink-0 mr-4">
                     <Image
-                      src={ImagePlaceholder}
+                      src={novel.images && novel.images !== "None" ? novel.images : '/book.jpeg'}
                       alt={novel.title}
                       width={150}
                       height={240}
@@ -42,7 +43,7 @@ const List = ({data, path}:any) => {
                     <div key={novel.novel_id} className="grid grid-cols-2 gap-2">
                       <div className='flex flex-row-reverse mr-2'>
                         <Image
-                          src={ImagePlaceholder}
+                          src={novel.images && novel.images !== "None" ? novel.images : '/book.jpeg'}
                           alt={novel.title}
                           width={150}
                           height={240}
