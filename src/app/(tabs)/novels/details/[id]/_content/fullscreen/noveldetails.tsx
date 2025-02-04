@@ -29,7 +29,7 @@ const NovelDetails = ({ data }: any) => {
     <div className="block md:hidden">
     <div className="mt-4 min-w-[200px] flex justify-center items-center">
           <Image
-            className="rounded-lg object-cover"
+            className="rounded-lg object-cover border border-white"
             src={data?.images && data?.images !== "None" ? data?.images : '/book.jpeg'} 
             alt="bookImage"
             width={200}
@@ -44,7 +44,7 @@ const NovelDetails = ({ data }: any) => {
             </div>
             <div className="flex flex-wrap my-3">
                 {data?.genre?.split(',').map((genre: any, index: any) => (
-                  <Button className="mr-2  mb-1 rounded-lg" size={"sm"} key={index}>
+                  <Button className="mr-2  mb-1 rounded-lg" size={"sm"} key={index} onClick={() => handleGenreClick(genre.trim())}>
                     {genre.trim()}
                   </Button>
                 ))}
@@ -66,7 +66,7 @@ const NovelDetails = ({ data }: any) => {
       <div className="grid grid-cols-[1fr,3fr] text-white mt-10">
         <div className="mt-4 min-w-[200px] flex items-center">
           <Image
-            className="rounded-lg object-cover"
+            className="rounded-lg object-cover border border-white"
             src={data?.images && data?.images !== "None" ? data?.images : '/book.jpeg'} 
             alt="bookImage"
             width={350}

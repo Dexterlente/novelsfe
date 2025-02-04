@@ -21,7 +21,7 @@ const List = ({data, path}:any) => {
                       alt={novel.title}
                       width={150}
                       height={240}
-                      className="rounded-lg hover:cursor-pointer"
+                      className="rounded-lg hover:cursor-pointer h-[180px] w-[130px] object-cover border border-white"
                       onClick={() => push(`/novels/details/${novel.novel_id}`)}
                     />
                   </div>
@@ -47,7 +47,7 @@ const List = ({data, path}:any) => {
                           alt={novel.title}
                           width={150}
                           height={240}
-                          className="rounded-lg hover:cursor-pointer"
+                          className="rounded-lg hover:cursor-pointer h-[220px] w-[150px] object-cover"
                           onClick={() => push(`/novels/details/${novel.novel_id}`)}
                         />
                       </div>
