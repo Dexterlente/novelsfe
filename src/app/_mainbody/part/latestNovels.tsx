@@ -43,7 +43,11 @@ const LatestNovels = () => {
                 </TableCell>
                 <TableCell
                   className="font-medium hover:underline hover:cursor-pointer sticky left-[62px] z-10 bg-[#464646] p-2"
-                  onClick={() => push(`/novels/details/${items.novel_id}`)}
+                  onClick={() => {push(`/novels/details/${items.novel_id}`)
+                  window.scrollTo(0, 0);
+                }
+                }
+                  
                 >
                   {items?.novel_title || "1"}
                 </TableCell>
@@ -59,7 +63,7 @@ const LatestNovels = () => {
                 >
                   {limitText(items?.title, 65)}
                 </TableCell>
-                <TableCell>{items?.author}</TableCell>
+                <TableCell>{limitText(items?.author, 25)}</TableCell>
                 <TableCell>{formatTimestamp(items?.timestamp)}</TableCell>
               </TableRow>
             ))}
