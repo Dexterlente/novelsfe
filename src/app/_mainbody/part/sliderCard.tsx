@@ -29,7 +29,7 @@ const { push } = useRouter();
     <CardContent className="flex items-center justify-center p-1">
       {data && (
         <Image
-          className="rounded-r-lg hover:cursor-pointer w-[90px] md:w-[120px]"
+          className="rounded-r-lg hover:cursor-pointer h-[130px] sm:h-[170px] w-[90px] md:w-[120px] object-cover border border-white shadow-lg"
           src={data?.images && data?.images !== "None" ? data?.images : '/book.jpeg'}
           width={120}
           height={120}

@@ -49,7 +49,7 @@ const RandomGenreBook = ({ data, isLoading }: Props) => {
               >
 
                 <Image
-                  className="rounded-lg shrink-0"
+                  className="rounded-lg shrink-0 h-[120px] sm:h-[180px] w-[130px] object-cover"
                   src={book?.images && book?.images !== "None" ? book?.images : '/book.jpeg'}
                   width={imageSize.W}
                   height={imageSize.H}
@@ -59,7 +59,7 @@ const RandomGenreBook = ({ data, isLoading }: Props) => {
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-800 opacity-40 rounded-lg"></div>
       
               </div>
-            <div className="text-white mt-2 text-[9px] sm:text-sm font-semibold text-center overflow-hidden text-ellipsis" style={{ maxWidth: '200px' }}>
+            <div className="text-white mt-2 text-[9px] w-[80px] sm:w-[130px] sm:text-sm font-semibold text-center overflow-hidden text-ellipsis" style={{ maxWidth: '200px' }}>
               {limitText(book.title, 50)}
             </div>
           </>
