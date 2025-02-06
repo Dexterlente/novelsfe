@@ -19,6 +19,7 @@ import { limitText } from "@/app/_components/utils/limittext";
 const LatestNovels = () => {
   const { data } = useFetchLatestNovels();
   const { push } = useRouter();
+  console.log(data)
   return (
     <>
       <div className="text-2xl font-bold text-white mb-2">
@@ -56,7 +57,7 @@ const LatestNovels = () => {
                   className="hover:underline hover:cursor-pointer"
                   onClick={() => {
                     const basePath = `/novels/chapter/${items?.novel_id}/${items?.index}`;
-                    const subChapterPath = items?.sub_chapter > 0 ? `/${items?.sub_chapter}` : '';
+                    const subChapterPath = items?.subchapter > 0 ? `/${items?.subchapter}` : '';
                     push(basePath + subChapterPath);
                     window.scrollTo(0, 0);
                     }}
