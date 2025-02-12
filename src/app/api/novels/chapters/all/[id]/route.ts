@@ -16,7 +16,6 @@ export async function GET(
     if (reverse !== null) {
       url += `&reverse=${reverse}`;
     }
-    console.log(url)
 
     try {
       const response = await fetch(url, {

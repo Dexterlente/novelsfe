@@ -14,7 +14,6 @@ export async function GET(req: NextRequest) {
   if (page !== null) {
     url += `&page=${page}&timestamp=${Date.now()}`;
   }
-  console.log("Constructed URL:", url);
 
   try {
     const response = await fetch(url, {

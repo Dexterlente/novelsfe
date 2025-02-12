@@ -13,9 +13,7 @@ import { useFetchAllChapters } from "@/app/_components/hooks/useFetchAllChapters
 const NovelDetails = ({ data }: any) => {
   const { push } = useRouter();
   const {data: DataAllChapters} = useFetchAllChapters(data?.novel_id, 1)
-  console.log("ALL", DataAllChapters)
   
-
   const cleanedText = data?.synopsis?.replace(/<\/?p>/g, '').replace(/\n/g, '<br />');
 
 

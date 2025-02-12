@@ -19,7 +19,6 @@ import { limitText } from "@/app/_components/utils/limittext";
 const LatestNovels = () => {
   const { data } = useFetchLatestNovels();
   const { push } = useRouter();
-  console.log(data)
   return (
     <>
       <div className="text-2xl font-bold text-white mb-2">
