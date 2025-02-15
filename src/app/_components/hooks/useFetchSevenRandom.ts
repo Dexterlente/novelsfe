@@ -26,7 +26,6 @@ export const useFetchSevenRandom = (id: string) => {
         });
 
         const base64String = await response.text();
-
         // Decode and deserialize Protobuf data
         const decodedData = decodeProtobuf(base64String, novels.NovelList.deserializeBinary);
         
