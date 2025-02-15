@@ -7,9 +7,9 @@ import BookList from "@/app/_components/common/booklist";
 import Loader from "@/app/_components/common/loader";
 import { useSearchNovels } from "@/app/_components/hooks/useSearchNovels";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 
-const Page = () => {
+const SearchContent = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("query");
   const page = searchParams.get("page");
@@ -32,4 +32,11 @@ const Page = () => {
   );
 };
 
-export default Page;
+
+export default function Page() {
+  return (
+    <Suspense fallback={<Loader />}>
+      <SearchContent />
+    </Suspense>
+  );
+}
