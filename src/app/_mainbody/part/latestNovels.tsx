@@ -14,12 +14,28 @@ import { formatTimestamp } from "@/app/_components/utils/dateFormatter";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { limitText } from "@/app/_components/utils/limittext";
-
+import { Skeleton } from "@/components/ui/skeleton"
 
 const LatestNovels = () => {
-  const { data } = useFetchLatestNovels();
+  const { data, isLoading } = useFetchLatestNovels();
   const { push } = useRouter();
   return (
+    <>
+    {isLoading ? (
+            <div className="space-y-7">
+                <Skeleton className="w-[274px] h-[30px]" />
+                <Skeleton className="w-full h-[30px]" />
+                <Skeleton className="w-full h-[30px]" />
+                <Skeleton className="w-full h-[30px]" />
+                <Skeleton className="w-full h-[30px]" />
+                <Skeleton className="w-full h-[30px]" />
+                <Skeleton className="w-full h-[30px]" />
+                <Skeleton className="w-full h-[30px]" />
+                <Skeleton className="w-full h-[30px]" />
+                <Skeleton className="w-full h-[30px]" />
+                <Skeleton className="w-full h-[30px]" />
+            </div>
+            ) : (
     <>
       <div className="text-2xl font-bold text-white mb-2">
         Most Recently Updated
@@ -70,6 +86,8 @@ const LatestNovels = () => {
           </TableBody>
         </Table>
       </div>
+      </>
+      )}
     </>
   );
 };
