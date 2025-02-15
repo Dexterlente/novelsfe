@@ -31,9 +31,15 @@ const NoveList = () => {
   })) || [];
 
   const isAllGenres = selectedGenre.value === "all";
-  const { data: dataList, isLoading: isLoadingList } = isAllGenres 
-    ? useFetchNovels(page) 
-    : useFetchNovelsGenre(selectedGenre.value, page);
+  // const { data: dataList, isLoading: isLoadingList } = isAllGenres 
+  //   ? useFetchNovels(page) 
+  //   : useFetchNovelsGenre(selectedGenre.value, page);
+  const { data: allNovelsData, isLoading: allLoading } = useFetchNovels(page);
+  const { data: genreNovelsData, isLoading: genreLoading } = useFetchNovelsGenre(selectedGenre.value, page);
+
+  // Conditionally choose which data to use
+  const dataList = isAllGenres ? allNovelsData : genreNovelsData;
+  const isLoadingList = isAllGenres ? allLoading : genreLoading;
 
   useEffect(() => {
     if (selectedGenre.value !== pathname.split('/').pop()) {

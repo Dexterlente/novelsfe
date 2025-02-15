@@ -1,3 +1,5 @@
 protoc --plugin=protoc-gen-ts=/usr/local/bin/protoc-gen-ts --ts_out=. novels.proto
 
 protofile generator command
+
+protoc --plugin=protoc-gen-ts=$(npm bin)/protoc-gen-ts --ts_out=. novels.proto

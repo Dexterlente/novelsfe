@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import CollapsibleText from "@/app/_components/common/collapsibletext";
 import NovelChapters from "./novelchapters";
-import AllChapters from "./allchapters";
 import { MdOutlineLibraryBooks } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import NovelTags from "./noveltags";
