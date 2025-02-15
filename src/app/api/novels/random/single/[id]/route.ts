@@ -19,10 +19,8 @@ export async function GET(
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    // Read the response body as ArrayBuffer
     const buffer = await response.arrayBuffer();
 
-    // Return the protobuf response with proper headers
     return new Response(buffer, {
       status: response.status,
       headers: {
