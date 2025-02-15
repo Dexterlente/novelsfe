@@ -35,6 +35,6 @@ export const useFetchNovelsGenre = (id: string, page?: any) => {
   };
 
   fetchProtobufData();
-}, [id, page]);
+}, [id, page, url]);
 return { data, isLoading, error };
 };

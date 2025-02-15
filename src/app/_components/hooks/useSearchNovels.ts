@@ -42,7 +42,7 @@ export const useSearchNovels = (query: any, page: any) => {
     };
 
     fetchProtobufData(); 
-  }, [query, page]);
+  }, [query, page, url]);
 
   return { data, searchQuery, isLoading, error };
 };

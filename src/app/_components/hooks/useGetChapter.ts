@@ -39,7 +39,7 @@ export const useGetChapter = (id: any, chapter_id: any, sub_chapter?: any) => {
     };
 
     fetchProtobufData();
-  },[id, chapter_id, sub_chapter]);
+  },[id, chapter_id, sub_chapter, url]);
 
   return { data, isLoading, error };
 };
