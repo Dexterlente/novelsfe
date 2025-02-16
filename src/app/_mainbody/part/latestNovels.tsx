@@ -46,11 +46,12 @@ const LatestNovels = () => {
             {data?.chapters?.map((items: any, index: number) => (
               <TableRow
                 key={index}
-                className="text-white grid grid-cols-[0.5fr,1.5fr,2fr,1fr,1fr] md:grid-cols-[0.5fr,4fr,3fr,1fr,1fr] items-center hover:bg-[#464646]"
+                // grid-cols-[0.5fr,1.5fr,2fr,1fr,1fr]
+                className="text-white sm:grid  md:grid-cols-[0.5fr,4fr,3fr,1fr,1fr] items-center hover:bg-[#464646]"
               >
-                <TableCell className="sticky -left-1 z-10 bg-[#464646]">    
+                <TableCell className="sticky left-0 w-[18px] z-10 bg-[#464646] items-left pl-[20px] pr-[20px]">    
                   <Image
-                    className="rounded-md min-w-[30px]"
+                    className="rounded-md min-w-[50px]"
                     src={items?.images && items?.images !== "None" ? items?.images : '/book.jpeg'}
                     alt="bookImage"
                     width={30}
@@ -58,7 +59,7 @@ const LatestNovels = () => {
                             />
                 </TableCell>
                 <TableCell
-                  className="font-medium hover:underline hover:cursor-pointer sticky left-[62px] z-10 bg-[#464646] p-2"
+                  className="font-medium hover:underline hover:cursor-pointer sticky left-[90px] min-w-[120px] z-10 bg-[#464646] py-4 pl-[40px] items-left mr-10"
                   onClick={() => {push(`/novels/details/${items.novel_id}`)
                   window.scrollTo(0, 0);
                 }
