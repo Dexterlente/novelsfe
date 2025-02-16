@@ -47,9 +47,9 @@ const LatestNovels = () => {
               <TableRow
                 key={index}
                 // grid-cols-[0.5fr,1.5fr,2fr,1fr,1fr]
-                className="text-white sm:grid  md:grid-cols-[0.5fr,4fr,3fr,1fr,1fr] items-center hover:bg-[#464646]"
+                className="text-white sm:grid  sm:grid-cols-[0.5fr,4fr,3fr,1fr,1fr] items-center hover:bg-[#464646]"
               >
-                <TableCell className="sticky left-0 w-[18px] z-10 bg-[#464646] items-left pl-[20px] pr-[20px]">    
+                <TableCell className="sticky left-0 w-[10px] z-10 bg-[#464646] items-left pl-[20px] pr-[20px]">    
                   <Image
                     className="rounded-md min-w-[50px]"
                     src={items?.images && items?.images !== "None" ? items?.images : '/book.jpeg'}
