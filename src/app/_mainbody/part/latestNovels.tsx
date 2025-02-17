@@ -61,7 +61,7 @@ const LatestNovels = () => {
                             />
                 </TableCell>
                 <TableCell
-                  className="font-medium hover:underline hover:cursor-pointer sticky left-[66px] min-w-[120px] z-20 bg-[#464646] pl-[10px] items-left mr-8"
+                  className="font-medium hover:underline hover:cursor-pointer sticky left-[66px] min-w-[120px] z-10 bg-[#464646] pl-[10px] items-left mr-8"
                   onClick={() => {push(`/novels/details/${items.novel_id}`)
                   window.scrollTo(0, 0);
                 }
