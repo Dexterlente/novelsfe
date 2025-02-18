@@ -16,7 +16,7 @@ const NavHeader = () => {
                     src={imageHeader} 
                     alt="bookImage"
                     width={300}
-                    height={150}
+                    height={140}
                   />
     </div>
   </div>
